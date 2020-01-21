@@ -1,0 +1,100 @@
+Create table room_types (
+	room_type_id int auto_increment, 
+	type varchar(50),
+	max_pers int,
+	images varchar(300),
+	primary key (room_type_id)
+);
+
+Create table room_details (
+	room_details_id int auto_increment, 
+	smoking boolean,
+	wifi boolean,
+	AC boolean,
+	description varchar(300),
+	primary key (room_details_id)
+); 
+
+Create table cities (
+	city_id int auto_increment, 
+	city_name varchar(100), 
+	primary key (city_id)
+); 
+
+Create table countries (
+	country_id int auto_increment,
+	country_name varchar(100), 
+	primary key (country_id)
+); 
+
+Create table locations (
+	location_id int auto_increment,
+	country_id int,
+	city_id int,
+	zipcode varchar(50),
+	street_number varchar(10),
+	primary key (location_id),
+	foreign key (country_id) references countries(country_id),
+	foreign key (city_id) references cities(city_id)
+); 
+
+Create table property_categories (
+	property_category_id int auto_increment,
+	category varchar(200),
+	primary key (property_category_id)
+); 
+
+Create table property_details (
+	property_details_id int auto_increment,
+	parking boolean,
+	restauran boolean,
+	swimming_pool boolean, 
+	pets_allowed boolean,
+	primary key (property_details_id)
+); 
+
+Create table properties (
+	property_id int auto_increment,
+	name varchar(100),
+	property_category_id int,
+	location_id int,
+	property_details_id int,
+	primary key (property_id),
+	foreign key (property_category_id) references property_categories(property_category_id),
+	foreign key (location_id) references locations(location_id),
+	foreign key (property_details_id) references property_details(property_details_id)
+);
+
+Create table rooms (
+	room_id int auto_increment, 
+	room_type_id int,
+	room_num int,
+	room_details_id int,
+	property_id int,
+	description varchar(300),
+	primary key (room_id), 
+	foreign key (room_type_id) references room_types(room_type_id),
+	foreign key (room_details_id) references room_details(room_details_id),
+	foreign key (property_id) references properties(property_id)	
+);
+
+Create table customers (
+	customer_id int auto_increment,
+	first_name varchar(100), 
+	last_name varchar(100), 
+	email varchar(150), 
+	primary key (customer_id)
+); 
+
+Create table reservations (
+	reservation_id int auto_increment,
+	room_id int,
+	customer_id int,
+	check_in_date date,
+	check_out_date date,
+	num_of_pers int,
+	primary key (reservation_id), 
+	foreign key (room_id) references rooms(room_id),
+	foreign key (customer_id) references customers(customer_id)
+); 
+
