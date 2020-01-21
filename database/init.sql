@@ -67,8 +67,8 @@ CREATE TABLE `properties` (
   `name` varchar(100) DEFAULT NULL,
   `property_category_id` int(11) DEFAULT NULL,
   `location_id` int(11) DEFAULT NULL,
-  `property_details_id` int(11) DEFAULT NULL
-  `description` varchar(300) DEFAULT NULL
+  `property_details_id` int(11) DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL,
   `images` varchar(300) DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
