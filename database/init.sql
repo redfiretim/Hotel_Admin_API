@@ -68,6 +68,9 @@ CREATE TABLE `properties` (
   `property_category_id` int(11) DEFAULT NULL,
   `location_id` int(11) DEFAULT NULL,
   `property_details_id` int(11) DEFAULT NULL
+  `description` varchar(300) DEFAULT NULL
+  `images` varchar(300) DEFAULT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -81,7 +84,7 @@ CREATE TABLE `locations` (
   `location_id` int(11) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
-  `zipcode` varchar(50) DEFAULT NULL,
+  `zipcode` varchar(10) DEFAULT NULL,
   `street_number` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,7 +123,7 @@ CREATE TABLE `customers` (
   `customer_id` int(11) NOT NULL,
   `first_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
-  `email` varchar(150) DEFAULT NULL
+  `email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
