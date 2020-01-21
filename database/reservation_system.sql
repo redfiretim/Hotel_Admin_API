@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 21 jan 2020 om 12:26
--- Serverversie: 10.4.6-MariaDB
--- PHP-versie: 7.2.22
+-- Generation Time: Jan 21, 2020 at 01:52 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,29 +25,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `cities`
+-- Table structure for table `cities`
 --
 
 CREATE TABLE `cities` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `countries`
+-- Table structure for table `countries`
 --
 
 CREATE TABLE `countries` (
   `country_id` int(11) NOT NULL,
   `country_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `customers`
+-- Table structure for table `customers`
 --
 
 CREATE TABLE `customers` (
@@ -55,12 +55,12 @@ CREATE TABLE `customers` (
   `first_name` varchar(100) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `locations`
+-- Table structure for table `locations`
 --
 
 CREATE TABLE `locations` (
@@ -69,12 +69,12 @@ CREATE TABLE `locations` (
   `city_id` int(11) DEFAULT NULL,
   `zipcode` varchar(50) DEFAULT NULL,
   `street_number` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `properties`
+-- Table structure for table `properties`
 --
 
 CREATE TABLE `properties` (
@@ -83,37 +83,37 @@ CREATE TABLE `properties` (
   `property_category_id` int(11) DEFAULT NULL,
   `location_id` int(11) DEFAULT NULL,
   `property_details_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `property_categories`
+-- Table structure for table `property_categories`
 --
 
 CREATE TABLE `property_categories` (
   `property_category_id` int(11) NOT NULL,
-  `category` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `category` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `property_details`
+-- Table structure for table `property_details`
 --
 
 CREATE TABLE `property_details` (
   `property_details_id` int(11) NOT NULL,
   `parking` tinyint(1) DEFAULT NULL,
-  `restauran` tinyint(1) DEFAULT NULL,
+  `restaurant` tinyint(1) DEFAULT NULL,
   `swimming_pool` tinyint(1) DEFAULT NULL,
   `pets_allowed` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `reservations`
+-- Table structure for table `reservations`
 --
 
 CREATE TABLE `reservations` (
@@ -123,12 +123,12 @@ CREATE TABLE `reservations` (
   `check_in_date` date DEFAULT NULL,
   `check_out_date` date DEFAULT NULL,
   `num_of_pers` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `rooms`
+-- Table structure for table `rooms`
 --
 
 CREATE TABLE `rooms` (
@@ -136,61 +136,60 @@ CREATE TABLE `rooms` (
   `room_type_id` int(11) DEFAULT NULL,
   `room_num` int(11) DEFAULT NULL,
   `room_details_id` int(11) DEFAULT NULL,
-  `property_id` int(11) DEFAULT NULL,
-  `description` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `property_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `room_details`
+-- Table structure for table `room_details`
 --
 
 CREATE TABLE `room_details` (
   `room_details_id` int(11) NOT NULL,
   `smoking` tinyint(1) DEFAULT NULL,
   `wifi` tinyint(1) DEFAULT NULL,
-  `AC` tinyint(1) DEFAULT NULL,
-  `description` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ac` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `room_types`
+-- Table structure for table `room_types`
 --
 
 CREATE TABLE `room_types` (
   `room_type_id` int(11) NOT NULL,
   `type` varchar(50) DEFAULT NULL,
   `max_pers` int(11) DEFAULT NULL,
-  `images` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `images` varchar(300) DEFAULT NULL,
+  `description` varchar(300) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `cities`
+-- Indexes for table `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`city_id`);
 
 --
--- Indexen voor tabel `countries`
+-- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`country_id`);
 
 --
--- Indexen voor tabel `customers`
+-- Indexes for table `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`customer_id`);
 
 --
--- Indexen voor tabel `locations`
+-- Indexes for table `locations`
 --
 ALTER TABLE `locations`
   ADD PRIMARY KEY (`location_id`),
@@ -198,7 +197,7 @@ ALTER TABLE `locations`
   ADD KEY `city_id` (`city_id`);
 
 --
--- Indexen voor tabel `properties`
+-- Indexes for table `properties`
 --
 ALTER TABLE `properties`
   ADD PRIMARY KEY (`property_id`),
@@ -207,19 +206,19 @@ ALTER TABLE `properties`
   ADD KEY `property_details_id` (`property_details_id`);
 
 --
--- Indexen voor tabel `property_categories`
+-- Indexes for table `property_categories`
 --
 ALTER TABLE `property_categories`
   ADD PRIMARY KEY (`property_category_id`);
 
 --
--- Indexen voor tabel `property_details`
+-- Indexes for table `property_details`
 --
 ALTER TABLE `property_details`
   ADD PRIMARY KEY (`property_details_id`);
 
 --
--- Indexen voor tabel `reservations`
+-- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`reservation_id`),
@@ -227,7 +226,7 @@ ALTER TABLE `reservations`
   ADD KEY `customer_id` (`customer_id`);
 
 --
--- Indexen voor tabel `rooms`
+-- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`room_id`),
@@ -236,100 +235,100 @@ ALTER TABLE `rooms`
   ADD KEY `property_id` (`property_id`);
 
 --
--- Indexen voor tabel `room_details`
+-- Indexes for table `room_details`
 --
 ALTER TABLE `room_details`
   ADD PRIMARY KEY (`room_details_id`);
 
 --
--- Indexen voor tabel `room_types`
+-- Indexes for table `room_types`
 --
 ALTER TABLE `room_types`
   ADD PRIMARY KEY (`room_type_id`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `cities`
+-- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
   MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `countries`
+-- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `customers`
+-- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `locations`
+-- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
   MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `properties`
+-- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
   MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `property_categories`
+-- AUTO_INCREMENT for table `property_categories`
 --
 ALTER TABLE `property_categories`
   MODIFY `property_category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `property_details`
+-- AUTO_INCREMENT for table `property_details`
 --
 ALTER TABLE `property_details`
   MODIFY `property_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `reservations`
+-- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `rooms`
+-- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
   MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `room_details`
+-- AUTO_INCREMENT for table `room_details`
 --
 ALTER TABLE `room_details`
   MODIFY `room_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `room_types`
+-- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
   MODIFY `room_type_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Beperkingen voor geëxporteerde tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Beperkingen voor tabel `locations`
+-- Constraints for table `locations`
 --
 ALTER TABLE `locations`
   ADD CONSTRAINT `locations_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
   ADD CONSTRAINT `locations_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`);
 
 --
--- Beperkingen voor tabel `properties`
+-- Constraints for table `properties`
 --
 ALTER TABLE `properties`
   ADD CONSTRAINT `properties_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `property_categories` (`property_category_id`),
@@ -337,14 +336,14 @@ ALTER TABLE `properties`
   ADD CONSTRAINT `properties_ibfk_3` FOREIGN KEY (`property_details_id`) REFERENCES `property_details` (`property_details_id`);
 
 --
--- Beperkingen voor tabel `reservations`
+-- Constraints for table `reservations`
 --
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`),
   ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
 
 --
--- Beperkingen voor tabel `rooms`
+-- Constraints for table `rooms`
 --
 ALTER TABLE `rooms`
   ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`room_type_id`),
