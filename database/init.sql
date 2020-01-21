@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2020 at 01:52 PM
+-- Generation Time: Jan 21, 2020 at 02:16 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `reservation_system`
 --
+CREATE DATABASE IF NOT EXISTS `reservation_system` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `reservation_system`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +30,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `cities`
 --
 
+DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) DEFAULT NULL
@@ -39,6 +42,7 @@ CREATE TABLE `cities` (
 -- Table structure for table `countries`
 --
 
+DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `country_id` int(11) NOT NULL,
   `country_name` varchar(100) DEFAULT NULL
@@ -50,6 +54,7 @@ CREATE TABLE `countries` (
 -- Table structure for table `customers`
 --
 
+DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `customer_id` int(11) NOT NULL,
   `first_name` varchar(100) DEFAULT NULL,
@@ -63,6 +68,7 @@ CREATE TABLE `customers` (
 -- Table structure for table `locations`
 --
 
+DROP TABLE IF EXISTS `locations`;
 CREATE TABLE `locations` (
   `location_id` int(11) NOT NULL,
   `country_id` int(11) DEFAULT NULL,
@@ -77,6 +83,7 @@ CREATE TABLE `locations` (
 -- Table structure for table `properties`
 --
 
+DROP TABLE IF EXISTS `properties`;
 CREATE TABLE `properties` (
   `property_id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -91,6 +98,7 @@ CREATE TABLE `properties` (
 -- Table structure for table `property_categories`
 --
 
+DROP TABLE IF EXISTS `property_categories`;
 CREATE TABLE `property_categories` (
   `property_category_id` int(11) NOT NULL,
   `category` varchar(50) DEFAULT NULL
@@ -102,6 +110,7 @@ CREATE TABLE `property_categories` (
 -- Table structure for table `property_details`
 --
 
+DROP TABLE IF EXISTS `property_details`;
 CREATE TABLE `property_details` (
   `property_details_id` int(11) NOT NULL,
   `parking` tinyint(1) DEFAULT NULL,
@@ -116,6 +125,7 @@ CREATE TABLE `property_details` (
 -- Table structure for table `reservations`
 --
 
+DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `reservation_id` int(11) NOT NULL,
   `room_id` int(11) DEFAULT NULL,
@@ -131,6 +141,7 @@ CREATE TABLE `reservations` (
 -- Table structure for table `rooms`
 --
 
+DROP TABLE IF EXISTS `rooms`;
 CREATE TABLE `rooms` (
   `room_id` int(11) NOT NULL,
   `room_type_id` int(11) DEFAULT NULL,
@@ -145,6 +156,7 @@ CREATE TABLE `rooms` (
 -- Table structure for table `room_details`
 --
 
+DROP TABLE IF EXISTS `room_details`;
 CREATE TABLE `room_details` (
   `room_details_id` int(11) NOT NULL,
   `smoking` tinyint(1) DEFAULT NULL,
@@ -158,6 +170,7 @@ CREATE TABLE `room_details` (
 -- Table structure for table `room_types`
 --
 
+DROP TABLE IF EXISTS `room_types`;
 CREATE TABLE `room_types` (
   `room_type_id` int(11) NOT NULL,
   `type` varchar(50) DEFAULT NULL,
