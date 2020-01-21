@@ -27,6 +27,67 @@ USE `reservation_system`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservations`
+--
+
+DROP TABLE IF EXISTS `reservations`;
+CREATE TABLE `reservations` (
+  `reservation_id` int(11) NOT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `check_in_date` date DEFAULT NULL,
+  `check_out_date` date DEFAULT NULL,
+  `num_of_pers` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+DROP TABLE IF EXISTS `rooms`;
+CREATE TABLE `rooms` (
+  `room_id` int(11) NOT NULL,
+  `room_type_id` int(11) DEFAULT NULL,
+  `room_num` int(11) DEFAULT NULL,
+  `room_details_id` int(11) DEFAULT NULL,
+  `property_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `properties`
+--
+
+DROP TABLE IF EXISTS `properties`;
+CREATE TABLE `properties` (
+  `property_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `property_category_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `property_details_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locations`
+--
+
+DROP TABLE IF EXISTS `locations`;
+CREATE TABLE `locations` (
+  `location_id` int(11) NOT NULL,
+  `country_id` int(11) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `zipcode` varchar(50) DEFAULT NULL,
+  `street_number` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cities`
 --
 
@@ -65,36 +126,6 @@ CREATE TABLE `customers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `locations`
---
-
-DROP TABLE IF EXISTS `locations`;
-CREATE TABLE `locations` (
-  `location_id` int(11) NOT NULL,
-  `country_id` int(11) DEFAULT NULL,
-  `city_id` int(11) DEFAULT NULL,
-  `zipcode` varchar(50) DEFAULT NULL,
-  `street_number` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `properties`
---
-
-DROP TABLE IF EXISTS `properties`;
-CREATE TABLE `properties` (
-  `property_id` int(11) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `property_category_id` int(11) DEFAULT NULL,
-  `location_id` int(11) DEFAULT NULL,
-  `property_details_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `property_categories`
 --
 
@@ -117,37 +148,6 @@ CREATE TABLE `property_details` (
   `restaurant` tinyint(1) DEFAULT NULL,
   `swimming_pool` tinyint(1) DEFAULT NULL,
   `pets_allowed` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reservations`
---
-
-DROP TABLE IF EXISTS `reservations`;
-CREATE TABLE `reservations` (
-  `reservation_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `check_in_date` date DEFAULT NULL,
-  `check_out_date` date DEFAULT NULL,
-  `num_of_pers` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rooms`
---
-
-DROP TABLE IF EXISTS `rooms`;
-CREATE TABLE `rooms` (
-  `room_id` int(11) NOT NULL,
-  `room_type_id` int(11) DEFAULT NULL,
-  `room_num` int(11) DEFAULT NULL,
-  `room_details_id` int(11) DEFAULT NULL,
-  `property_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
