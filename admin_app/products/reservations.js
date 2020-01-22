@@ -23,7 +23,6 @@ function readProductsTemplate(data, keywords){
  
         <!-- start table -->
         <table class='table table-bordered table-hover'>
- 
             <!-- creating our table heading -->
             <tr>
                 <th class='w-10-pct'>Booking number</th>
@@ -35,37 +34,39 @@ function readProductsTemplate(data, keywords){
                 <th class='w-25-pct text-align-center'></th>
             </tr>`;
  
-    // loop through returned list of data
-    $.each(data.records, function(key, val) {
-        // creating new table row per record
-        read_products_html+=`<tr>
- 
-            <td>` + val.name + `</td>
-            <td>$` + val.price + `</td>
-            <td>` + val.category_name + `</td>
- 
-            <!-- 'action' buttons -->
-            <td>
-                <!-- read product button -->
-                <button class='btn btn-primary m-r-10px read-one-product-button' data-id='` + val.id + `'>
-                    <span class='glyphicon glyphicon-eye-open'></span> Read
-                </button>
- 
-                <!-- edit button -->
-                <button class='btn btn-info m-r-10px update-product-button' data-id='` + val.id + `'>
-                    <span class='glyphicon glyphicon-edit'></span> Edit
-                </button>
- 
-                <!-- delete button -->
-                <button class='btn btn-danger delete-product-button' data-id='` + val.id + `'>
-                    <span class='glyphicon glyphicon-remove'></span> Delete
-                </button>
-            </td>
-        </tr>`;
-    });
- 
-    // end table
-    read_products_html+=`</table>`;
+            // loop through returned list of data
+            $.each(data.records, function(key, val) {
+                // creating new table row per record
+                read_products_html+=`<tr>
+        
+                    <td>` + val.reservation_id + `</td>
+                    <td>` + val.customer_id + `</td>
+                    <td>` + val.room_num + `</td>
+                    <td>` + val.total_price + `</td>
+                    <td>` + val.check_in_date + `</td>
+                    <td>` + val.check_out_date + `</td>
+        
+                    <!-- 'action' buttons -->
+                    <td>
+                        <!-- read product button -->
+                        <button class='btn btn-primary m-r-10px read-one-product-button' data-id='` + val.id + `'>
+                            <span class='glyphicon glyphicon-eye-open'></span> Read
+                        </button>
+        
+                        <!-- edit button -->
+                        <button class='btn btn-info m-r-10px update-product-button' data-id='` + val.id + `'>
+                            <span class='glyphicon glyphicon-edit'></span> Edit
+                        </button>
+        
+                        <!-- delete button -->
+                        <button class='btn btn-danger delete-product-button' data-id='` + val.id + `'>
+                            <span class='glyphicon glyphicon-remove'></span> Delete
+                        </button>
+                    </td>
+                </tr>`;
+            });
+        // end table
+        read_products_html+=`</table>`;
 
     // pagination
     if(data.paging){

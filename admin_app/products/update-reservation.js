@@ -8,83 +8,100 @@ $(document).ready(function(){
         $.getJSON("../api/#.php?id=" + id, function(data){
         
             // values will be used to fill out our form
-            var name = data.name;
-            var price = data.price;
-            var description = data.description;
-            var category_id = data.category_id;
-            var category_name = data.category_name;
-            
-            // load list of categories
-            $.getJSON("../api/#.php", function(data){
-            
-                // build 'categories option' html
+            var reservation_id = data.reservation_id;
+            var customer_id = data.customer_id;
+            var room_id = data.room_id;
+            var price_per_nights = data.price_per_nights;
+            var check_in_date = data.check_in_date;
+            var check_out_date = data.check_out_date;
+
+            // load list of rooms
+            $.getJSON("../api/#.php", function(data){  
+                // build 'room option' html
                 // loop through returned list of data
-                    var categories_options_html=`<select name='category_id' class='form-control'>`;
-            
-                    $.each(data.records, function(key, val){
-                        // pre-select option is category id is the same
-                        if(val.id==category_id){ categories_options_html+=`<option value='` + val.id + `' selected>` + val.name + `</option>`; }
-            
-                        else{ categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`; }
-                    });
-                    categories_options_html+=`</select>`;
+                var room_options_html=`<select name='room_type_id' class='form-control'>`;
+                $.each(data.records, function(key, val){
+                    // pre-select option is room id is the same
+                    if(val.id==room_type_id){ 
+                        room_options_html+=`<option value='` + val.room_type_id + `' selected>` + val.type + `</option>`; 
+                    }else{ 
+                        room_options_html+=`<option value='` + val.room_type_id + `'>` + val.type + `</option>`; 
+                    }
+                });
+                room_options_html+=`</select>`;
+
+                // store 'update reservation' html to this variable
+                var update_product_html=`
+                <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+                    <span class='glyphicon glyphicon-list'></span> Read Products
+                </div>
+                <!-- build 'update product' html form -->
+                <!-- we used the 'required' html5 property to prevent empty fields -->
+                <form id='update-product-form' action='#' method='post' border='0'>
+                    <table class='table table-hover table-responsive table-bordered'>
+                        
+                        <!-- Booking number field -->
+                        <tr>
+                            <td>Booking number</td>
+                            <td><input value=\"` + reservation_id + `\" type='text' name='reservation_id' class='form-control' disabled/></td>
+                        </tr>
+
+                        <!-- Customer name field -->
+                        <tr>
+                            <td>Customer</td>
+                            <td><input value=\"` + customer_id + `\" type='text' name='customer_id' class='form-control' required /></td>
+                        </tr>
                 
-                    // store 'update product' html to this variable
-                    var update_product_html=`
-                    <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
-                        <span class='glyphicon glyphicon-list'></span> Read Products
-                    </div>
-                    <!-- build 'update product' html form -->
-                    <!-- we used the 'required' html5 property to prevent empty fields -->
-                    <form id='update-product-form' action='#' method='post' border='0'>
-                        <table class='table table-hover table-responsive table-bordered'>
-                    
-                            <!-- name field -->
-                            <tr>
-                                <td>Name</td>
-                                <td><input value=\"` + name + `\" type='text' name='name' class='form-control' required /></td>
-                            </tr>
-                    
-                            <!-- price field -->
-                            <tr>
-                                <td>Price</td>
-                                <td><input value=\"` + price + `\" type='number' min='1' name='price' class='form-control' required /></td>
-                            </tr>
-                    
-                            <!-- description field -->
-                            <tr>
-                                <td>Description</td>
-                                <td><textarea name='description' class='form-control' required>` + description + `</textarea></td>
-                            </tr>
-                    
-                            <!-- categories 'select' field -->
-                            <tr>
-                                <td>Category</td>
-                                <td>` + categories_options_html + `</td>
-                            </tr>
-                    
-                            <tr>
-                    
-                                <!-- hidden 'product id' to identify which record to delete -->
-                                <td><input value=\"` + id + `\" name='id' type='hidden' /></td>
-                    
-                                <!-- button to submit form -->
-                                <td>
-                                    <button type='submit' class='btn btn-info'>
-                                        <span class='glyphicon glyphicon-edit'></span> Update Product
-                                    </button>
-                                </td>
-                    
-                            </tr>
-                    
-                        </table>
-                    </form>`;
+                        <!-- categories 'select' field -->
+                        <tr>
+                            <td>Category</td>
+                            <td>` + room_options_html + `</td>
+                        </tr>
+
+                        <!-- Room number field -->
+                        <tr>
+                            <td>Room number</td>
+                            <td><input value=\"` + room_id + `\" type='number' name='room_id' class='form-control' required /></td>
+                        </tr>
+                
+                        <!-- Room rate field -->
+                        <tr>
+                            <td>Room rate</td>
+                            <td><input value=\"` + price_per_nights + `\" type='number' name='price_per_nights' class='form-control' required /></td>
+                        </tr>
+
+                        <!-- Checkin field -->
+                        <tr>
+                            <td>Check-in</td>
+                            <td><input value=\"` + check_in_date + `\"  type='text' name='check_in_date' class='form-control' required /></td>
+                        </tr>
+
+                        <!-- Checkout field -->
+                        <tr>
+                            <td>Check-out</td>
+                            <td><input value=\"` + check_out_date + `\"  type='text' name='check_out_date' class='form-control' required /></td>
+                        </tr>
+
+                        <tr>
+                            <!-- hidden 'reservation id' to identify which record to delete -->
+                            <td><input value=\"` + reservation_id + `\" name='reservation_id' type='hidden' /></td>
+                
+                            <!-- button to submit form -->
+                            <td>
+                                <button type='submit' class='btn btn-info'>
+                                    <span class='glyphicon glyphicon-edit'></span> Update Product
+                                </button>
+                            </td>
+                        </tr>
+                
+                    </table>
+                </form>`;
 
                     // inject to 'page-content' of our app
                 $("#page-content").html(update_product_html);
                 
                 // chage page title
-                changePageTitle("Update Reservations");
+                changePageTitle("Reservation Edit");
             });
         });
     });
@@ -97,6 +114,7 @@ $(document).ready(function(){
         $.ajax({
             url: "../api/#.php",
             type : "POST",
+            action : "update_reservation",
             contentType : 'application/json',
             data : form_data,
             success : function(result) {

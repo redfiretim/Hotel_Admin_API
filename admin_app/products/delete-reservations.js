@@ -22,7 +22,8 @@ $(document).ready(function(){
 				    $.ajax({
                         url: "../api/#.php",
 				        type : "POST",
-				        dataType : 'json',
+						dataType : 'json',
+						action : "delete_reservation",
 				        data : JSON.stringify({ id: product_id }),
 				        success : function(result) {
 				            // re-load list of products

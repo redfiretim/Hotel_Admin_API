@@ -17,37 +17,43 @@ $(document).ready(function(){
                     <!-- Booking number -->
                     <tr>
                         <td class='w-30-pct'>Booking number</td>
-                        <td class='w-70-pct'>` + data.bookingNumber + `</td>
+                        <td class='w-70-pct'>` + data.reservation_id + `</td>
                     </tr>
 
                     <!-- Customer -->
                     <tr>
                         <td>Customer</td>
-                        <td>` + data.customer + `</td>
+                        <td>` + data.customer_id + `</td>
+                    </tr>
+
+                    <!-- Sort room -->
+                    <tr>
+                        <td>Sort room</td>
+                        <td>` + data.room_type_id + `</td>
                     </tr>
 
                     <!-- Room number -->
                     <tr>
-                        <td>Customer</td>
-                        <td>` + data.roomNumber + `</td>
+                        <td>Room number</td>
+                        <td>` + data.room_num + `</td>
                     </tr>
 
                     <!-- Room rate -->
                     <tr>
                         <td>Room rate</td>
-                        <td>` + data.roomRate + `</td>
+                        <td>` + data.price_per_night + `</td>
                     </tr>
 
                     <!-- Check in -->
                     <tr>
                         <td>Check-in</td>
-                        <td>` + data.checkIn + `</td>
+                        <td>` + data.check_in_date + `</td>
                     </tr>
 
                     <!-- Check out -->
                     <tr>
                         <td>Check-out</td>
-                        <td>` + data.checkOut + `</td>
+                        <td>` + data.check_out_date + `</td>
                     </tr>
                 </table>`;
 
@@ -55,7 +61,7 @@ $(document).ready(function(){
             $("#page-content").html(read_one_product_html);
             
             // chage page title
-            changePageTitle("Reservation Details");
+            changePageTitle("Reservation details");
         });
     });
  
