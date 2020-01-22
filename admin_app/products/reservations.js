@@ -5,7 +5,7 @@ function readProductsTemplate(data, keywords){
         <form id='search-product-form' action='#' method='post'>
         <div class='input-group pull-left w-30-pct'>
  
-            <input type='text' value='` + keywords + `' name='keywords' class='form-control product-search-keywords' placeholder='Search products...' />
+            <input type='text' value='` + keywords + `' name='keywords' class='form-control product-search-keywords' placeholder='Search...' />
  
             <span class='input-group-btn'>
                 <button type='submit' class='btn btn-default' type='button'>
@@ -18,7 +18,7 @@ function readProductsTemplate(data, keywords){
  
         <!-- when clicked, it will load the create product form -->
         <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
-            <span class='glyphicon glyphicon-plus'></span> Create Product
+            <span class='glyphicon glyphicon-plus'></span> Make a new reservation
         </div>
  
         <!-- start table -->
@@ -26,10 +26,13 @@ function readProductsTemplate(data, keywords){
  
             <!-- creating our table heading -->
             <tr>
-                <th class='w-25-pct'>Name</th>
-                <th class='w-10-pct'>Price</th>
-                <th class='w-15-pct'>Category</th>
-                <th class='w-25-pct text-align-center'>Action</th>
+                <th class='w-10-pct'>Booking number</th>
+                <th class='w-25-pct'>Customer</th>
+                <th class='w-10-pct'>Room number</th>
+                <th class='w-10-pct'>Total price</th>
+                <th class='w-10-pct'>Check-in</th>
+                <th class='w-10-pct'>Check-out</th>
+                <th class='w-25-pct text-align-center'></th>
             </tr>`;
  
     // loop through returned list of data

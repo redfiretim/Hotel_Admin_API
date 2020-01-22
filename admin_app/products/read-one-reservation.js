@@ -9,33 +9,45 @@ $(document).ready(function(){
             var read_one_product_html=`
                 <!-- when clicked, it will show the product's list -->
                 <div id='read-product' class='btn btn-primary pull-right m-b-15px read-products-button'>
-                    <span class='glyphicon glyphicon-list'></span> Read Products
+                    <span class='glyphicon glyphicon-list'></span> Back to reservations
                 </div>
                 <!-- product data will be shown in this table -->
                 <table class='table table-bordered table-hover'>
                 
-                    <!-- product name -->
+                    <!-- Booking number -->
                     <tr>
-                        <td class='w-30-pct'>Name</td>
-                        <td class='w-70-pct'>` + data.name + `</td>
+                        <td class='w-30-pct'>Booking number</td>
+                        <td class='w-70-pct'>` + data.bookingNumber + `</td>
                     </tr>
-                
-                    <!-- product price -->
+
+                    <!-- Customer -->
                     <tr>
-                        <td>Price</td>
-                        <td>` + data.price + `</td>
+                        <td>Customer</td>
+                        <td>` + data.customer + `</td>
                     </tr>
-                
-                    <!-- product description -->
+
+                    <!-- Room number -->
                     <tr>
-                        <td>Description</td>
-                        <td>` + data.description + `</td>
+                        <td>Customer</td>
+                        <td>` + data.roomNumber + `</td>
                     </tr>
-                
-                    <!-- product category name -->
+
+                    <!-- Room rate -->
                     <tr>
-                        <td>Category</td>
-                        <td>` + data.category_name + `</td>
+                        <td>Room rate</td>
+                        <td>` + data.roomRate + `</td>
+                    </tr>
+
+                    <!-- Check in -->
+                    <tr>
+                        <td>Check-in</td>
+                        <td>` + data.checkIn + `</td>
+                    </tr>
+
+                    <!-- Check out -->
+                    <tr>
+                        <td>Check-out</td>
+                        <td>` + data.checkOut + `</td>
                     </tr>
                 </table>`;
 
