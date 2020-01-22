@@ -1,0 +1,81 @@
+#reservation{
+    background-color: #BFB398;
+    padding: 25px;
+}
+.circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 250px;
+    font-size: 35px;
+    color: #000;
+    line-height: 56px;
+    text-align: center;
+    margin: 0 30px 0 0;
+    background: #F5F5F5;
+    border: 1px solid #1570BF;
+    float: left;
+}
+.container{
+    width: 800px;
+    background-color: #F2C572;
+    margin: 0 auto;
+    border-radius: 15px 15px 0px 0px;   
+    padding: 20px; 
+}
+.page-steps{
+    border-bottom: none;
+}
+h1.page_steps{
+    float: left;
+    margin-top:10px;
+}
+
+/** FONTS  **/
+    /* Needed when font is removed form google font database */
+    @font-face {
+        font-family: "Roboto";
+        src: url("../fonts/Roboto/Roboto-Regular.ttf") format("ttf"),
+    }
+    @font-face {
+        font-family: "Roboto_bold";
+        src: url("../fonts/Roboto/Roboto-Bold.ttf") format("ttf"),
+    }
+    @font-face {
+        font-family: "Titillium Web";
+        src: url("../fonts/TitilliumWeb/TitilliumWeb-Regular.ttf") format("ttf"),
+    }
+    @font-face {
+        font-family: "Titillium bold";
+        src: url("../fonts/TitilliumWeb/TitilliumWeb-Bold.ttf") format("ttf"),
+    }
+    /* Needed when font is removed form google font database */
+
+    h1{
+        font-family: 'Titillium Web', sans-serif;
+    }
+    p{
+        font-family: 'Roboto', sans-serif;
+    }
+/** FONTS **/
+
+/** Navigation OVERRIDES **/
+    .navbar-brand>img{
+        width: 200px;
+        margin-top: -23px;
+    }
+    .navbar-default{
+        background-color: #18588E;
+        margin: -2px;;
+    }
+    .navbar-default .navbar-nav>li>a{
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+    }
+    .navbar-default .navbar-nav>li>a:hover {
+        color: #fff;
+    }
+    .navbar-nav>li.border{
+        border-right: 2px solid white;
+    }
+/** Navigation **/
+
