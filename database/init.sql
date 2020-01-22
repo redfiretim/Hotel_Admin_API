@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2020 at 02:16 PM
+-- Generation Time: Jan 22, 2020 at 10:44 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -33,11 +33,13 @@ USE `reservation_system`;
 DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `reservation_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `num_of_pers` int(11) DEFAULT NULL,
   `check_in_date` date DEFAULT NULL,
   `check_out_date` date DEFAULT NULL,
-  `num_of_pers` int(11) DEFAULT NULL
+  `num_of_nights` int(11) DEFAULT NULL,
+  `total_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -51,13 +53,11 @@ CREATE TABLE `rooms` (
   `room_id` int(11) NOT NULL,
   `room_type_id` int(11) DEFAULT NULL,
   `room_num` int(11) DEFAULT NULL,
-  `property_id` int(11) DEFAULT NULL
+  `property_id` int(11) DEFAULT NULL,
   `smoking` tinyint(1) DEFAULT NULL,
-  `wifi` tinyint(1) DEFAULT NULL,
-  `ac` tinyint(1) DEFAULT NULL
-
+  `ac` tinyint(1) DEFAULT NULL,
+  `price_per_night` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- --------------------------------------------------------
 
 --
@@ -72,15 +72,15 @@ CREATE TABLE `properties` (
   `country_id` int(11) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `zipcode` varchar(10) DEFAULT NULL,
-  `street_number` varchar(10) DEFAULT NULL,
+  `street_num` varchar(10) DEFAULT NULL,
+  `street_name` varchar(100) DEFAULT NULL,
   `description` varchar(300) DEFAULT NULL,
   `images` varchar(300) DEFAULT NULL,
   `parking` tinyint(1) DEFAULT NULL,
   `restaurant` tinyint(1) DEFAULT NULL,
-  `swimming_pool` tinyint(1) DEFAULT NULL,
-  `pets_allowed` tinyint(1) DEFAULT NULL
+  `pets_allowed` tinyint(1) DEFAULT NULL,
+  `wifi` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 
 -- --------------------------------------------------------
 
@@ -156,13 +156,15 @@ CREATE TABLE `room_types` (
 -- Indexes for table `cities`
 --
 ALTER TABLE `cities`
-  ADD PRIMARY KEY (`city_id`);
+  ADD PRIMARY KEY (`city_id`),
+  ADD UNIQUE KEY `city_name` (`city_name`);
 
 --
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
-  ADD PRIMARY KEY (`country_id`);
+  ADD PRIMARY KEY (`country_id`),
+  ADD UNIQUE KEY `country_name` (`country_name`);
 
 --
 -- Indexes for table `customers`
@@ -171,33 +173,19 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`customer_id`);
 
 --
--- Indexes for table `locations`
---
-ALTER TABLE `locations`
-  ADD PRIMARY KEY (`location_id`),
-  ADD KEY `country_id` (`country_id`),
-  ADD KEY `city_id` (`city_id`);
-
---
 -- Indexes for table `properties`
 --
 ALTER TABLE `properties`
   ADD PRIMARY KEY (`property_id`),
   ADD KEY `property_category_id` (`property_category_id`),
-  ADD KEY `location_id` (`location_id`),
-  ADD KEY `property_details_id` (`property_details_id`);
+  ADD KEY `country_id` (`country_id`),
+  ADD KEY `city_id` (`city_id`);
 
 --
 -- Indexes for table `property_categories`
 --
 ALTER TABLE `property_categories`
   ADD PRIMARY KEY (`property_category_id`);
-
---
--- Indexes for table `property_details`
---
-ALTER TABLE `property_details`
-  ADD PRIMARY KEY (`property_details_id`);
 
 --
 -- Indexes for table `reservations`
@@ -213,14 +201,7 @@ ALTER TABLE `reservations`
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`room_id`),
   ADD KEY `room_type_id` (`room_type_id`),
-  ADD KEY `room_details_id` (`room_details_id`),
   ADD KEY `property_id` (`property_id`);
-
---
--- Indexes for table `room_details`
---
-ALTER TABLE `room_details`
-  ADD PRIMARY KEY (`room_details_id`);
 
 --
 -- Indexes for table `room_types`
@@ -251,12 +232,6 @@ ALTER TABLE `customers`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `locations`
---
-ALTER TABLE `locations`
-  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
@@ -267,12 +242,6 @@ ALTER TABLE `properties`
 --
 ALTER TABLE `property_categories`
   MODIFY `property_category_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `property_details`
---
-ALTER TABLE `property_details`
-  MODIFY `property_details_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reservations`
@@ -287,12 +256,6 @@ ALTER TABLE `rooms`
   MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `room_details`
---
-ALTER TABLE `room_details`
-  MODIFY `room_details_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
@@ -303,19 +266,12 @@ ALTER TABLE `room_types`
 --
 
 --
--- Constraints for table `locations`
---
-ALTER TABLE `locations`
-  ADD CONSTRAINT `locations_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
-  ADD CONSTRAINT `locations_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`);
-
---
 -- Constraints for table `properties`
 --
 ALTER TABLE `properties`
   ADD CONSTRAINT `properties_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `property_categories` (`property_category_id`),
-  ADD CONSTRAINT `properties_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `locations` (`location_id`),
-  ADD CONSTRAINT `properties_ibfk_3` FOREIGN KEY (`property_details_id`) REFERENCES `property_details` (`property_details_id`);
+  ADD CONSTRAINT `properties_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
+  ADD CONSTRAINT `properties_ibfk_3` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`);
 
 --
 -- Constraints for table `reservations`
@@ -329,8 +285,7 @@ ALTER TABLE `reservations`
 --
 ALTER TABLE `rooms`
   ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`room_type_id`),
-  ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`room_details_id`) REFERENCES `room_details` (`room_details_id`),
-  ADD CONSTRAINT `rooms_ibfk_3` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`);
+  ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
