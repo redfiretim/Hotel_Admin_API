@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2020 at 10:44 AM
+-- Generation Time: Jan 23, 2020 at 04:07 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -27,71 +27,13 @@ USE `reservation_system`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservations`
---
-
-DROP TABLE IF EXISTS `reservations`;
-CREATE TABLE `reservations` (
-  `reservation_id` int(11) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `room_id` int(11) DEFAULT NULL,
-  `num_of_pers` int(11) DEFAULT NULL,
-  `check_in_date` date DEFAULT NULL,
-  `check_out_date` date DEFAULT NULL,
-  `num_of_nights` int(11) DEFAULT NULL,
-  `total_price` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rooms`
---
-
-DROP TABLE IF EXISTS `rooms`;
-CREATE TABLE `rooms` (
-  `room_id` int(11) NOT NULL,
-  `room_type_id` int(11) DEFAULT NULL,
-  `room_num` int(11) DEFAULT NULL,
-  `property_id` int(11) DEFAULT NULL,
-  `smoking` tinyint(1) DEFAULT NULL,
-  `ac` tinyint(1) DEFAULT NULL,
-  `price_per_night` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
--- --------------------------------------------------------
-
---
--- Table structure for table `properties`
---
-
-DROP TABLE IF EXISTS `properties`;
-CREATE TABLE `properties` (
-  `property_id` int(11) NOT NULL,
-  `property_category_id` int(11) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `country_id` int(11) DEFAULT NULL,
-  `city_id` int(11) DEFAULT NULL,
-  `zipcode` varchar(10) DEFAULT NULL,
-  `street_num` varchar(10) DEFAULT NULL,
-  `street_name` varchar(100) DEFAULT NULL,
-  `description` varchar(300) DEFAULT NULL,
-  `images` varchar(300) DEFAULT NULL,
-  `parking` tinyint(1) DEFAULT NULL,
-  `restaurant` tinyint(1) DEFAULT NULL,
-  `pets_allowed` tinyint(1) DEFAULT NULL,
-  `wifi` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `cities`
 --
 
 DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
-  `city_id` int(11) NOT NULL,
-  `city_name` varchar(100) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -102,8 +44,8 @@ CREATE TABLE `cities` (
 
 DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
-  `country_id` int(11) NOT NULL,
-  `country_name` varchar(100) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -114,38 +56,125 @@ CREATE TABLE `countries` (
 
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone_num` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `amenities`
+--
+
+DROP TABLE IF EXISTS `amenities`;
+CREATE TABLE `amenities` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `establishment_types`
+--
+
+DROP TABLE IF EXISTS `establishment_types`;
+CREATE TABLE `establishment_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `amenities_per_accommodation`
+--
+
+DROP TABLE IF EXISTS `amenities_per_accommodation`;
+CREATE TABLE `amenities_per_accommodation` (
+  `id` int(11) NOT NULL,
+  `amenity_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accommodation_types`
+--
+
+DROP TABLE IF EXISTS `accommodation_types`;
+CREATE TABLE `accommodation_types` (
+  `id` int(11) NOT NULL,
+  `max_pers` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `establishment_type_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `establishments`
+--
+
+DROP TABLE IF EXISTS `establishments`;
+CREATE TABLE `establishments` (
+  `id` int(11) NOT NULL,
+  `establishment_type_id` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `country_id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  `zipcode` varchar(50) NOT NULL,
+  `street_num` varchar(50) NOT NULL,
+  `street_name` varchar(50) NOT NULL,
+  `description` varchar(300) NOT NULL,
+  `image_one` varchar(100) DEFAULT NULL,
+  `image_two` varchar(100) DEFAULT NULL,
+  `image_three` varchar(100) DEFAULT NULL,
+  `image_four` varchar(100) DEFAULT NULL,
+  `image_five` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accommodations`
+--
+
+DROP TABLE IF EXISTS `accommodations`;
+CREATE TABLE `accommodations` (
+  `id` int(11) NOT NULL,
+  `establishment_id` int(11) NOT NULL,
+  `accommodation_type_id` int(11) NOT NULL,
+  `room_num` int(11) NOT NULL,
+  `description` varchar(300) NOT NULL,
+  `price_per_night` int(11) NOT NULL,
+  `image_one` varchar(100) DEFAULT NULL,
+  `image_two` varchar(100) DEFAULT NULL,
+  `image_three` varchar(100) DEFAULT NULL,
+  `image_four` varchar(100) DEFAULT NULL,
+  `image_five` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservations`
+--
+
+DROP TABLE IF EXISTS `reservations`;
+CREATE TABLE `reservations` (
+  `id` int(11) NOT NULL,
+  `booking_date` date DEFAULT current_timestamp(),
   `customer_id` int(11) NOT NULL,
-  `first_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `phone_num` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `property_categories`
---
-
-DROP TABLE IF EXISTS `property_categories`;
-CREATE TABLE `property_categories` (
-  `property_category_id` int(11) NOT NULL,
-  `category` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `room_types`
---
-
-DROP TABLE IF EXISTS `room_types`;
-CREATE TABLE `room_types` (
-  `room_type_id` int(11) NOT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `max_pers` int(11) DEFAULT NULL,
-  `images` varchar(300) DEFAULT NULL,
-  `description` varchar(300) DEFAULT NULL
+  `accommodation_id` int(11) NOT NULL,
+  `num_of_pers` int(11) NOT NULL,
+  `check_in_date` date NOT NULL,
+  `check_out_date` date NOT NULL,
+  `num_of_nights` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -153,139 +182,160 @@ CREATE TABLE `room_types` (
 --
 
 --
+-- Indexes for table `accommodations`
+--
+ALTER TABLE `accommodations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `establishment_id` (`establishment_id`,`room_num`);
+
+--
+-- Indexes for table `accommodation_types`
+--
+ALTER TABLE `accommodation_types`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`,`establishment_type_id`);
+
+--
+-- Indexes for table `amenities`
+--
+ALTER TABLE `amenities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `amenities_per_accommodation`
+--
+ALTER TABLE `amenities_per_accommodation`
+  ADD PRIMARY KEY (`id`,`amenity_id`);
+
+--
 -- Indexes for table `cities`
 --
 ALTER TABLE `cities`
-  ADD PRIMARY KEY (`city_id`),
-  ADD UNIQUE KEY `city_name` (`city_name`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
-  ADD PRIMARY KEY (`country_id`),
-  ADD UNIQUE KEY `country_name` (`country_name`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `properties`
+-- Indexes for table `establishments`
 --
-ALTER TABLE `properties`
-  ADD PRIMARY KEY (`property_id`),
-  ADD KEY `property_category_id` (`property_category_id`),
-  ADD KEY `country_id` (`country_id`),
-  ADD KEY `city_id` (`city_id`);
+ALTER TABLE `establishments`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `property_categories`
+-- Indexes for table `establishment_types`
 --
-ALTER TABLE `property_categories`
-  ADD PRIMARY KEY (`property_category_id`);
+ALTER TABLE `establishment_types`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
-  ADD PRIMARY KEY (`reservation_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `customer_id` (`customer_id`);
-
---
--- Indexes for table `rooms`
---
-ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`room_id`),
-  ADD KEY `room_type_id` (`room_type_id`),
-  ADD KEY `property_id` (`property_id`);
-
---
--- Indexes for table `room_types`
---
-ALTER TABLE `room_types`
-  ADD PRIMARY KEY (`room_type_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `accommodations`
+--
+ALTER TABLE `accommodations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `accommodation_types`
+--
+ALTER TABLE `accommodation_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `amenities`
+--
+ALTER TABLE `amenities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `amenities_per_accommodation`
+--
+ALTER TABLE `amenities_per_accommodation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `properties`
+-- AUTO_INCREMENT for table `establishments`
 --
-ALTER TABLE `properties`
-  MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `establishments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `property_categories`
+-- AUTO_INCREMENT for table `establishment_types`
 --
-ALTER TABLE `property_categories`
-  MODIFY `property_category_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `establishment_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rooms`
---
-ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `room_types`
---
-ALTER TABLE `room_types`
-  MODIFY `room_type_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `properties`
+-- Constraints for table `accommodations`
 --
-ALTER TABLE `properties`
-  ADD CONSTRAINT `properties_ibfk_1` FOREIGN KEY (`property_category_id`) REFERENCES `property_categories` (`property_category_id`),
-  ADD CONSTRAINT `properties_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `countries` (`country_id`),
-  ADD CONSTRAINT `properties_ibfk_3` FOREIGN KEY (`city_id`) REFERENCES `cities` (`city_id`);
+ALTER TABLE `accommodations`
+  ADD CONSTRAINT `accommodations_ibfk_1` FOREIGN KEY (`establishment_id`) REFERENCES `establishments` (`id`),
+  ADD CONSTRAINT `accommodations_ibfk_2` FOREIGN KEY (`accommodation_type_id`) REFERENCES `accommodation_types` (`id`);
 
 --
--- Constraints for table `reservations`
+-- Constraints for table `accommodation_types`
 --
-ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`),
-  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`);
+ALTER TABLE `accommodation_types`
+  ADD CONSTRAINT `accommodation_types_ibfk_1` FOREIGN KEY (`establishment_type_id`) REFERENCES `establishment_types` (`id`);
 
 --
--- Constraints for table `rooms`
+-- Constraints for table `establishments`
 --
-ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `room_types` (`room_type_id`),
-  ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`property_id`) REFERENCES `properties` (`property_id`);
+ALTER TABLE `establishments`
+  ADD CONSTRAINT `establishments_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`),
+  ADD CONSTRAINT `establishments_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`),
+  ADD CONSTRAINT `establishments_ibfk_3` FOREIGN KEY (`establishment_type_id`) REFERENCES `establishment_types` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
