@@ -74,7 +74,17 @@ h1.page_steps{
     .navbar-default .navbar-nav>li>a:hover {
         color: #fff;
     }
-    .navbar-nav>li.border{
-        border-right: 2px solid white;
+
+    .navbar-nav>li{
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
     }
+
+    @media (max-width: 768px) {
+        .navbar-nav>li>a.nav-vert-line{
+            display: none;
+
+        }    
+    }
+
 /** Navigation **/
