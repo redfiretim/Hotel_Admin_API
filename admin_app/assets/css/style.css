@@ -87,23 +87,16 @@
 }
 
 /** BUTTONS **/
-    .btn-primary{
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus,.btn-primary:active:focus{
         background-color: #076EC3;
         border-color: #076EC3;
     }
-    .btn-primary:hover{
-        background-color: #076EC3;
-        border-color: #076EC3;
-    }
-    .btn-info{
+
+    .btn-info, .btn-info:hover, .btn-info:active, .btn-info:focus,.btn-info:active:focus{
         background-color: #F2C76C;
         border-color: #F2C76C;
     }
-    .btn-info:hover{
-        background-color: #F2C76C;
-        border-color: #F2C76C;
-    }
-    .btn-danger {
+    .btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:focus,.btn-danger:active:focus {
         background-color:#C3072B;
         border-color:#C3072B;
     }

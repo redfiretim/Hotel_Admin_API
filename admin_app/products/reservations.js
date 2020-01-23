@@ -3,17 +3,15 @@ function readProductsTemplate(data, keywords){
     var read_products_html=`
         <!-- search products form -->
         <form id='search-product-form' action='#' method='post'>
-        <div class='input-group pull-left w-30-pct'>
- 
-            <input type='text' value='` + keywords + `' name='keywords' class='form-control product-search-keywords' placeholder='Search...' />
- 
-            <span class='input-group-btn'>
-                <button type='submit' class='btn btn-default' type='button'>
-                    <span class='glyphicon glyphicon-search'></span>
-                </button>
-            </span>
- 
-        </div>
+            <div class='input-group pull-left w-30-pct'>
+                <input type='text' value='` + keywords + `' name='keywords' class='form-control product-search-keywords' placeholder='Search...' />
+    
+                <span class='input-group-btn'>
+                    <button type='submit' class='btn btn-default' type='button'>
+                        <span class='glyphicon glyphicon-search'></span>
+                    </button>
+                </span>
+            </div>
         </form>
  
         <!-- when clicked, it will load the create product form -->
@@ -22,18 +20,20 @@ function readProductsTemplate(data, keywords){
         </div>
  
         <!-- start table -->
-        <table class='table table-bordered table-hover'>
-            <!-- creating our table heading -->
-            <tr>
-                <th class='w-10-pct'>Booking number</th>
-                <th class='w-15-pct'>Customer</th>
-                <th class='w-10-pct'>Room number</th>
-                <th class='w-10-pct'>Total price</th>
-                <th class='w-10-pct'>Check-in</th>
-                <th class='w-10-pct'>Check-out</th>
-                <th class='w-25-pct text-align-center'></th>
-            </tr>`;
- 
+        <div class="panel panel-default">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th class='w-10-pct'>Booking number</th>
+                    <th class='w-15-pct'>Customer</th>
+                    <th class='w-10-pct'>Room number</th>
+                    <th class='w-10-pct'>Total price</th>
+                    <th class='w-10-pct'>Check-in</th>
+                    <th class='w-10-pct'>Check-out</th>
+                    <th class='w-25-pct text-align-center'></th>
+                </tr>
+            </thead>`;
+
             // loop through returned list of data
             $.each(data.reservations, function(index, data) {
                 // creating new table row per record
@@ -65,7 +65,7 @@ function readProductsTemplate(data, keywords){
                 </tr>`;
             });
         // end table
-        read_products_html+=`</table>`;
+        read_products_html+=`</table> </div>`;
 
     // pagination
     if(data.paging){
