@@ -21,7 +21,7 @@ $(document).ready(function(){
 });
  
 function showProductsFirstPage(){
-    var json_url="../api/#.php";
+    var json_url="../admin_app/MOCK_DATA.json";
     showProducts(json_url);
 }
  
@@ -29,7 +29,8 @@ function showProductsFirstPage(){
 function showProducts(json_url){
     // get list of products from the API
     $.getJSON(json_url, function(data){
-        // html for listing products
+        //console.log(data.reservations);
+        //html for listing products
         readProductsTemplate(data, "");
         // chage page title
         changePageTitle("Reservations");

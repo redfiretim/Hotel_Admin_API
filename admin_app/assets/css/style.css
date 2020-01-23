@@ -43,6 +43,7 @@
     }
     @font-face {
         font-family: "Roboto_bold";
+        font-weight: bold;
         src: url("../fonts/Roboto/Roboto-Bold.ttf") format("ttf"),
     }
     @font-face {
@@ -84,3 +85,36 @@
 .page-header{
     border-bottom: none;
 }
+
+/** BUTTONS **/
+    .btn-primary{
+        background-color: #076EC3;
+        border-color: #076EC3;
+    }
+    .btn-primary:hover{
+        background-color: #076EC3;
+        border-color: #076EC3;
+    }
+    .btn-info{
+        background-color: #F2C76C;
+        border-color: #F2C76C;
+    }
+    .btn-info:hover{
+        background-color: #F2C76C;
+        border-color: #F2C76C;
+    }
+    .btn-danger {
+        background-color:#C3072B;
+        border-color:#C3072B;
+    }
+
+    
+    
+/** BUTTONS **/
+
+
+/** ICONS **/
+.glyphicon-search{
+    color: #076EC3;
+}
+/** ICONS **/

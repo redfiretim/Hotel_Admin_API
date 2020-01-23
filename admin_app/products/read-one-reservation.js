@@ -1,10 +1,11 @@
 $(document).ready(function(){
     // handle 'read one' button click
-    $(document).on('click', '.read-one-product-button', function(){
+    $(document).on('click', '.read-one-reservation-button', function(){
         // get product id
         var id = $(this).attr('data-id');
         // read product record based on given ID
-        $.getJSON("../api//#.php?id="+id, function(data){
+
+        $.getJSON("../admin_app/MOCK_DATA.json?id="+id, function(data){
             // start html
             var read_one_product_html=`
                 <!-- when clicked, it will show the product's list -->
@@ -17,7 +18,7 @@ $(document).ready(function(){
                     <!-- Booking number -->
                     <tr>
                         <td class='w-30-pct'>Booking number</td>
-                        <td class='w-70-pct'>` + data.reservation_id + `</td>
+                        <td class='w-70-pct'>` + data.reservations_id + `</td>
                     </tr>
 
                     <!-- Customer -->
