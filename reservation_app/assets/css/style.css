@@ -3,7 +3,9 @@
     padding: 25px;
     
 }
-.circle{
+
+/** PAGE HEADER **/
+.page-circle{
     width: 60px;
     height: 60px;
     border-radius: 250px;
@@ -28,15 +30,17 @@
     background-color: #F2C572;
     margin: 0 auto;
     border-radius: 15px 15px 0px 0px;   
-    padding: 40px;
+    padding: 15px;
     border-bottom: none;
     transform: translate(-20px, -20px);
+    float: left;
 }
-
 h1.page_steps{
     float: left;
     margin-top:10px;
 }
+/** PAGE HEADER **/
+
 
 /** FONTS  **/
     /* Needed when font is removed form google font database */
@@ -96,3 +100,10 @@ h1.page_steps{
     }
 
 /** Navigation **/
+
+/** BUTTONS **/
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus,.btn-primary:active:focus{
+        background-color: #076EC3;
+        border-color: #076EC3;
+    }
+/** BUTTONS **/

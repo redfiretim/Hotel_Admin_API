@@ -1,59 +1,42 @@
 
 $(document).ready(function(){
-
-
-
-
     // app html
     var app_html=`
         <div class="container">
-
-                <div class="page-steps">
-                    <div class="circle"><p>1</p></div>
-                    <h1 class="page_steps">Choose dates</h1>
-                </div>
-
+            <div class="page-steps">
+                <div class="page-circle"><p>1</p></div>
+                <h1 class="page_title">Choose dates</h1>
+            </div>
                 
-                <div id="page-content">
-                    <div class="content_box">
-                        <form action="form_step2.js" method="POST">
-                            <div class="input_group">
-                                <div class="form-group">
-                                    <div class="">
-                                        <label for="startDate"><span class="calendar">Start date:</span></label>
-                                        <input class="date_input" type="date" id="startDate" name="startDate" value="" />
-            
-                                        <label for="numberNights"><span class="calendar">Number of nights:</span></label>
-                                        <input type="number" name="numberNights" min="1" max="14" value="0">
-            
-                                        <label for="endDate"><span class="calendar">End date:</span></label>
-                                        <input class="date_input" type="date" id="endDate" name="endDate" />
-                                    </div>
-                                </div>
-                            </div>
-            
-                            <div class="input_group">
-                                <div class="form-group">
-                                    <div class="">
-                                        <label for="numberNights"><span class="form_label_span">Number of guests:</span></label>
-                                        <input type="number" name="numberGuests" min="1" max="2" value="0">
-            
-                                        <label for="numberNights"><span class="form_label_span">Number of rooms:</span></label>
-                                        <input type="number" name="numberRooms" min="1" max="1" value="0">
-                                    </div>
-                                </div>
-                            </div>
-            
-                            <button type="submit" class="btn btn-primary">Check availability</button>
-                        </form>
-                    </div>
-                </div>
-        </div>
-        `;
+            <div id="page-content">
+                <form action=".php" method="POST">
+                    <div class="form-group">
+                        <label for="startDate"><span class="calendar">Start date:</span></label>
+                        <input class="date_input" type="date" id="startDate" name="startDate" value="" />
 
+                        <label for="numberNights"><span class="calendar">Number of nights:</span></label>
+                        <input type="number" name="numberNights" min="1" max="14" value="1">
+
+                        <label for="endDate"><span class="calendar">End date:</span></label>
+                        <input class="date_input" type="date" id="endDate" name="endDate" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numberNights"><span class="form_label_span">Number of guests:</span></label>
+                        <input type="number" name="numberGuests" min="1" max="2" value="1">
+
+                        <label for="numberNights"><span class="form_label_span">Number of rooms:</span></label>
+                        <input type="number" name="numberRooms" min="1" max="1" value="1">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary page-button">Check availability</button>
+                </form>
+
+                <div class="page-button"></div>
+            </div>
+        </div>`;
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
-
 });
  
 
@@ -61,24 +44,24 @@ $(document).ready(function(){
 // change page title
 function changePageTitle(page_title){
     // change page title
-    $('.page-steps').text(page_title);
+    $('.page_title').text(page_title);
     // change title tag
     document.title=page_title;
 }
- 
-
-
-    
-
-
-
-(document).on('submit','#btn btn-primary', function name(params) {
-    // DOE IETS
-    
-} 
-
-
-
+// change page circle
+function changePageCircle(page_circle){
+    // change page title
+    $('.page-circle').text(page_circle);
+    // change title tag
+    document.title=page_circle;
+}
+// change page button
+function changePageButton(page_button){
+    // change page title
+    $('.page-button').text(page_button);
+    // change title tag
+    document.title=page_button;
+}
 
  
 // // function to make form values to json format
