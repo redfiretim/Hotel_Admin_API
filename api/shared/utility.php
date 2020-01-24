@@ -64,6 +64,3 @@ if (!function_exists('http_response_code')) {
         return $prev_code;
     }
 }
-
-?>
-
