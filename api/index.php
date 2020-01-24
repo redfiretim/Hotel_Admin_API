@@ -145,13 +145,30 @@ if (isset($_GET['action'])) {
 		case 'delete_reservation': 
 		
 			//FIX: write case.
+			$data = json_decode(file_get_contents("php://input")); 
+			$id = $data->id; 
+			
+				if($dshelper->delete($reservations, //add code)){
+					// set response code - 201 created
+					http_response_code(201);
+					// tell the user
+					echo json_encode(array("message" => "Product was created."));
+					
+				} else{
+			 
+					// set response code - 503 service unavailable
+					http_response_code(503);
+			 
+					// tell the user
+					echo json_encode(array("message" => "Unable to create product."));
+				}
 			
 			break; 
 		
 		//Customer related requested actions are specified down below: 
 		
 		
-		case 'create_custumer': 
+		case 'create_customer': 
 	
 		//FIX: customer_form.js isn't finished. Check phone_number and email var. 
 			$data = json_decode(file_get_contents("php://input")); 
@@ -168,7 +185,8 @@ if (isset($_GET['action'])) {
                 'phone_num' => $phone_num,
             );
 			
-			if($product->create()){
+			//FIX: Check if method create works
+			if($dshelper->create($customer, $customer_array)){
 				// set response code - 201 created
 				http_response_code(201);
 				// tell the user
