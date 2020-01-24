@@ -9,7 +9,7 @@ $(document).ready(function(){
             </div>
                 
             <div id="page-content">
-                <form action=".php" method="POST">
+                <form action="#" method="POST">
                     <div class="form-group">
                         <label for="startDate"><span class="calendar">Start date:</span></label>
                         <input class="date_input" type="date" id="startDate" name="startDate" value="" />
@@ -29,10 +29,8 @@ $(document).ready(function(){
                         <input type="number" name="numberRooms" min="1" max="1" value="1">
                     </div>
 
-                    <button type="submit" class="btn btn-primary page-button">Check availability</button>
+                    <button type="submit" class="btn btn-primary">Check availability</button>
                 </form>
-
-                <div class="page-button"></div>
             </div>
         </div>`;
     // inject to 'app' in index.html
@@ -55,14 +53,6 @@ function changePageCircle(page_circle){
     // change title tag
     document.title=page_circle;
 }
-// change page button
-function changePageButton(page_button){
-    // change page title
-    $('.page-button').text(page_button);
-    // change title tag
-    document.title=page_button;
-}
-
  
 // // function to make form values to json format
 // $.fn.serializeObject = function(){
