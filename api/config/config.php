@@ -65,8 +65,8 @@ $reservation_one_const_conditions = [
     $r.'.customer_id = '.$c.'.id', 
     $r.'.accommodation_id = '.$a.'.id',
     $a.'.establishment_id = '.$e.'.id',
-    $a.'accommodation_type_id = '.$at.'.id',
-    $at.'establishment_type_id = '.$et.'.id'
+    $a.'.accommodation_type_id = '.$at.'.id',
+    $at.'.establishment_type_id = '.$et.'.id'
 ];
 // Variable conditions (establishment identifier, reservation.id) needed:
     // FIX ME --> MOVE TO INDEX.PHP
