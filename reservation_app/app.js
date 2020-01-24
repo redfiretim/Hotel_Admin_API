@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
 
+
+
+
     // app html
     var app_html=`
         <div class="container">
@@ -41,7 +44,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
             
-                            <button type="submit" class="btn btn-primary">Next step</button>
+                            <button type="submit" class="btn btn-primary">Check availability</button>
                         </form>
                     </div>
                 </div>
@@ -65,6 +68,19 @@ function changePageTitle(page_title){
  
 
 
+    
+
+
+
+(document).on('submit','#btn btn-primary', function name(params) {
+    // DOE IETS
+    
+} 
+
+
+
+
+ 
 // // function to make form values to json format
 // $.fn.serializeObject = function(){
 //     var o = {};
