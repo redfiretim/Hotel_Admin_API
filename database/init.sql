@@ -123,7 +123,7 @@ DROP TABLE IF EXISTS `establishments`;
 CREATE TABLE `establishments` (
   `id` int(11) NOT NULL,
   `establishment_type_id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `country_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL,
   `zipcode` varchar(50) NOT NULL,
