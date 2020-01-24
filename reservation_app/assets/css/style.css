@@ -1,6 +1,7 @@
 #reservation{
     background-color: #BFB398;
     padding: 25px;
+    
 }
 .circle{
     width: 60px;
@@ -17,14 +18,21 @@
 }
 .container{
     width: 800px;
-    background-color: #F2C572;
+    background-color: rgb(255, 255, 255);
     margin: 0 auto;
     border-radius: 15px 15px 0px 0px;   
     padding: 20px; 
 }
 .page-steps{
+    width: 800px;
+    background-color: #F2C572;
+    margin: 0 auto;
+    border-radius: 15px 15px 0px 0px;   
+    padding: 40px;
     border-bottom: none;
+    transform: translate(-20px, -20px);
 }
+
 h1.page_steps{
     float: left;
     margin-top:10px;
