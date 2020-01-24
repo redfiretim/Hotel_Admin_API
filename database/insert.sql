@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 jan 2020 om 11:07
+-- Gegenereerd op: 24 jan 2020 om 11:33
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.2.22
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -21,8 +22,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `reservation_system`
 --
-CREATE DATABASE IF NOT EXISTS `reservation_system` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `reservation_system`;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `accommodations`
@@ -125,7 +124,9 @@ INSERT INTO `reservations` (`id`, `booking_date`, `customer_id`, `accommodation_
 (2, '2020-01-23', 3, 2, 1, '2020-02-23', '2020-02-25', 2, 290),
 (3, '2020-01-23', 1, 6, 2, '2020-02-27', '2020-02-29', 2, 380),
 (4, '2020-01-24', 2, 7, 1, '2020-02-23', '2020-02-24', 1, 210),
-(5, '2020-01-24', 1, 1, 2, '2020-02-23', '2020-02-24', 1, 140);
+(5, '2020-01-24', 1, 1, 2, '2020-02-23', '2020-02-24', 1, 140),
+(6, '2020-01-24', 1, 1, 2, '2020-03-16', '2020-03-17', 1, 140);
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
