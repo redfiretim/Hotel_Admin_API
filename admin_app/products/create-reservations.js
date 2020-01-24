@@ -13,8 +13,6 @@ $(document).ready(function(){
             room_options_html+=`</select>`;     
 
             var create_product_html=`
-                // we have our html form here where product information will be entered
-                // we used the 'required' html5 property to prevent empty fields
                 <!-- 'read products' button to show list of products -->
                 <div id='read-product' class='btn btn-primary pull-right m-b-15px read-products-button'>
                     <span class='glyphicon glyphicon-list'></span> Back to reservations

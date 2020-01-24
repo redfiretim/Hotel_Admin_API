@@ -13,50 +13,47 @@ $(document).ready(function(){
                     <span class='glyphicon glyphicon-list'></span> Back to reservations
                 </div>
                 <!-- product data will be shown in this table -->
-                <table class='table table-bordered table-hover'>
-                
-                    <!-- Booking number -->
+                <table class="table table-curved table-striped">
                     <tr>
-                        <td class='w-30-pct'>Booking number</td>
+                        <th class='w-30-pct'>Booking number</td>
                         <td class='w-70-pct'>` + data.reservations_id + `</td>
                     </tr>
-
-                    <!-- Customer -->
                     <tr>
-                        <td>Customer</td>
+                        <th class='w-15-pct'>Customer name</th>
                         <td>` + data.customer_id + `</td>
                     </tr>
-
-                    <!-- Sort room -->
                     <tr>
-                        <td>Sort room</td>
+                        <th class='w-10-pct'>Hotel</th>
+                        <td>` + data + `</td>
+                    </tr>
+                    <tr>
+                        <th class='w-10-pct'>Hotel city</th>
+                        <td>` + data + `</td>
+                    </tr>
+                    <tr>
+                        <th class='w-10-pct'>Room type</th>
                         <td>` + data.room_type_id + `</td>
                     </tr>
-
-                    <!-- Room number -->
                     <tr>
-                        <td>Room number</td>
+                        <th class='w-10-pct'>Room number</th>
                         <td>` + data.room_num + `</td>
                     </tr>
-
-                    <!-- Room rate -->
                     <tr>
-                        <td>Room rate</td>
+                        <th class='w-10-pct'>Price per night</th>
                         <td>` + data.price_per_night + `</td>
                     </tr>
-
-                    <!-- Check in -->
                     <tr>
-                        <td>Check-in</td>
+                        <th class='w-10-pct'>Total price</th>
+                        <td>` + data.total_price + `</td>
+                    </tr>
+                    <tr>
+                        <th class='w-10-pct'>Check-in</th>
                         <td>` + data.check_in_date + `</td>
                     </tr>
-
-                    <!-- Check out -->
                     <tr>
-                        <td>Check-out</td>
+                        <th class='w-10-pct'>Check-out</th>
                         <td>` + data.check_out_date + `</td>
-                    </tr>
-                </table>`;
+                    </tr>`;
 
             // inject html to 'page-content' of our app
             $("#page-content").html(read_one_product_html);
