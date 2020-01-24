@@ -11,7 +11,7 @@ class DSConnect
     private $username = 'root';
     private $password = '';
 
-    private function setConnection()
+    private function DSConnect()
     {
         try {
             $this->dsc = new PDO('mysql:host='.$this->host.';dbname='.$this->db_name, $this->username, $this->password);
