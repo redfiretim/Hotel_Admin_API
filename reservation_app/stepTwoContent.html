@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <title>Reservation proces</title>
+    
+        <!-- bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- custom CSS -->
+        <link href="assets/css/style.css" rel="stylesheet" />
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Titillium+Web&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <img alt="Hotel Educom logo" src="assets/images/logo.png">
+                        </a>
+                    </div>
+              
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li ><a href="#">Book your stay</a></li>
+                            <li><a class="nav-vert-line">|</a></li>
+                            <li><a href="#">About Educom Hotel</a></li>
+                            <li><a class="nav-vert-line">|</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+              </nav>
+                         
+        </header>
+
+
+        <!-- our app will be injected here -->
+        <div id="reservation">
+
+
+
+            <div class="container">
+                <div class="page-steps">
+                    <div class="page-circle"><p>1</p></div>
+                    <h1 class="page_title">Choose dates</h1>
+                </div>
+                    
+                <div id="page-content">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="startDate"><span class="calendar">Start date:</span></label>
+                            <input class="date_input" type="date" id="startDate" name="startDate" value="" />
+    
+                            <label for="numberNights"><span class="calendar">Number of nights:</span></label>
+                            <input type="number" name="numberNights" min="1" max="14" value="1">
+    
+                            <label for="endDate"><span class="calendar">End date:</span></label>
+                            <input class="date_input" type="date" id="endDate" name="endDate" />
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="numberNights"><span class="form_label_span">Number of guests:</span></label>
+                            <input type="number" name="numberGuests" min="1" max="2" value="1">
+    
+                            <label for="numberNights"><span class="form_label_span">Number of rooms:</span></label>
+                            <input type="number" name="numberRooms" min="1" max="1" value="1">
+                        </div>
+    
+                        <button type="submit" class="btn btn-primary">Check availability</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+        
+
+
+        <!-- SCRIPTS -->
+        <!-- jQuery library -->
+        <script src="assets/js/jquery.js"></script>
+                
+        <!-- bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <!-- app js script -->
+        <script src="app.js"></script>
+        
+        <!-- products scripts -->
+        <script src="formsteps/form_step1.js"></script>
+        <script src="formsteps/form_step2.js"></script>
+        <script src="formsteps/form_step3.js"></script>
+        <script src="formsteps/form_step4.js"></script>
+        <script src="formsteps/form_step5.js"></script>
+    </body>
+</html>
