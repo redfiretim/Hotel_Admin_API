@@ -20,52 +20,51 @@ function readProductsTemplate(data, keywords){
         </div>
  
         <!-- start table -->
-        <div class="panel panel-default">
-            <table class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th class='w-10-pct'>Booking number</th>
-                    <th class='w-15-pct'>Customer</th>
-                    <th class='w-10-pct'>Room number</th>
-                    <th class='w-10-pct'>Total price</th>
-                    <th class='w-10-pct'>Check-in</th>
-                    <th class='w-10-pct'>Check-out</th>
-                    <th class='w-25-pct text-align-center'></th>
-                </tr>
-            </thead>`;
+        <table class="table table-curved table-striped">
+            <thead>
+            <tr>
+                <th class='w-15-pct'>Booking number</th>
+                <th class='w-15-pct'>Customer</th>
+                <th class='w-10-pct'>Room number</th>
+                <th class='w-10-pct'>Total price</th>
+                <th class='w-10-pct'>Check-in</th>
+                <th class='w-10-pct'>Check-out</th>
+                <th class='w-25-pct text-align-center'></th>
+            </tr>
+        </thead>`;
 
-            // loop through returned list of data
-            $.each(data.reservations, function(index, data) {
-                // creating new table row per record
-                read_products_html+=`<tr>
-                    <td>` + data.reservation_id + `</td>
-                    <td>` + data.customer_id + `</td>
-                    <td>` + data.room_num + `</td>
-                    <td>` + data.total_price + `</td>
-                    <td>` + data.check_in_date + `</td>
-                    <td>` + data.check_out_date + `</td>
-        
-                    <!-- 'action' buttons -->
-                    <td>
-                        <!-- read product button -->
-                        <button class='btn btn-primary m-r-10px read-one-reservation-button' data-id='` + data.reservation_id + `'>
-                            <span class='glyphicon glyphicon-eye-open'></span> Read
-                        </button>
-        
-                        <!-- edit button -->
-                        <button class='btn btn-info m-r-10px update-reservation-button' data-id='` + data.reservation_id + `'>
-                            <span class='glyphicon glyphicon-edit'></span> Edit
-                        </button>
-        
-                        <!-- delete button -->
-                        <button class='btn btn-danger delete-reservation-button' data-id='` + data.reservation_id + `'>
-                            <span class='glyphicon glyphicon-remove'></span> Delete
-                        </button>
-                    </td>
-                </tr>`;
-            });
+        // loop through returned list of data
+        $.each(data.reservations, function(index, data) {
+            // creating new table row per record
+            read_products_html+=`<tr>
+                <td>` + data.reservation_id + `</td>
+                <td>` + data.customer_id + `</td>
+                <td>` + data.room_num + `</td>
+                <td>` + data.total_price + `</td>
+                <td>` + data.check_in_date + `</td>
+                <td>` + data.check_out_date + `</td>
+    
+                <!-- 'action' buttons -->
+                <td>
+                    <!-- read product button -->
+                    <button class='btn btn-primary m-r-10px read-one-reservation-button' data-id='` + data.reservation_id + `'>
+                        <span class='glyphicon glyphicon-eye-open'></span> Details
+                    </button>
+    
+                    <!-- edit button -->
+                    <button class='btn btn-info m-r-10px update-reservation-button' data-id='` + data.reservation_id + `'>
+                        <span class='glyphicon glyphicon-edit'></span> Edit
+                    </button>
+    
+                    <!-- delete button -->
+                    <button class='btn btn-danger delete-reservation-button' data-id='` + data.reservation_id + `'>
+                        <span class='glyphicon glyphicon-remove'></span> Delete
+                    </button>
+                </td>
+            </tr>`;
+        });
         // end table
-        read_products_html+=`</table> </div>`;
+        read_products_html+=`</table>`;
 
     // pagination
     if(data.paging){
