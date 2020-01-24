@@ -13,7 +13,7 @@ $(document).ready(function(){
                 <form action="#" method="POST">
                     <div class="row">
                         <div class="col-xs-6 col-md-4">
-                            <label for="startDate"><span class="calendar">Arrival date:</span></label>
+                            <label for="startDate"><span class="calendar">Arrival date:</span></label></br>
                             <input class="date_input" type="date" id="startDate" name="startDate" value="" />
                         </div>
                         <div class="col-xs-6 col-md-4">
@@ -21,7 +21,7 @@ $(document).ready(function(){
                             <input type="number" name="numberNights" min="1" max="14" value="1">
                         </div>
                         <div class="col-xs-6 col-md-4">
-                            <label for="endDate"><span class="calendar">Departure date:</span></label>
+                            <label for="endDate"><span class="calendar">Departure date:</span></label></br>
                             <input class="date_input" type="date" id="endDate" name="endDate" />
                         </div>
                     </div>

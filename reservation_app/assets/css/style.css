@@ -71,6 +71,7 @@ h1.page_steps{
     }
     p{
         font-family: 'Roboto', sans-serif;
+        font-size: 16px;
     }
 /** FONTS **/
 
@@ -115,11 +116,6 @@ h1.page_steps{
     .btn>u {
         font-size: 12px;
     }
-
-    .btn.btn-primary {
-        float: right;
-    }
-
     .btn.btn-light {
         float: left;
         
