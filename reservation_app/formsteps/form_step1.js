@@ -33,9 +33,7 @@ function setStepOneContent(){
 
                                     <button type="submit" class="btn btn-primary">Next step</button>
                                 </form>
-                            </div>
-                            
-                            `;
+                            </div>`;
 
 
 

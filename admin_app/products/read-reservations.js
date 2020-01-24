@@ -16,8 +16,6 @@ $(document).ready(function(){
         // show list of products
         showProducts(json_url);
     });
- 
- 
 });
  
 function showProductsFirstPage(){
