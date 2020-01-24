@@ -1,11 +1,10 @@
 $(document).ready(function(){
- 
     // show html form when 'update product' button was clicked
-    $(document).on('click', '.update-product-button', function(){
+    $(document).on('click', '.update-reservation-button', function(){
         // get product id
         var id = $(this).attr('data-id');
         // read one record based on given product id
-        $.getJSON("../api/#.php?id=" + id, function(data){
+        $.getJSON("../admin_app/MOCK_DATA.json?id=" + id, function(data){
         
             // values will be used to fill out our form
             var reservation_id = data.reservation_id;
@@ -16,7 +15,7 @@ $(document).ready(function(){
             var check_out_date = data.check_out_date;
 
             // load list of rooms
-            $.getJSON("../api/#.php", function(data){  
+            $.getJSON("../admin_app/MOCK_DATA.json", function(data){  
                 // build 'room option' html
                 // loop through returned list of data
                 var room_options_html=`<select name='room_type_id' class='form-control'>`;
@@ -32,7 +31,7 @@ $(document).ready(function(){
 
                 // store 'update reservation' html to this variable
                 var update_product_html=`
-                <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+                <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button button-margin'>
                     <span class='glyphicon glyphicon-list'></span> Read Products
                 </div>
                 <!-- build 'update product' html form -->
@@ -54,7 +53,7 @@ $(document).ready(function(){
                 
                         <!-- categories 'select' field -->
                         <tr>
-                            <td>Category</td>
+                            <td>Room type</td>
                             <td>` + room_options_html + `</td>
                         </tr>
 
@@ -83,15 +82,16 @@ $(document).ready(function(){
                         </tr>
 
                         <tr>
-                            <!-- hidden 'reservation id' to identify which record to delete -->
-                            <td><input value=\"` + reservation_id + `\" name='reservation_id' type='hidden' /></td>
-                
                             <!-- button to submit form -->
-                            <td>
-                                <button type='submit' class='btn btn-info'>
-                                    <span class='glyphicon glyphicon-edit'></span> Update Product
+                            <td colspan="2">
+                                <button type='submit' class='btn btn-primary'>
+                                    <span class='glyphicon glyphicon-edit'></span> Update reservation
                                 </button>
                             </td>
+                        </tr>
+                        <tr>
+                        <!-- hidden 'reservation id' to identify which record to delete -->
+                        <td class="display-none"><input value=\"` + reservation_id + `\" name='reservation_id' type='hidden' /></td>
                         </tr>
                 
                     </table>

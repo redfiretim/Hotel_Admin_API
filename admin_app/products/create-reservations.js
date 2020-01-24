@@ -13,66 +13,63 @@ $(document).ready(function(){
             room_options_html+=`</select>`;     
 
             var create_product_html=`
-                <!-- 'read products' button to show list of products -->
-                <div id='read-product' class='btn btn-primary pull-right m-b-15px read-products-button'>
+                <!-- 'back to reservations' button to show list of reservations -->
+                <div id='read-product' class='btn btn-primary pull-right m-b-15px read-products-button button-margin'>
                     <span class='glyphicon glyphicon-list'></span> Back to reservations
                 </div>
-                <!-- 'create reservation' html form -->
-                <form id='create-product-form' action='#' method='post' border='0'>
-                    <table class='table table-hover table-responsive table-bordered'>
-                
-                        <!-- Booking number field -->
+
+                <!-- reservation data will be shown in this table -->
+                <form id='create-reservation-form' action='#' method='post' border='0'>
+                    <table class="table table-curved table-striped">
                         <tr>
-                            <td>Booking number</td>
+                            <th class='w-30-pct'>Booking number</td>
                             <td><input type='text' name='reservation_id' class='form-control' required /></td>
                         </tr>
-                
-                        <!-- Customer name field -->
                         <tr>
-                            <td>Customer</td>
+                            <th>Customer name</th>
                             <td><input type='text' name='customer_id' class='form-control' required /></td>
                         </tr>
-
+                        <tr>
+                            <th>Hotel</th>
+                            <td><input type='text' name='hotel_educom' class='form-control' value='Hotel Educom' disabled/></td>
+                        </tr>
+                        <tr>
+                            <th>Hotel city</th>
+                            <td><input type='text' name='hotel_city' class='form-control' value='Eindhoven' disabled/></td>
+                        </tr>
                         <!-- Sort room 'select' field -->
                         <tr>
-                            <td>Sort room</td>
+                            <th>Sort room</th>
                             <td>`+room_options_html+`</td>
                         </tr>
-
-                        <!-- Room number field -->
                         <tr>
-                            <td>Room number</td>
+                            <th>Room number</th>
                             <td><input type='number' name='room_num' class='form-control' required /></td>
                         </tr>
-
-                        <!-- Room rate field -->
                         <tr>
-                            <td>Room rate</td>
+                            <th>Room rate</th>
                             <td><input type='number' min='60' name='price_per_night' class='form-control' required /></td>
                         </tr>
-
-                        <!-- Checkin field -->
                         <tr>
-                            <td>Check-in</td>
-                            <td><input type='text' name='check_in_date' class='form-control' required /></td>
+                            <th>Total price</th>
+                            <td><input type='number' name='total_price' class='form-control' disabled /></td>
                         </tr>
-
-                        <!-- Checkout field -->
                         <tr>
-                            <td>Check-out</td>
-                            <td><input type='text' name='check_out_date' class='form-control' required /></td>
+                            <th>Check-in</th>
+                            <td><input type='date' name='check_in_date' class='form-control' required /></td>
                         </tr>
-
+                        <tr>
+                            <th>Check-out</th>
+                            <td><input type='date' name='check_out_date' class='form-control' required /></td>
+                        </tr>
                         <!-- button to submit form -->
                         <tr>
-                            <td></td>
-                            <td>
+                            <td colspan="2">
                                 <button type='submit' class='btn btn-primary'>
                                     <span class='glyphicon glyphicon-plus'></span> New booking
                                 </button>
                             </td>
                         </tr>
-                
                     </table>
                 </form>`;
 
@@ -80,7 +77,7 @@ $(document).ready(function(){
                 $("#page-content").html(create_product_html);
                 
                 // chage page title
-                changePageTitle("New Reservation");
+                changePageTitle("New reservation");
         });
     });
 

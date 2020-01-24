@@ -15,6 +15,7 @@
     .margin-bottom-1em { margin-bottom:1em; }
     .margin-zero{ margin:0; }
     .text-align-center{ text-align:center; }
+    .float_left{float: left;}
     .table-striped>tbody>tr:nth-of-type(odd){background-color:#EDF0F3;}
 
     /* Curved table */
@@ -61,12 +62,8 @@
     }
     /* Needed when font is removed form google font database */
 
-    h1{
-        font-family: 'Titillium Web', sans-serif;
-    }
-    p{
-        font-family: 'Roboto', sans-serif;
-    }
+    h1{font-family: 'Titillium bold', sans-serif;}
+    p{font-family: 'Roboto', sans-serif;}
 /** FONTS **/
 
 /** Navigation OVERRIDES **/
@@ -104,6 +101,9 @@
     .btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:focus,.btn-danger:active:focus {
         background-color:#C3072B;
         border-color:#C3072B;
+    }
+    .button-margin{
+        margin-top: -75px;
     }
 /** BUTTONS **/
 
