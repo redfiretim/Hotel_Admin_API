@@ -1,9 +1,9 @@
 $(document).ready(function(){
     // will run if the delete button was clicked
-    $(document).on('click', '.delete-product-button', function(){
+    $(document).on('click', '.delete-reservation-button', function(){
         // get the product id
 		var product_id = $(this).attr('data-id');
-		// bootbox for good looking 'confirm pop up'
+		//bootbox for good looking 'confirm pop up'
 		bootbox.confirm({
 		    message: "<h4>Are you sure?</h4>",
 		    buttons: {

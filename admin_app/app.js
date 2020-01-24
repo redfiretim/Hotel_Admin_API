@@ -2,6 +2,8 @@ $(document).ready(function(){
     // app html
     var app_html=`
         <div class='container'>
+            <div class='delete_button'>
+            </div>
             <div class='page-header'>
                 <h1 id='page-title'></h1>
             </div>

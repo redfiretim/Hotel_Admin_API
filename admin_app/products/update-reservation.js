@@ -11,6 +11,7 @@ $(document).ready(function(){
             var customer_id = data.customer_id;
             var room_id = data.room_id;
             var price_per_nights = data.price_per_nights;
+            var total_price = data.total_price;
             var check_in_date = data.check_in_date;
             var check_out_date = data.check_out_date;
 
@@ -32,12 +33,13 @@ $(document).ready(function(){
                 // store 'update reservation' html to this variable
                 var update_product_html=`
                 <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button button-margin'>
-                    <span class='glyphicon glyphicon-list'></span> Read Products
+                    <span class='glyphicon glyphicon-list'></span> Back to reservations
                 </div>
+
                 <!-- build 'update product' html form -->
                 <!-- we used the 'required' html5 property to prevent empty fields -->
                 <form id='update-product-form' action='#' method='post' border='0'>
-                    <table class='table table-hover table-responsive table-bordered'>
+                    <table class="table table-curved table-striped">
                         
                         <!-- Booking number field -->
                         <tr>
@@ -69,16 +71,22 @@ $(document).ready(function(){
                             <td><input value=\"` + price_per_nights + `\" type='number' name='price_per_nights' class='form-control' required /></td>
                         </tr>
 
+                        <!-- Room rate field -->
+                        <tr>
+                            <td>Total price</td>
+                            <td><input value=\"` + total_price + `\" type='number' name='total_price' class='form-control' required /></td>
+                        </tr>
+
                         <!-- Checkin field -->
                         <tr>
                             <td>Check-in</td>
-                            <td><input value=\"` + check_in_date + `\"  type='text' name='check_in_date' class='form-control' required /></td>
+                            <td><input value=\"` + check_in_date + `\"  type='date' name='check_in_date' class='form-control' required /></td>
                         </tr>
 
                         <!-- Checkout field -->
                         <tr>
                             <td>Check-out</td>
-                            <td><input value=\"` + check_out_date + `\"  type='text' name='check_out_date' class='form-control' required /></td>
+                            <td><input value=\"` + check_out_date + `\"  type='date' name='check_out_date' class='form-control' required /></td>
                         </tr>
 
                         <tr>
