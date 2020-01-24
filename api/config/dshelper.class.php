@@ -1,12 +1,10 @@
 <?php
 
-class DSHelper
-{
-    private $dbc;
+class DSHelper {
+    private $dsh;
 
-    public function __construct($dsh)
-    {
-        $this->dbc = $dsh;
+    public function __construct($dsh) {
+        $this->dsh = $dsh;
     }
 
     // /* Create example customer */
@@ -20,17 +18,16 @@ class DSHelper
     // $data = ['customer_id' => $customer_id];
     // create($table, $data);
 
-    public function create($table, $data)
-    {
-        //Splits the Array into strings to create a prepared statement query
+    public function create($table, $data) {
+        // Splits the data parameter into column and prepared value arrays.
         foreach ($data as $column => $value) {
-            $cols[] = $table.'.'.$column;
+            $cols[] = $column;
             $preps[] = ':'.$column;
         }
-        //Splits the arrays to create the SET for the query
+        // Defines sql statement: columns and values are extracted from cols and preps arrays.
         $sql = 'INSERT INTO '.$table.' ('.implode(', ', $cols).') VALUES ('.implode(', ', $preps).')';
-        $stmt = $this->dbh->prepare($sql);
-        //loop through all prepared statement and set the value
+        $stmt = $this->dsh->prepare($sql);
+        // Replace prepared values for real values.
         foreach ($data as $column => $value) {
             $stmt->bindValue((':'.$column), $value);
         }
@@ -55,32 +52,38 @@ class DSHelper
     // $conditions = ['wifi' => '1'];
     // read($table, $data, $conditions);
 
-    public function read($table, $data, $conditions = '')
-    {
-        //Splits the data array into strings, to set the colums to select.
-        foreach ($data as $column => $value) {
-            $cols[] = $table.'.'.$column;
-        }
-
-        //Splits the condition array into strings, to set the colums to select.
-        if ($conditions != '') {
-            foreach ($conditions as $condition => $value) {
-                $condition = $table.'.'.$condition.' = '.':'.$condition;
-                if (next($condition)) {
-                    $condition .= ' AND ';
+    public function read($tables, $columns, $var_conditions, $const_conditions = '',) {
+        // Defines a conditions variable.
+        $conditions = '';
+        // Changes var_conditions into prepared conditions.
+        foreach ($var_conditions as $column => $value) {
+                $conditions .= $column.'=:'.$column;
+                if (next($var_conditions)) {
+                    $conditions .= ' AND ';
                 }
-                $clause .= $condition;
             }
-            $where = 'WHERE '.$clause;
         }
-        // prepare statement
-        $sql = 'SELECT '.implode(', ', $cols).' FROM '.$where;
-        $stmt = $this->dbh->prepare($sql);
-        //loop through all prepared statement and set the value
-        foreach ($data as $column => $value) {
+        // Checks for const_conditions (fixed conditions that are needed to join tables).
+        if (isset($const_conditions) && $const_conditions != '') {
+            $conditions .= ' AND '
+            foreach ($const_conditions as $const_condition) {
+                $conditions .= $const_condition;
+                if (next($const_conditions)) {
+                    $conditions .= ' AND ';
+                }
+            }
+        }
+        // Defines WHERE clause.
+        $where_clause = 'WHERE '.$conditions;
+        // Creates a prepared statement.
+        $sql = 'SELECT '.implode(', ', $columns).' FROM '.$tables.' '.$where_clause;
+        $stmt = $this->dsh->prepare($sql);
+        // Loops through all prepared statement and set the value
+        foreach ($var_conditions as $column => $value) {
             $stmt->bindValue((':'.$column), $value);
         }
-        // Execute statement.
+        // Executes statement.
         return $stmt->execute();
     }
 }
+?>
