@@ -18,6 +18,7 @@ class DSHelper {
     // $data = ['customer_id' => $customer_id];
     // create($table, $data);
 
+    // CREATE METHOD.
     public function create($table, $data) {
         // Splits the data parameter into column and prepared value arrays.
         foreach ($data as $column => $value) {
@@ -52,6 +53,7 @@ class DSHelper {
     // $conditions = ['wifi' => '1'];
     // read($table, $data, $conditions);
 
+    // READ METHOD.
     public function read($tables, $columns, $var_conditions, $const_conditions = '',) {
         // Defines a conditions variable.
         $conditions = '';
@@ -80,6 +82,58 @@ class DSHelper {
         $stmt = $this->dsh->prepare($sql);
         // Loops through all prepared statement and set the value
         foreach ($var_conditions as $column => $value) {
+            $stmt->bindValue((':'.$column), $value);
+        }
+        // Executes statement.
+        return $stmt->execute();
+    }
+
+    // UPDATE METHOD.
+    public function update($table, $data, $conditions) {
+        // Defines a settings and where_clause variable.
+        $settings = [];
+        $where_clause = '';
+        // Redefines key-value pairs into key-prepared value pairs and pushes them into the settings array.
+        foreach ($data as $column => $value) {
+            $settings[] = $column.'=:'.$column;
+        }
+        // Changes conditions into prepared conditions.
+        foreach ($conditions as $column => $value) {
+            $where_clause .= $column.'=:'.$column;
+            if (next($conditions)) {
+                $where_clause .= ' AND ';
+            }
+        }
+        // Defines sql statement.
+        $sql = 'UPDATE '.$table.' SET '.implode(', ', $settings).' WHERE '.$where_clause;
+        $stmt = $this->dsh->prepare($sql);
+        // Replaces prepared values for real values.
+        foreach ($data as $column => $value) {
+            $stmt->bindValue((':'.$column), $value);
+        }
+        foreach ($conditions as $column => $value) {
+            $stmt->bindValue((':'.$column), $value);
+        }
+        // Executes statement.
+        return $stmt->execute();
+    }
+
+    // DELETE METHOD.
+    public function delete($table, $conditions) {
+        // Defines a where_clause variable.
+        $where_clause = '';
+        // Changes conditions into prepared conditions.
+        foreach ($conditions as $column => $value) {
+            $where_clause .= $column.'=:'.$column;
+            if (next($conditions)) {
+                $where_clause .= ' AND ';
+            }
+        }
+        // Defines sql statement.
+        $sql = 'DELETE FROM '.$table.' WHERE '.$where_clause;
+        $stmt = $this->dsh->prepare($sql);
+        // Replaces prepared values for real values.
+        foreach ($conditions as $column => $value) {
             $stmt->bindValue((':'.$column), $value);
         }
         // Executes statement.
