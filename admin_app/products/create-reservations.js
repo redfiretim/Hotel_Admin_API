@@ -1,8 +1,8 @@
 $(document).ready(function(){
     // show html form when 'create product' button was clicked
-    $(document).on('click', '.create-product-button', function(){
+    $(document).on('click', '.create-reservation-button', function(){
         // load list of categories
-        $.getJSON("", function(data){
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_reservations", function(data){
             // build categories option html
             // loop through returned list of data
             var room_options_html=`<select name='room_type_id' class='form-control'>`;

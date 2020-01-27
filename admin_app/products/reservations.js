@@ -15,7 +15,7 @@ function readProductsTemplate(data, keywords){
         </form>
  
         <!-- when clicked, it will load the create product form -->
-        <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
+        <div id='create-product' class='btn btn-primary pull-right m-b-15px create-reservation-button'>
             <span class='glyphicon glyphicon-plus'></span> Make a new reservation
         </div>
  
