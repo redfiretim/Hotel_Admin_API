@@ -76,18 +76,17 @@ class Config {
                 );
                 break;
             case 'read_accommodation':
-                return array ('*'
-                //DELETE THE CODE BELOW IF * WORKS.
-                    // $this->a.'.establishment_id',
-                    // $this->a.'.accommodation_type_id',
-                    // $this->a.'.room_num',
-                    // $this->a.'.description',
-                    // $this->a.'.price_per_night',
-                    // $this->a.'.image_one',
-                    // $this->a.'.image_two',
-                    // $this->a.'.image_three',
-                    // $this->a.'.image_four',
-                    // $this->a.'.image_five'
+                return array (
+                    $this->a.'.establishment_id',
+                    $this->a.'.accommodation_type_id',
+                    $this->a.'.room_num',
+                    $this->a.'.description',
+                    $this->a.'.price_per_night',
+                    $this->a.'.image_one',
+                    $this->a.'.image_two',
+                    $this->a.'.image_three',
+                    $this->a.'.image_four',
+                    $this->a.'.image_five'
                 );
                 break;
             case 'create_customer':
@@ -111,15 +110,14 @@ class Config {
                 );
                 break;
             case 'read_reservations':
-                return array('*'
-                //DELETE THE CODE BELOW IF * WORKS.
-                    // $this->r.'.id as booking_num',
-                    // $this->c.'.first_name',
-                    // $this->c.'.last_name',
-                    // $this->a.'.room_num',
-                    // $this->r.'.total_price',
-                    // $this->r.'.check_in_date',
-                    // $this->r.'.check_out_date'
+                return array(
+                    $this->r.'.id as booking_num',
+                    $this->c.'.first_name',
+                    $this->c.'.last_name',
+                    $this->a.'.room_num',
+                    $this->r.'.total_price',
+                    $this->r.'.check_in_date',
+                    $this->r.'.check_out_date'
                 );
                 break;
             case 'read_one_reservation':
