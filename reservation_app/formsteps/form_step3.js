@@ -20,7 +20,6 @@ $(document).ready(function(){
                     <input type="email" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phonenumber">
                     <small id="Help" class="form-text text-muted">* are required</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 
             <button class='btn btn-primary page-button3'>

@@ -149,32 +149,29 @@ h1.page_steps{
     .room-container{
         padding-top: 50px;
     }
-
-    .room_block {
+    .room_block, .room_block:hover {
         margin-top: 1%;
         margin-bottom: 1%;
         padding: 2%;
-        border: 3px solid rgb(222, 222, 222);
+
         background-color: rgb(240, 240, 240);
-        border-radius: 15px 15px
+        border-radius: 15px 15px;
     }
-
-    .room_block:hover, .room_block:checked{
-        margin-top: 1%;
-        margin-bottom: 1%;
-        padding: 2%;
+    .room_block{
+        border: 3px solid rgb(222, 222, 222);
+    }
+    .room_block:hover{
         border: 3px solid rgb(14, 87, 182);
-        background-color: rgb(233, 233, 233);
-        border-radius: 15px 15px
     }
 
-
-    .room_block > input{ /* HIDE RADIO */
-        visibility: hidden; /* Makes input not-clickable */
-        position: absolute; /* Remove input from document flow */
+    /* Hide radio button */
+    .room_block > input{ 
+        visibility: hidden; 
+        position: absolute; 
     }
-    .room_block > input:checked + div{ /* DIV STYLES */
-        cursor:pointer;
+
+    /* .room_block > input:checked{
+        /* cursor:pointer;
         border:2px solid transparent;
     }
 
@@ -184,40 +181,40 @@ h1.page_steps{
 
     span.glyphicon.glyphicon-ok:checked{
         display: block;
-    }
+    } */
 /* CHOOSE ROOM */
 
-#first-row{
-    margin: 15px;
-    padding: 20px;
-    background-color: #FCFCFC;
-    border: 1px solid #EFEFEF;
-    border-radius: 20px;
-    float: left;
-    width: 95%;
-    text-align: center;
-}
+    #first-row{
+        margin: 15px;
+        padding: 20px;
+        background-color: #FCFCFC;
+        border: 1px solid #EFEFEF;
+        border-radius: 20px;
+        float: left;
+        width: 95%;
+        text-align: center;
+    }
 
 /** DATEPICKER STEP 1  **/
-#ui-datepicker-div{
-    top:250px !important;
-}
-.glyphicon.glyphicon-calendar{
-    padding: 5px;
-    border: 1px solid #E3E2E2;
-    left: -5px;
-}
-input.picker, input.picker_night{
-    font-family: Roboto;
-    outline: none;
-    border-radius: 8px;
-    border: 1px solid #E3E2E2;
-    padding:3px 0 1px 10px;
-}
-input.picker{
-    width: 89%;
-}
-input.picker_night{
-    width: 20%;
-}
+    #ui-datepicker-div{
+        top:250px !important;
+    }
+    .glyphicon.glyphicon-calendar{
+        padding: 5px;
+        border: 1px solid #E3E2E2;
+        left: -5px;
+    }
+    input.picker, input.picker_night{
+        font-family: Roboto;
+        outline: none;
+        border-radius: 8px;
+        border: 1px solid #E3E2E2;
+        padding:3px 0 1px 10px;
+    }
+    input.picker{
+        width: 89%;
+    }
+    input.picker_night{
+        width: 20%;
+    }
 /** DATEPICKER STEP 1  **/
