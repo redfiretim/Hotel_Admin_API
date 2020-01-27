@@ -19,7 +19,7 @@ $(document).ready(function(){
 });
  
 function showProductsFirstPage(){
-    var json_url="../admin_app/MOCK_DATA.json";
+    var json_url="http://178.18.138.109/educom/hotel_code/api/index.php?action=read_reservations";
     showProducts(json_url);
 }
  
