@@ -84,7 +84,19 @@ if (isset($_GET['action'])) {
         case 'create_reservation':
 
             $data = json_decode(file_get_contents('php://input'));
-            //FIX: write case!
+			
+			//FIX: get last inserted ID! 
+			//$customer_id = // add
+			
+			$reservation_data = array(
+                'id' => $id,
+                'name' => $first_name.' '.$last_name,
+                'room_num' => $room_num,
+                'total_price' => $total_price,
+                'check_in_date' => $check_in_date,
+                'check_out_date' => $check_out_date,
+            );
+
 
             break;
 
@@ -103,7 +115,6 @@ if (isset($_GET['action'])) {
             if ($num > 0) {
                 // products array
                 $reservation_array = array();
-                $reservations_array['records'] = array();
 
                 // retrieve our table contents
                 // fetch() is faster than fetchAll()
@@ -123,14 +134,13 @@ if (isset($_GET['action'])) {
                     'check_out_date' => $check_out_date,
                 );
                     // $reservation_colums = 'reservations.id, customers.first_name, customers.last_name, accommodations.room_num, reservations.total_price, reservations.check_in_date, reservations.check_out_date';
-                    array_push($reservations_array['records'], $reservation_array);
                 }
 
                 // set response code - 200 OK
                 http_response_code(200);
 
                 // show products data in json format
-                echo json_encode($reservations_array);
+                echo json_encode($reservation_array);
             } else {
                 // set response code - 404 Not found
                 http_response_code(404);
