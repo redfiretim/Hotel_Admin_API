@@ -2,9 +2,11 @@
     background-color: #BFB398;
     padding: 25px;
     min-height: 100vh;
-    min-width: 100vw;
-    
+    min-width: 100vw; 
 }
+
+
+
 
 /** PAGE HEADER **/
 .page-circle{
@@ -25,7 +27,7 @@
     background-color: rgb(255, 255, 255);
     margin: 0 auto;
     border-radius: 15px 15px 15px 15px;   
-    padding: 20px; 
+    padding: 20px;
 }
 .page-steps{
     width: inherit;
@@ -42,6 +44,8 @@ h1.page_steps{
     margin-top:10px;
 }
 /** PAGE HEADER **/
+
+
 
 
 /** FONTS  **/
@@ -76,6 +80,9 @@ h1.page_steps{
     }
 /** FONTS **/
 
+
+
+
 /** Navigation OVERRIDES **/
     .navbar-brand>img{
         width: 200px;
@@ -104,8 +111,10 @@ h1.page_steps{
 
         }    
     }
-
 /** Navigation **/
+
+
+
 
 /** BUTTONS **/
     .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus,.btn-primary:active:focus{
@@ -121,26 +130,45 @@ h1.page_steps{
         float: left;
         
     }
-
 /** BUTTONS **/
+
+
 
 
 /* IMAGES */
     #room_tumbnail {
         width: 90%;
-        margin-left: 10%;
     }
 
 /* IMAGES */
 
 
 
+
 /* CHOOSE ROOM */
+    .room-container{
+        padding-top: 50px;
+    }
+
     .room_block {
-        border: 1px solid rgb(194, 194, 194);
-        background-color: rgb(245, 245, 245);
+        margin-top: 1%;
+        margin-bottom: 1%;
+        padding: 2%;
+        border: 3px solid rgb(222, 222, 222);
+        background-color: rgb(240, 240, 240);
         border-radius: 15px 15px
     }
+
+    .room_block > :hover :checked{
+        margin-top: 1%;
+        margin-bottom: 1%;
+        padding: 2%;
+        border: 3px solid rgb(14, 87, 182);
+        background-color: rgb(233, 233, 233);
+        border-radius: 15px 15px
+    }
+
+
     .room_block > input{ /* HIDE RADIO */
         visibility: hidden; /* Makes input not-clickable */
         position: absolute; /* Remove input from document flow */
@@ -149,8 +177,12 @@ h1.page_steps{
         cursor:pointer;
         border:2px solid transparent;
     }
-    .room_block > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
-        background-color: #ffd6bb;
-        border: 1px solid #ff6600;
+
+    span.glyphicon.glyphicon-ok {
+        display: none;
+    }
+
+    span.glyphicon.glyphicon-ok :hover :checked{
+        display: none;
     }
 /* CHOOSE ROOM */

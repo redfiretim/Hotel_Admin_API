@@ -22,7 +22,7 @@ $(document).ready(function(){
 
         function readRoomsTemplate(data){
 
-            var step_content = `<div>`;
+            var step_content = `<div class="room-container">`;
 
             $.each(data.rooms, function(index, data) {
 
@@ -33,11 +33,11 @@ $(document).ready(function(){
                 
                 step_content += `       
                     <div class="room_block">
-                    <input type="radio" name="radioname" value="` + data.room_number + `" />
+                    <input type="radio" name="radioname" value="` + data.room_number + `" checked="" />
                         <div class="row">
                             <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="../reservation_app/assets/images/Comfort_kamer.jpg" alt="Room"/></div>
                             <div class="col-xs-6 col-md-4 room_properties">                        
-                                <h4> Room ` + data.room_number + `</h4>
+                                <h4> Room ` + data.room_number + ` <span class="glyphicon glyphicon-ok"></span></h4>
                                 <p><span class="glyphicon glyphicon-user properties"></span>` + data.max_guests + `</p>
                                 <p><span class="glyphicon glyphicon-bed properties"></span>` + data.amenity1 + `</p>
                                 <p><span class="glyphicon glyphicon-equalizer"></span>` + data.amenity2 + `</p>
