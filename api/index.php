@@ -244,14 +244,21 @@ function create_customer($data) {
 	return $last_id; 
 }
 
+//Function to retrieve data on one specific accommodation, using front-end data (room_num - in this case)
+//FIX: Might create a more generic way to retrieve this data.
 function get_accommodation_data($data) {
+	//Get the tables, columns and const_conditions necessary to read a specific accommodation
 	$accommodation_table = $config->getTables('read_accommodation');
 	$accommodation_columns = $config->getColumns('read_accommodation'); 
 	$accommodation_const_conditions = $config->getConstConditions('read_accommodation'); 
 	
+	//Get room_num from user_input_data to fetch all data
 	$room_num = $data->room_num; 
 	
+	//Define the var_conditions in this specific case
 	$accommodation_var_conditions = array ('establishment_id' => 1, 'room_num' => $room_num); 
+	
+	//Use the dshelper to get all data 
 	$accommodation_data = $dshelper->read($accommodation_table, $accommodation_columns, $accommodation_var_conditions, $accommodation_const_conditions); 
 	
 	return $accommodation_data; 
