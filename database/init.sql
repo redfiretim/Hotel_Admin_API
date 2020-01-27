@@ -167,7 +167,7 @@ CREATE TABLE `establishment_types` (
 DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
-  `booking_date` date DEFAULT current_timestamp(),
+  `booking_date` date NOT NULL,
   `customer_id` int(11) NOT NULL,
   `accommodation_id` int(11) NOT NULL,
   `num_of_pers` int(11) NOT NULL,
