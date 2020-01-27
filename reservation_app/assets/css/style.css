@@ -186,3 +186,38 @@ h1.page_steps{
         display: none;
     }
 /* CHOOSE ROOM */
+
+#first-row{
+    margin: 15px;
+    padding: 20px;
+    background-color: #FCFCFC;
+    border: 1px solid #EFEFEF;
+    border-radius: 20px;
+    float: left;
+    width: 95%;
+    text-align: center;
+}
+
+/** DATEPICKER STEP 1  **/
+#ui-datepicker-div{
+    top:250px !important;
+}
+.glyphicon.glyphicon-calendar{
+    padding: 5px;
+    border: 1px solid #E3E2E2;
+    left: -5px;
+}
+input.picker, input.picker_night{
+    font-family: Roboto;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #E3E2E2;
+    padding:3px 0 1px 10px;
+}
+input.picker{
+    width: 89%;
+}
+input.picker_night{
+    width: 20%;
+}
+/** DATEPICKER STEP 1  **/
