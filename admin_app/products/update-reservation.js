@@ -4,13 +4,14 @@ $(document).ready(function(){
         // get product id
         var id = $(this).attr('data-id');
         // read one record based on given product id
-        $.getJSON("../admin_app/MOCK_DATA.json?id=" + id, function(data){
-        
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation&id=" + id, function(data){
+        // ?id=" + id
             // values will be used to fill out our form
-            var reservation_id = data.reservation_id;
-            var customer_id = data.customer_id;
-            var room_id = data.room_id;
-            var price_per_nights = data.price_per_nights;
+            var booking_num = data.booking_num;
+            var first_name = data.first_name;
+            var last_name = data.last_name;
+            var room_num = data.room_num;
+            var price_per_night = data.price_per_night;
             var total_price = data.total_price;
             var check_in_date = data.check_in_date;
             var check_out_date = data.check_out_date;
@@ -44,14 +45,20 @@ $(document).ready(function(){
                         <!-- Booking number field -->
                         <tr>
                             <td>Booking number</td>
-                            <td><input value=\"` + reservation_id + `\" type='text' name='reservation_id' class='form-control' disabled/></td>
+                            <td><input value=\"` + booking_num + `\" type='text' name='booking_num' class='form-control' disabled/></td>
                         </tr>
 
                         <!-- Customer name field -->
                         <tr>
-                            <td>Customer</td>
-                            <td><input value=\"` + customer_id + `\" type='text' name='customer_id' class='form-control' required /></td>
+                            <td>First name</td>
+                            <td><input value=\"` + first_name + `\" type='text' name='first_name' class='form-control' required /></td>
                         </tr>
+                        <!-- Customer name field -->
+                        <tr>
+                            <td>Last name</td>
+                            <td><input value=\"` + last_name + `\" type='text' name='last_name' class='form-control' required /></td>
+                        </tr>
+                                
                 
                         <!-- categories 'select' field -->
                         <tr>
@@ -62,13 +69,13 @@ $(document).ready(function(){
                         <!-- Room number field -->
                         <tr>
                             <td>Room number</td>
-                            <td><input value=\"` + room_id + `\" type='number' name='room_id' class='form-control' required /></td>
+                            <td><input value=\"` + room_num + `\" type='number' name='room_num' class='form-control' required /></td>
                         </tr>
                 
                         <!-- Room rate field -->
                         <tr>
                             <td>Room rate</td>
-                            <td><input value=\"` + price_per_nights + `\" type='number' name='price_per_nights' class='form-control' required /></td>
+                            <td><input value=\"` + price_per_night + `\" type='number' name='price_per_night' class='form-control' required /></td>
                         </tr>
 
                         <!-- Room rate field -->
@@ -99,7 +106,7 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                         <!-- hidden 'reservation id' to identify which record to delete -->
-                        <td class="display-none"><input value=\"` + reservation_id + `\" name='reservation_id' type='hidden' /></td>
+                        <td class="display-none"><input value=\"` + booking_num + `\" name='reservation_id' type='hidden' /></td>
                         </tr>
                 
                     </table>
