@@ -44,7 +44,7 @@ $reservation_var_conditions = array('establishment_id' => '1');
 // Tables needed:
 $reservation_one_tables = strval($a.', '.$at.', '.$am.', '.$apa.', '.$ci.', '.$co.', '.$c.', '.$e.', '.$et.', '.$r);
 // Columns needed:
-$reservation_one_columns = array(
+$reservation_one_columns = array(  //TODO Query return many duplicates of the results
     $r.'.id',
     $r.'.booking_date',
     $r.'.num_of_pers',
@@ -55,7 +55,7 @@ $reservation_one_columns = array(
     $c.'.first_name',
     $c.'.last_name',
     $c.'.email',
-    $c.'.phone',
+    $c.'.phone_num',
     $e.'.name',
     $e.'.zipcode',
     $e.'.street_name',
