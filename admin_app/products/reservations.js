@@ -37,8 +37,8 @@ function readProductsTemplate(data, keywords){
         $.each(data.records, function(index, data) {
             // creating new table row per record
             read_products_html+=`<tr>
-                <td>` + data.id + `</td>
-                <td>` + data.name + `</td>
+                <td>` + data.booking_num + `</td>
+                <td>` + data.first_name + " " + data.last_name + `</td>
                 <td>` + data.room_num + `</td>
                 <td>` + data.total_price + `</td>
                 <td>` + data.check_in_date + `</td>
@@ -47,17 +47,17 @@ function readProductsTemplate(data, keywords){
                 <!-- 'action' buttons -->
                 <td>
                     <!-- read product button -->
-                    <button class='btn btn-primary m-r-10px read-one-reservation-button' data-id='` + data.id + `'>
+                    <button class='btn btn-primary m-r-10px read-one-reservation-button' data-id='` + data.booking_num + `'>
                         <span class='glyphicon glyphicon-eye-open'></span> Details
                     </button>
     
                     <!-- edit button -->
-                    <button class='btn btn-info m-r-10px update-reservation-button' data-id='` + data.id + `'>
+                    <button class='btn btn-info m-r-10px update-reservation-button' data-id='` + data.booking_num + `'>
                         <span class='glyphicon glyphicon-edit'></span> Edit
                     </button>
     
                     <!-- delete button -->
-                    <button class='btn btn-danger delete-reservation-button' data-id='` + data.id + `'>
+                    <button class='btn btn-danger delete-reservation-button' data-id='` + data.booking_num + `'>
                         <span class='glyphicon glyphicon-remove'></span> Delete
                     </button>
                 </td>

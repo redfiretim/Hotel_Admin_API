@@ -1,7 +1,8 @@
 #reservation{
     background-color: #BFB398;
     padding: 25px;
-    height: 100vh;
+    min-height: 100vh;
+    min-width: 100vw;
     
 }
 
@@ -131,3 +132,25 @@ h1.page_steps{
     }
 
 /* IMAGES */
+
+
+
+/* CHOOSE ROOM */
+    .room_block {
+        border: 1px solid rgb(194, 194, 194);
+        background-color: rgb(245, 245, 245);
+        border-radius: 15px 15px
+    }
+    .room_block > input{ /* HIDE RADIO */
+        visibility: hidden; /* Makes input not-clickable */
+        position: absolute; /* Remove input from document flow */
+    }
+    .room_block > input + div{ /* DIV STYLES */
+        cursor:pointer;
+        border:2px solid transparent;
+    }
+    .room_block > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+        background-color: #ffd6bb;
+        border: 1px solid #ff6600;
+    }
+/* CHOOSE ROOM */

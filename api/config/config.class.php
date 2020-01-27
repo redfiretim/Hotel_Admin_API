@@ -49,7 +49,7 @@ class Config
         switch ($action) {
             case 'read_reservations':
                 return array(
-                    $this->r.'.id',
+                    $this->r.'.id as booking_num',
                     $this->c.'.first_name',
                     $this->c.'.last_name',
                     $this->a.'.room_num',
@@ -60,7 +60,7 @@ class Config
                 break;
             case 'read_one_reservation':
                 return array(
-                    $this->r.'.id',
+                    $this->r.'.id as booking_num',
                     $this->r.'.booking_date',
                     $this->r.'.num_of_pers',
                     $this->r.'.check_in_date',
@@ -71,13 +71,13 @@ class Config
                     $this->c.'.last_name',
                     $this->c.'.email',
                     $this->c.'.phone_num',
-                    $this->e.'.name',
+                    $this->e.'.name as establishments_name',
                     $this->e.'.zipcode',
                     $this->e.'.street_name',
                     $this->e.'.street_num',
-                    $this->co.'.name',
-                    $this->ci.'.name',
-                    $this->at.'.name',
+                    $this->co.'.name as country_name',
+                    $this->ci.'.name as city_name',
+                    $this->at.'.name as accommodation_types_name',
                     $this->a.'.price_per_night',
                     $this->a.'.room_num',
                 );

@@ -2,13 +2,13 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.create-product-button', function(){
         // load list of categories
-        $.getJSON("../admin_app/MOCK_DATA.json", function(data){
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation", function(data){
             // build categories option html
             // loop through returned list of data
             var room_options_html=`<select name='room_type_id' class='form-control'>`;
                 $.each(data.records, function(key, val){
                     //room_type_id is for rooms and type is for de name of the rooms 
-                    room_options_html+=`<option value='` + val.room_type_id + `'>` + val.type + `</option>`;
+                    room_options_html+=`<option value='` + val.accommodation_types_name + `'>` + val.type + `</option>`;
                 });
             room_options_html+=`</select>`;     
 
@@ -22,24 +22,24 @@ $(document).ready(function(){
                 <form id='create-reservation-form' action='#' method='post' border='0'>
                     <table class="table table-curved table-striped">
                         <tr>
-                            <th class='w-30-pct'>Booking number</td>
-                            <td><input type='text' name='reservation_id' class='form-control' required /></td>
+                            <th>Customer fistname</th>
+                            <td><input type='text' name='first_name' class='form-control' required /></td>
                         </tr>
                         <tr>
-                            <th>Customer name</th>
-                            <td><input type='text' name='customer_id' class='form-control' required /></td>
+                        <th>Customer lastname</th>
+                            <td><input type='text' name='last_name' class='form-control' required /></td>
                         </tr>
                         <tr>
                             <th>Hotel</th>
-                            <td><input type='text' name='hotel_educom' class='form-control' value='Hotel Educom' disabled/></td>
+                            <td><input type='text' name='establishments_name' class='form-control' value='`+data.establishments_name+`' disabled/></td>
                         </tr>
                         <tr>
                             <th>Hotel city</th>
-                            <td><input type='text' name='hotel_city' class='form-control' value='Eindhoven' disabled/></td>
+                            <td><input type='text' name='city_name' class='form-control' value='`+data.city_name+`' disabled/></td>
                         </tr>
                         <!-- Sort room 'select' field -->
                         <tr>
-                            <th>Sort room</th>
+                            <th>Room type</th>
                             <td>`+room_options_html+`</td>
                         </tr>
                         <tr>

@@ -21,16 +21,23 @@ $(document).ready(function(){
         }
 
         function readRoomsTemplate(data){
+
+            var step_content = `<div>`;
+
             $.each(data.rooms, function(index, data) {
 
                 console.log("binnen in template");
 
-                var step_content=`       
-                    <div class="">
+                console.log(data.room_number);
+
+                
+                step_content += `       
+                    <div class="room_block">
+                    <input type="radio" name="radioname" value="` + data.room_number + `" />
                         <div class="row">
                             <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="../reservation_app/assets/images/Comfort_kamer.jpg" alt="Room"/></div>
                             <div class="col-xs-6 col-md-4 room_properties">                        
-                                <h4>Comfort room</h4>
+                                <h4> Room ` + data.room_number + `</h4>
                                 <p><span class="glyphicon glyphicon-user properties"></span>` + data.max_guests + `</p>
                                 <p><span class="glyphicon glyphicon-bed properties"></span>` + data.amenity1 + `</p>
                                 <p><span class="glyphicon glyphicon-equalizer"></span>` + data.amenity2 + `</p>
@@ -40,15 +47,26 @@ $(document).ready(function(){
                                 <p>`+ data.description +`</p>
                             </div>
                         </div>
-                    </div>
-        
-                    <button type='submit' class='btn btn-primary'>
-                        <span class='glyphicon glyphicon-chevron-right pull-right'></span> Next step
-                    </button>`;
-                    
-                // inject html to 'page-content' of our app
-                $("#page-content").html(step_content);
+                    </div>`;
+
+                
+                console.log(step_content);
+                                
             });
+
+
+            step_content += `<button type='submit' class='btn btn-primary'>
+                                    <span class='glyphicon glyphicon-chevron-right pull-right'></span>Choose room
+                            </button>`;
+
+            step_content += `</div>`;
+
+
+
+            // inject html to 'page-content' of our app
+            $("#page-content").html(step_content);
+
+
             changePageCircle("2");
             changePageTitle("Choose room");
 

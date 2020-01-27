@@ -20,7 +20,9 @@ class DSConnect {
     private function DSConnect() {
         try {
             $this->dsc = new PDO('mysql:host='.$this->host.';dbname='.$this->db_name, $this->username, $this->password);
+            $this->dsc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->dsc->exec('set names utf8');
+
         } catch (PDOException $exception) {
             echo 'dscection error: '.$exception->getMessage();
         }

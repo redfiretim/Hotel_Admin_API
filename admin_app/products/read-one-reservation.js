@@ -5,7 +5,7 @@ $(document).ready(function(){
         var id = $(this).attr('data-id');
         // read product record based on given ID
 
-        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation", function(data){
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation&id=" + id, function(data){
             // start html
             var read_one_product_html=`
                 <!-- when clicked, it will show the product's list -->
@@ -16,23 +16,23 @@ $(document).ready(function(){
                 <table class="table table-curved table-striped">
                     <tr>
                         <th class='w-30-pct'>Booking number</td>
-                        <td class='w-70-pct'>` + data.id + `</td>
+                        <td class='w-70-pct'>` + data.booking_num + `</td>
                     </tr>
                     <tr>
                         <th class='w-15-pct'>Customer name</th>
-                        <td>` + data.name + `</td>
+                        <td>` + data.first_name + " " + data.last_name + `</td>
                     </tr>
                     <tr>
                         <th class='w-10-pct'>Hotel</th>
-                        <td>` + data + `</td>
+                        <td>` + data.establishments_name + `</td>
                     </tr>
                     <tr>
                         <th class='w-10-pct'>Hotel city</th>
-                        <td>` + data + `</td>
+                        <td>` + data.city_name + `</td>
                     </tr>
                     <tr>
                         <th class='w-10-pct'>Room type</th>
-                        <td>` + data.room_type_id + `</td>
+                        <td>` + data.accommodation_types_name + `</td>
                     </tr>
                     <tr>
                         <th class='w-10-pct'>Room number</th>
