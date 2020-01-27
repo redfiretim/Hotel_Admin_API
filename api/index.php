@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 include_once './config/dsconnect.class.php';
 include_once './config/dshelper.class.php';
 include_once './shared/utility.php';
-include_once './config/config.php';
+include_once './config/config.class.php';
 
 // get database connection
 $ds = DSConnect::getInstance();
@@ -20,14 +20,22 @@ $dshelper = new DSHelper($ds);
 // http://localhost/projects/hotel/hotel_code/api/index.php?action=read_reservation&customer_id=5
 
 if (isset($_GET['action'])) {
+	
+	$config = new Config(); 
+	
     $requested_action = $_GET['action'];
-
-    //Switch case to run the requested case (based on $requested_action);
+	$tables = $config->getTables($requested_action); 
+	$columns = $config->getColumns($requested_action); 
+	$const_conditions = $config->getConstConditions($requested_action); 
+	
+    //Switch case to run the requested case (based on $requested_action)
 
     switch ($requested_action) {
         case 'read_reservations':
-
-            $stmt = $dshelper->read($reservation_tables, $reservation_columns, $reservation_var_conditions, $reservation_const_conditions);
+			$var_conditions = array('establishment_id' => 1); 
+			
+			
+            $stmt = $dshelper->read($tables, $columns, $var_conditions, $const_conditions);
             $num = $stmt->rowCount();
 
             // check if more than 0 record found
@@ -83,12 +91,12 @@ if (isset($_GET['action'])) {
         //Request to read a single reservation. Needs an ID to get all data.
         case 'read_one_reservation':
 
-             // $data = json_decode(file_get_contents('php://input'));
-            // $id = $data->id;
-            //FIX!!: put $id in Where-clause:
-            $reservation_one_var_conditions = array('establishment_id' => '1', 'reservations.id' => '1');
+            $data = json_decode(file_get_contents('php://input'));
+            $reservation_id = $data->id;
 
-            $stmt = $dshelper->read($reservation_one_tables, $reservation_one_columns, $reservation_one_var_conditions, $reservation_one_const_conditions);
+			$var_conditions = array('establishment.id' => 1, 'reservation.id' => $reservation_id);           
+
+            $stmt = $dshelper->read($tables, $columns, $var_conditions, $const_conditions);
             $num = $stmt->rowCount();
 
             // check if more than 0 record found
@@ -143,19 +151,19 @@ if (isset($_GET['action'])) {
 
             //FIX: write case.
             $data = json_decode(file_get_contents('php://input'));
-            $id = $data->id;
+            $reservation_id = $data->id;
 
                 if ($dshelper->delete($reservations)) { //FIX THIS
                     // set response code - 201 created
                     http_response_code(201);
                     // tell the user
-                    echo json_encode(array('message' => 'Product was created.'));
+                    echo json_encode(array('message' => 'Reservation was removed.'));
                 } else {
                     // set response code - 503 service unavailable
                     http_response_code(503);
 
                     // tell the user
-                    echo json_encode(array('message' => 'Unable to create product.'));
+                    echo json_encode(array('message' => 'Unable to remove reservation.'));
                 }
 
             break;
@@ -171,26 +179,26 @@ if (isset($_GET['action'])) {
             $last_name = $data->last_name;
             $email = $data->email;
             $phone_num = $data->phone_num;
-
-             $customer_array = array(
+	
+             $customer_data = array(
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'email' => $email,
                 'phone_num' => $phone_num,
-            );
+            ); 
 
-            //FIX: Check if method create works
-            if ($dshelper->create($customer, $customer_array)) {
+            //create method asks for a table and the data to be inserted.
+            if ($dshelper->create($tables, $customer_data)) {
                 // set response code - 201 created
                 http_response_code(201);
                 // tell the user
-                echo json_encode(array('message' => 'Product was created.'));
+                echo json_encode(array('message' => 'Customer was created.'));
             } else {
                 // set response code - 503 service unavailable
                 http_response_code(503);
 
                 // tell the user
-                echo json_encode(array('message' => 'Unable to create product.'));
+                echo json_encode(array('message' => 'Unable to create customer.'));
             }
 
             break;
