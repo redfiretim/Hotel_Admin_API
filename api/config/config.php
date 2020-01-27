@@ -64,6 +64,7 @@ $reservation_one_columns = array(  //TODO Query return many duplicates of the re
     $ci.'.name',
     $at.'.name',
     $a.'.price_per_night',
+    $a.'.room_num',
 );
 // Constant conditions (table joiners) needed:
 $reservation_one_const_conditions = array(
