@@ -4,7 +4,6 @@ As of PHP 5.4 you can also use the short array syntax, which replaces array() wi
 So DONT use the short hand syntax [] for arrays.
 */
 
-
 class Config {
     // Specifies database properties.
     private $host = 'localhost';
@@ -36,21 +35,35 @@ class Config {
             case 'check_availability':
                 return strval($this->r.', '.$this->a);
                 break;
+            case 'read_accommodation':
+                return strval($this->a);
+                break;
             case 'create_customer':
+                return strval($this->c);
+                break;
+            case 'update_customer':
+                return strval($this->c);
+                break;
+            case 'delete_customer':
                 return strval($this->c);
                 break;
             case 'create_reservation':
                 return strval($this->r)
                 break;
-            case 'read_accommodation':
-                return strval($this->a);
-                break;
             case 'read_reservations':
                 return strval($this->r.', '.$this->c.', '.$this->a.', '.$this->e);
+                break;
+            case 'update_reservation':
+                return strval($this->r.', '.$this->c.', '.$this->a.', '.$this->at);
+                break;
+            case 'delete_reservation':
+                return strval($this->r);
                 break;
             case 'read_one_reservation':
                 return strval($this->a.', '.$this->at.', '.$this->am.', '.$this->apa.', '.$this->ci.', '.$this->co.', '.$this->c.', '.$this->e.', '.$this->et.', '.$this->r);
                 break;
+            default:
+                return "no valid action";
         }
     }
 
@@ -60,6 +73,21 @@ class Config {
             case 'check_availability':
                 return array(
                     $this->a.'.id as accommodation_id'
+                );
+                break;
+            case 'read_accommodation':
+                return array ('*'
+                //DELETE THE CODE BELOW IF * WORKS.
+                    // $this->a.'.establishment_id',
+                    // $this->a.'.accommodation_type_id',
+                    // $this->a.'.room_num',
+                    // $this->a.'.description',
+                    // $this->a.'.price_per_night',
+                    // $this->a.'.image_one',
+                    // $this->a.'.image_two',
+                    // $this->a.'.image_three',
+                    // $this->a.'.image_four',
+                    // $this->a.'.image_five'
                 );
                 break;
             case 'create_customer':
@@ -82,29 +110,16 @@ class Config {
                     $this->r.'.total_price'
                 );
                 break;
-            case 'read_accommodation':
-                return array (
-                    $this->a.'.establishment_id',
-                    $this->a.'.accommodation_type_id',
-                    $this->a.'.room_num',
-                    $this->a.'.description',
-                    $this->a.'.price_per_night',
-                    $this->a.'.image_one',
-                    $this->a.'.image_two',
-                    $this->a.'.image_three',
-                    $this->a.'.image_four',
-                    $this->a.'.image_five'
-                );
-                break;
             case 'read_reservations':
-                return array(
-                    $this->r.'.id as booking_num',
-                    $this->c.'.first_name',
-                    $this->c.'.last_name',
-                    $this->a.'.room_num',
-                    $this->r.'.total_price',
-                    $this->r.'.check_in_date',
-                    $this->r.'.check_out_date'
+                return array('*'
+                //DELETE THE CODE BELOW IF * WORKS.
+                    // $this->r.'.id as booking_num',
+                    // $this->c.'.first_name',
+                    // $this->c.'.last_name',
+                    // $this->a.'.room_num',
+                    // $this->r.'.total_price',
+                    // $this->r.'.check_in_date',
+                    // $this->r.'.check_out_date'
                 );
                 break;
             case 'read_one_reservation':
@@ -131,6 +146,8 @@ class Config {
                     $this->a.'.room_num'
                 );
                 break;
+            default:
+                return "no valid action";
         }
     }
 
@@ -166,6 +183,8 @@ class Config {
                     $this->e.'.city_id = '.$this->ci.'.id'
                 );
                 break;
+            default:
+                return "no valid action";
         }
     }
 }
