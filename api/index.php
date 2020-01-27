@@ -13,15 +13,23 @@ include_once './config/dshelper.class.php';
 include_once './shared/utility.php';
 include_once './config/config.class.php';
 
+//Initiate config class and get Database cred. using the getDatabase method
+$config = new Config(); 
+$db_cred_array = $config->getDatabase(); 
+
+$host = $db_cred_array[0]; 
+$db_name = $db_cred_array[1]; 
+$username = $db_cred_array[2]; 
+$password = $db_cred_array[3]; 
+
 // get database connection
-$ds = DSConnect::getInstance();
+$ds = DSConnect::getInstance($host, $db_name, $username, $password);
 $dshelper = new DSHelper($ds);
 
 // http://localhost/projects/hotel/hotel_code/api/index.php?action=read_reservation&customer_id=5
 
 if (isset($_GET['action'])) {
-	
-	$config = new Config(); 
+
 	
     $requested_action = $_GET['action'];
 	$tables = $config->getTables($requested_action); 
@@ -31,9 +39,9 @@ if (isset($_GET['action'])) {
     //Switch case to run the requested case (based on $requested_action)
 
     switch ($requested_action) {
+		
         case 'read_reservations':
 			$var_conditions = array('establishment_id' => 1); 
-			
 			
             $stmt = $dshelper->read($tables, $columns, $var_conditions, $const_conditions);
             $num = $stmt->rowCount();
@@ -82,21 +90,42 @@ if (isset($_GET['action'])) {
 
         //Case when a reservation has to be inserted in the database
         case 'create_reservation':
-
+	
             $data = json_decode(file_get_contents('php://input'));
 			
-			//FIX: get last inserted ID! 
-			//$customer_id = // add
+			// FIX: availability-check! returns accommodation_id's!
+	
+			//Create customer and get last ID to create complete reservation
+			$customer_id = create_customer($data); 
 			
+			//Extract all data from the data-array to get num_of_nights
+			//$accomodation_id = $data->room_num; 
+			$num_of_pers = $data->num_of_pers;
+			$check_in_date = $data->check_in_date;
+			$check_out_date = $data->check_out_date;
+			$num_of_nights = $data->num_of_nights; 
+			
+			//Calculate total price, using the calculate_price function and the num_of_nights.
+			$accommodation_data = get_accommodation_data($data); 
+			$price = $accommodation_data->price_per_night;
+			$total_price = $price * $num_of_nights; 
+			
+			$accommodation_id = $accommodation_data->id; 
+
 			$reservation_data = array(
-                'id' => $id,
-                'name' => $first_name.' '.$last_name,
-                'room_num' => $room_num,
-                'total_price' => $total_price,
+			//FIX: check if current_date works
+				'booking_date' => 'CURRENT_DATE', 
+				'customer_id' => $customer_id, 
+                'accommodation_id' => $accommodation_id, 
+				'num_of_pers' => $num_of_pers, 
                 'check_in_date' => $check_in_date,
                 'check_out_date' => $check_out_date,
+				'num_of_nights' => $num_of_nights, 
+				'total_price' => $total_price, 	
             );
-
+			
+			//FIX: check if this is the right way to call for method create
+			$dshelper->create($tables, $reservation_data); 
 
             break;
 
@@ -123,23 +152,15 @@ if (isset($_GET['action'])) {
                     // extract row
                     // this will make $row['name'] to
                     // just $name only
-                    extract($row);
-
-                    $reservation_array = array(
-                    'id' => $id,
-                    'name' => $first_name.' '.$last_name,
-                    'room_num' => $room_num,
-                    'total_price' => $total_price,
-                    'check_in_date' => $check_in_date,
-                    'check_out_date' => $check_out_date,
-                );
+                    $reservation_array = extract($row);
+				
                     // $reservation_colums = 'reservations.id, customers.first_name, customers.last_name, accommodations.room_num, reservations.total_price, reservations.check_in_date, reservations.check_out_date';
                 }
 
                 // set response code - 200 OK
                 http_response_code(200);
 
-                // show products data in json format
+                // show reservations data in json format
                 echo json_encode($reservation_array);
             } else {
                 // set response code - 404 Not found
@@ -162,8 +183,10 @@ if (isset($_GET['action'])) {
             //FIX: write case.
             $data = json_decode(file_get_contents('php://input'));
             $reservation_id = $data->id;
-
-                if ($dshelper->delete($reservations)) { //FIX THIS
+			
+			
+			//FIX: Is it clear that reservation_id is the only condition, or should I rename it to: condition
+                if ($dshelper->delete($reservations, $reservation_id)) { //FIX THIS
                     // set response code - 201 created
                     http_response_code(201);
                     // tell the user
@@ -178,41 +201,6 @@ if (isset($_GET['action'])) {
 
             break;
 
-        //Customer related requested actions are specified down below:
-
-        case 'create_customer':
-
-        //FIX: customer_form.js isn't finished. Check phone_number and email var.
-            $data = json_decode(file_get_contents('php://input'));
-
-            $first_name = $data->first_name;
-            $last_name = $data->last_name;
-            $email = $data->email;
-            $phone_num = $data->phone_num;
-	
-             $customer_data = array(
-                'first_name' => $first_name,
-                'last_name' => $last_name,
-                'email' => $email,
-                'phone_num' => $phone_num,
-            ); 
-
-            //create method asks for a table and the data to be inserted.
-            if ($dshelper->create($tables, $customer_data)) {
-                // set response code - 201 created
-                http_response_code(201);
-                // tell the user
-                echo json_encode(array('message' => 'Customer was created.'));
-            } else {
-                // set response code - 503 service unavailable
-                http_response_code(503);
-
-                // tell the user
-                echo json_encode(array('message' => 'Unable to create customer.'));
-            }
-
-            break;
-
         default:
 
             // set response code - 404 Not found
@@ -222,7 +210,7 @@ if (isset($_GET['action'])) {
             echo json_encode(array('message' => 'No action found.'));
     }
 
-    //Since updating, deleting and reading a customer are not 'important' for sprint 0, the cases have yet to be defined.
+		//Since updating, deleting and reading a customer are not 'important' for sprint 0, the cases have yet to be defined.
         //To do: read/update/delete customer.
 
 //When no action is found:
@@ -233,3 +221,61 @@ if (isset($_GET['action'])) {
     // tell the user no products found
     echo json_encode(array('message' => 'No action found.'));
 }
+
+function create_customer($data) {
+	
+	
+	$first_name = $data->first_name;
+    $last_name = $data->last_name;
+    $email = $data->email;
+    $phone_num = $data->phone_num;
+	
+    $customer_data = array(
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'email' => $email,
+        'phone_num' => $phone_num,
+    ); 
+	
+	
+	$customer_table = $config->getTables('create_customer'); 
+	$last_id = $dshelper->create($customer_table, $customer_data); 
+	
+	return $last_id; 
+}
+
+//Function to retrieve data on one specific accommodation, using front-end data (room_num - in this case)
+//FIX: Might create a more generic way to retrieve this data.
+function get_accommodation_data($data) {
+	//Get the tables, columns and const_conditions necessary to read a specific accommodation
+	$accommodation_table = $config->getTables('read_accommodation');
+	$accommodation_columns = $config->getColumns('read_accommodation'); 
+	$accommodation_const_conditions = $config->getConstConditions('read_accommodation'); 
+	
+	//Get room_num from user_input_data to fetch all data
+	$room_num = $data->room_num; 
+	
+	//Define the var_conditions in this specific case
+	$accommodation_var_conditions = array ('establishment_id' => 1, 'room_num' => $room_num); 
+	
+	//Use the dshelper to get all data 
+	$accommodation_data = $dshelper->read($accommodation_table, $accommodation_columns, $accommodation_var_conditions, $accommodation_const_conditions); 
+	
+	return $accommodation_data; 
+}
+	
+	
+	
+
+function get_availability() {
+	
+	//use function read($tables, $columns, $var_conditions, $const_conditions = '',)
+	
+	//FIX: Write function to get availability! 
+	
+	
+}
+
+
+
+
