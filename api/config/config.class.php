@@ -48,7 +48,7 @@ class Config {
                 return strval($this->c);
                 break;
             case 'create_reservation':
-                return strval($this->r)
+                return strval($this->r);
                 break;
             case 'read_reservations':
                 return strval($this->r.', '.$this->c.', '.$this->a.', '.$this->e);
