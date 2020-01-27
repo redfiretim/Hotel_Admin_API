@@ -159,7 +159,7 @@ h1.page_steps{
         border-radius: 15px 15px
     }
 
-    .room_block > :hover, .room_block > :checked{
+    .room_block:hover, .room_block:checked{
         margin-top: 1%;
         margin-bottom: 1%;
         padding: 2%;
@@ -173,7 +173,7 @@ h1.page_steps{
         visibility: hidden; /* Makes input not-clickable */
         position: absolute; /* Remove input from document flow */
     }
-    .room_block > input + div{ /* DIV STYLES */
+    .room_block > input:checked + div{ /* DIV STYLES */
         cursor:pointer;
         border:2px solid transparent;
     }
@@ -182,8 +182,8 @@ h1.page_steps{
         display: none;
     }
 
-    span.glyphicon.glyphicon-ok :hover, span.glyphicon.glyphicon-ok :checked{
-        display: none;
+    span.glyphicon.glyphicon-ok:checked{
+        display: block;
     }
 /* CHOOSE ROOM */
 

@@ -33,7 +33,7 @@ $(document).ready(function(){
                 
                 step_content += `       
                     <div class="room_block">
-                    <input type="radio" name="radioname" value="` + data.room_number + `" checked="" />
+                    <input type="radio" name="radioname" value="` + data.room_number + `" />
                         <div class="row">
                             <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="../reservation_app/assets/images/Comfort_kamer.jpg" alt="Room"/></div>
                             <div class="col-xs-6 col-md-4 room_properties">                        
@@ -55,7 +55,7 @@ $(document).ready(function(){
             });
 
 
-            step_content += `<button type='submit' class='btn btn-primary'>
+            step_content += `<button type='submit' class='btn btn-primary page-button2'>
                                     <span class='glyphicon glyphicon-chevron-right pull-right'></span>Choose room
                             </button>`;
 
