@@ -22,7 +22,7 @@ $(document).ready(function(){
                 <form id='create-reservation-form' action='#' method='post' border='0'>
                     <table class="table table-curved table-striped">
                         <tr>
-                            <th>Customer fistname</th>
+                            <th>Customer firstname</th>
                             <td><input type='text' name='first_name' class='form-control' required /></td>
                         </tr>
                         <tr>
@@ -36,6 +36,14 @@ $(document).ready(function(){
                         <tr>
                             <th>Hotel city</th>
                             <td><input type='text' name='city_name' class='form-control' value='`+data.city_name+`' disabled/></td>
+                        </tr>
+                        <tr>
+                        <th>Check-in</th>
+                            <td><input type='date' name='check_in_date' class='form-control' required /></td>
+                        </tr>
+                        <tr>
+                            <th>Check-out</th>
+                            <td><input type='date' name='check_out_date' class='form-control' required /></td>
                         </tr>
                         <!-- Sort room 'select' field -->
                         <tr>
@@ -53,14 +61,6 @@ $(document).ready(function(){
                         <tr>
                             <th>Total price</th>
                             <td><input type='number' name='total_price' class='form-control' disabled /></td>
-                        </tr>
-                        <tr>
-                            <th>Check-in</th>
-                            <td><input type='date' name='check_in_date' class='form-control' required /></td>
-                        </tr>
-                        <tr>
-                            <th>Check-out</th>
-                            <td><input type='date' name='check_out_date' class='form-control' required /></td>
                         </tr>
                         <!-- button to submit form -->
                         <tr>
