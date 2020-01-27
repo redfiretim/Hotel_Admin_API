@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    // app html
+    // app html template
     var app_html=`
         <div class="container">
             <!-- page-steps needed for displaying and changing the heading -->
@@ -10,7 +10,7 @@ $(document).ready(function(){
             
             <!-- page-content needed for displaying and changing the content from steps -->
             <div id="page-content">
-                <form action="#" method="POST">
+                <form action="#">
                     <div class="row">
                         <div class="col-xs-6 col-md-4">
                             <label for="startDate"><span class="calendar">Arrival date:</span></label></br>
@@ -36,7 +36,6 @@ $(document).ready(function(){
                             <input type="number" name="numberRooms" min="1" max="1" value="1">
                         </div>
                     </div>
-
                     <button type="submit" class="btn btn-primary page-button">
                         <span class='glyphicon glyphicon-chevron-right pull-right'></span> Check availability
                     </button>

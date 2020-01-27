@@ -2,7 +2,7 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.page-button2', function(){
         var step_content=`   
-            <form>
+            <form method="POST">
                 <div class="form-group">
                     <label for="firstname">First name:*</label>
                     <input type="text" class="form-control" id="firstname" aria-describedby="firstname" placeholder="Enter first name">

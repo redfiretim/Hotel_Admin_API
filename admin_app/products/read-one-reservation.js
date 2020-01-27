@@ -5,7 +5,7 @@ $(document).ready(function(){
         var id = $(this).attr('data-id');
         // read product record based on given ID
 
-        $.getJSON("../admin_app/MOCK_DATA.json?id="+id, function(data){
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation", function(data){
             // start html
             var read_one_product_html=`
                 <!-- when clicked, it will show the product's list -->
@@ -16,11 +16,11 @@ $(document).ready(function(){
                 <table class="table table-curved table-striped">
                     <tr>
                         <th class='w-30-pct'>Booking number</td>
-                        <td class='w-70-pct'>` + data.reservations_id + `</td>
+                        <td class='w-70-pct'>` + data.id + `</td>
                     </tr>
                     <tr>
                         <th class='w-15-pct'>Customer name</th>
-                        <td>` + data.customer_id + `</td>
+                        <td>` + data.name + `</td>
                     </tr>
                     <tr>
                         <th class='w-10-pct'>Hotel</th>
