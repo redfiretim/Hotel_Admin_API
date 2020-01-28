@@ -35,15 +35,21 @@ class DSHelper
         // Execute statement.
         $stmt->execute();
         // Return last ID.
-        echo $this->dsh->lastInsertId();
+        $last_id = $this->dsh->lastInsertId();
+
+        return $last_id;
     }
 
     public function filter($tables, $columns, $var_conditions, $const_conditions = '')
     {
-        $sql = 'SELECT accommodations.id FROM accommodations, reservations WHERE NOT (reservations.check_in_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].' OR reservations.check_out_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].') AND accommodations.id = reservations.accommodation_id';
+        $sql = 'SELECT DISTINCT accommodations.id FROM accommodations, reservations WHERE NOT (reservations.check_in_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].' OR reservations.check_out_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].') AND accommodations.id = reservations.accommodation_id';
         $stmt = $this->dsh->prepare($sql);
 
-        return $stmt->execute();
+        echo $sql.':';
+
+        $stmt->execute();
+
+        return $stmt;
     }
 
     // READ METHOD.
@@ -82,7 +88,10 @@ class DSHelper
             $stmt->bindValue($index, $value);
         }
         // Executes statement.
-        return $stmt->execute();
+        // echo $sql;
+        $stmt->execute();
+
+        return $stmt;
     }
 
     // UPDATE METHOD.
