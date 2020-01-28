@@ -88,7 +88,7 @@ $(document).ready(function(){
 
         // submit form data to api
         $.ajax({
-            url: "../api/#.php",
+            url: "http://178.18.138.109/educom/hotel_code/api/index_dev.php?action=read_availability",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

@@ -2,7 +2,7 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.page-button2', function(){
         var step_content=`   
-            <form name='validate_Adminform' id='create-reservation-form' action='#' method='post' onsubmit="return validateForm();" border='0'>
+            <form name='validate_Userform' id='create-reservation-form' action='#' method='post' onsubmit="return validateForm();" border='0'>
                 <div class="form-group">
                     <label for="firstname">First name:*</label>
                     <input type="text" name='first_name' class="form-control"  pattern="[A-Za-z]{1,32}" required placeholder="Enter first name">
@@ -42,7 +42,6 @@ $(document).ready(function(){
             type : "POST",
             contentType : 'application/json',
             data : form_data,
-            action : "create_reservation",
             success : function(result) {
                 // Reservation was created, go back to products list
                 showProducts();
