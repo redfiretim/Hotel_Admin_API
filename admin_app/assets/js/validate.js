@@ -1,4 +1,12 @@
 function validateForm() {
+    function alert(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You made a mistake</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+
     // Check on pattern and empty
     if(checkNotEmpty() && checkPattern()){
         return true;
@@ -12,39 +20,40 @@ function validateForm() {
         * EMPTY FOR ADD RESERVATION AND EDIT RESERVATION ADMIN SIDE
         */
         if(document.validate_Adminform.first_name.value == "") {
-            alert( "Please provide your firstname!" );
+            alert();
+            //alert( "Please provide your firstname!" );
             return false;
         }
         if(document.validate_Adminform.last_name.value == "") {
-            alert( "Please provide your lastname!" );
+            alert();
             return false;
         }
         if(document.validate_Adminform.establishments_name.value == "") {
-            alert( "Please provide your Hotel!" );
+            alert();
             return false;
         }
         if(document.validate_Adminform.city_name.value == "") {
-            alert("Please provide your Hotel city!");
+            alert();
             return false;
         }
         if(document.validate_Adminform.check_in_date.value == "") {
-            alert("Please provide your check-in!");
+            alert();
             return false;
         }
         if(document.validate_Adminform.check_out_date.value == "") {
-            alert("Please provide your check-out!");
+            alert();
             return false;
         }
         if(document.validate_Adminform.room_num.value == "") {
-            alert("Please provide a room number!");
+            alert();
             return false;
         }
         if(document.validate_Adminform.price_per_night.value == "") {
-            alert("Please provide a room rate!");
+            alert();
             return false;
         }
         if(document.validate_Adminform.total_price.value == "") {
-            alert("Please provide a total price!");
+            alert();
             return false;
         }
         // if(document.validate_Adminform.room_options_html.value == "") {
@@ -102,4 +111,5 @@ function validateForm() {
             return true;
         }
     }
+
 }

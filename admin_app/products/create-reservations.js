@@ -23,11 +23,21 @@ $(document).ready(function(){
                     <table class="table table-curved table-striped">
                         <tr>
                             <th>Firstname</th>
-                            <td><input type='text' name='first_name' class='form-control' pattern='[A-Za-z]{1,32}' required/></td>
+                            <td><input type='text' name='first_name' class='form-control' pattern='[A-Za-z]{1,32}' is-valid/></td>
                         </tr>
                         <tr>
-                        <th>Lastname</th>
-                            <td><input type='text' name='last_name' class='form-control' pattern='[A-Za-z]{1,32}' required /></td>
+                            <div class="col-md-4 mb-3 md-form">
+                                <label for="validationCustomUsername2">Username</label>
+                                <input type="text" class="form-control" id="validationCustomUsername2" aria-describedby="inputGroupPrepend2"
+                                required>
+                                <div class="invalid-feedback">
+                                    Please choose a username.
+                                </div>
+                            </div>
+                            https://mdbootstrap.com/docs/jquery/forms/validation/
+
+                            <th>Lastname</th>
+                            <td><input type='text' name='last_name' class='form-control' pattern='[A-Za-z]{1,32}' required is-valid/></td>
                         </tr>
                         <tr>
                             <th>Hotel</th>
