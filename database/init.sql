@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 jan 2020 om 11:06
+-- Gegenereerd op: 28 jan 2020 om 11:28
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.2.22
 
@@ -30,7 +30,6 @@ USE `reservation_system`;
 -- Tabelstructuur voor tabel `accommodations`
 --
 
-DROP TABLE IF EXISTS `accommodations`;
 CREATE TABLE `accommodations` (
   `id` int(11) NOT NULL,
   `establishment_id` int(11) NOT NULL,
@@ -51,7 +50,6 @@ CREATE TABLE `accommodations` (
 -- Tabelstructuur voor tabel `accommodation_types`
 --
 
-DROP TABLE IF EXISTS `accommodation_types`;
 CREATE TABLE `accommodation_types` (
   `id` int(11) NOT NULL,
   `max_pers` int(11) NOT NULL,
@@ -65,7 +63,6 @@ CREATE TABLE `accommodation_types` (
 -- Tabelstructuur voor tabel `amenities`
 --
 
-DROP TABLE IF EXISTS `amenities`;
 CREATE TABLE `amenities` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -74,14 +71,13 @@ CREATE TABLE `amenities` (
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `amenities_per_accommodation`
+-- Tabelstructuur voor tabel `amenities_per_accommodation_type`
 --
 
-DROP TABLE IF EXISTS `amenities_per_accommodation`;
-CREATE TABLE `amenities_per_accommodation` (
-  `id` int(11) NOT NULL,
-  `amenity_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `amenities_per_accommodation_type` (
+  `accommodation_type_id` int(11) DEFAULT NULL,
+  `amenity_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -89,7 +85,6 @@ CREATE TABLE `amenities_per_accommodation` (
 -- Tabelstructuur voor tabel `cities`
 --
 
-DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -101,7 +96,6 @@ CREATE TABLE `cities` (
 -- Tabelstructuur voor tabel `countries`
 --
 
-DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -113,7 +107,6 @@ CREATE TABLE `countries` (
 -- Tabelstructuur voor tabel `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
@@ -128,7 +121,6 @@ CREATE TABLE `customers` (
 -- Tabelstructuur voor tabel `establishments`
 --
 
-DROP TABLE IF EXISTS `establishments`;
 CREATE TABLE `establishments` (
   `id` int(11) NOT NULL,
   `establishment_type_id` int(11) NOT NULL,
@@ -152,7 +144,6 @@ CREATE TABLE `establishments` (
 -- Tabelstructuur voor tabel `establishment_types`
 --
 
-DROP TABLE IF EXISTS `establishment_types`;
 CREATE TABLE `establishment_types` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -164,7 +155,6 @@ CREATE TABLE `establishment_types` (
 -- Tabelstructuur voor tabel `reservations`
 --
 
-DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
   `booking_date` date NOT NULL,
@@ -205,10 +195,10 @@ ALTER TABLE `amenities`
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexen voor tabel `amenities_per_accommodation`
+-- Indexen voor tabel `amenities_per_accommodation_type`
 --
-ALTER TABLE `amenities_per_accommodation`
-  ADD PRIMARY KEY (`id`,`amenity_id`),
+ALTER TABLE `amenities_per_accommodation_type`
+  ADD KEY `accommodation_type_id` (`accommodation_type_id`),
   ADD KEY `amenity_id` (`amenity_id`);
 
 --
@@ -279,12 +269,6 @@ ALTER TABLE `amenities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT voor een tabel `amenities_per_accommodation`
---
-ALTER TABLE `amenities_per_accommodation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT voor een tabel `cities`
 --
 ALTER TABLE `cities`
@@ -338,11 +322,11 @@ ALTER TABLE `accommodation_types`
   ADD CONSTRAINT `accommodation_types_ibfk_1` FOREIGN KEY (`establishment_type_id`) REFERENCES `establishment_types` (`id`);
 
 --
--- Beperkingen voor tabel `amenities_per_accommodation`
+-- Beperkingen voor tabel `amenities_per_accommodation_type`
 --
-ALTER TABLE `amenities_per_accommodation`
-  ADD CONSTRAINT `amenities_per_accommodation_ibfk_1` FOREIGN KEY (`id`) REFERENCES `accommodations` (`id`),
-  ADD CONSTRAINT `amenities_per_accommodation_ibfk_2` FOREIGN KEY (`amenity_id`) REFERENCES `amenities` (`id`);
+ALTER TABLE `amenities_per_accommodation_type`
+  ADD CONSTRAINT `amenities_per_accommodation_type_ibfk_1` FOREIGN KEY (`accommodation_type_id`) REFERENCES `accommodation_types` (`id`),
+  ADD CONSTRAINT `amenities_per_accommodation_type_ibfk_2` FOREIGN KEY (`amenity_id`) REFERENCES `amenities` (`id`);
 
 --
 -- Beperkingen voor tabel `establishments`
