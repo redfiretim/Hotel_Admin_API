@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 jan 2020 om 11:33
+-- Gegenereerd op: 28 jan 2020 om 11:37
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.2.22
 
@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `reservation_system`
 --
+CREATE DATABASE IF NOT EXISTS `reservation_system` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `reservation_system`;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `accommodations`
@@ -29,14 +31,14 @@ SET time_zone = "+00:00";
 
 INSERT INTO `accommodations` (`id`, `establishment_id`, `accommodation_type_id`, `room_num`, `description`, `price_per_night`, `image_one`, `image_two`, `image_three`, `image_four`, `image_five`) VALUES
 (1, 1, 1, 1, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
-(2, 1, 1, 2, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 145, NULL, NULL, NULL, NULL, NULL),
-(3, 1, 1, 3, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 145, NULL, NULL, NULL, NULL, NULL),
+(2, 1, 1, 2, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
+(3, 1, 1, 3, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
 (4, 1, 2, 4, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
 (5, 1, 2, 5, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
-(6, 1, 2, 6, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 190, NULL, NULL, NULL, NULL, NULL),
+(6, 1, 2, 6, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
 (7, 1, 3, 7, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
 (8, 1, 3, 8, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
-(9, 1, 3, 9, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 215, NULL, NULL, NULL, NULL, NULL);
+(9, 1, 3, 9, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `accommodation_types`
@@ -60,18 +62,20 @@ INSERT INTO `amenities` (`id`, `name`) VALUES
 (2, 'smoking');
 
 --
--- Gegevens worden geëxporteerd voor tabel `amenities_per_accommodation`
+-- Gegevens worden geëxporteerd voor tabel `amenities_per_accommodation_type`
 --
 
-INSERT INTO `amenities_per_accommodation` (`id`, `amenity_id`) VALUES
+INSERT INTO `amenities_per_accommodation_type` (`accommodation_type_id`, `amenity_id`) VALUES
+(1, 2),
+(1, 5),
+(2, 1),
+(2, 3),
 (2, 5),
 (3, 5),
-(6, 2),
-(6, 5),
-(7, 3),
-(8, 3),
-(9, 3),
-(9, 5);
+(3, 1),
+(3, 4),
+(4, 1),
+(4, 5);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `cities`
