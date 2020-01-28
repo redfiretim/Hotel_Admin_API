@@ -39,7 +39,7 @@ $(document).ready(function(){
 
                 <!-- build 'update product' html form -->
                 <!-- we used the 'required' html5 property to prevent empty fields -->
-                <form id='update-product-form' action='#' method='post' border='0'>
+                <form id='update-product-form' action='#' method='post' border='0' onsubmit='return validateForm();'>
                     <table class="table table-curved table-striped">
                         
                         <!-- Booking number field -->
@@ -51,14 +51,26 @@ $(document).ready(function(){
                         <!-- Customer name field -->
                         <tr>
                             <td>First name</td>
-                            <td><input value=\"` + first_name + `\" type='text' name='first_name' class='form-control' required /></td>
+                            <td><input value=\"` + first_name + `\" type='text' name='first_name' class='form-control' pattern='[A-Za-z]{1,32}' required /></td>
                         </tr>
                         <!-- Customer name field -->
                         <tr>
                             <td>Last name</td>
-                            <td><input value=\"` + last_name + `\" type='text' name='last_name' class='form-control' required /></td>
+                            <td><input value=\"` + last_name + `\" type='text' name='last_name' class='form-control' pattern='[A-Za-z]{1,32}' required /></td>
                         </tr>
-                                
+
+
+                        <!-- Checkin field -->
+                        <tr>
+                            <td>Check-in</td>
+                            <td><input value=\"` + check_in_date + `\"  type='date' name='check_in_date' class='form-control' pattern='\d{4}-\d{2}-\d{2}' required /></td>
+                        </tr>
+
+                        <!-- Checkout field -->
+                        <tr>
+                            <td>Check-out</td>
+                            <td><input value=\"` + check_out_date + `\"  type='date' name='check_out_date' class='form-control' pattern='\d{4}-\d{2}-\d{2}' required /></td>
+                        </tr>                                
                 
                         <!-- categories 'select' field -->
                         <tr>
@@ -69,32 +81,20 @@ $(document).ready(function(){
                         <!-- Room number field -->
                         <tr>
                             <td>Room number</td>
-                            <td><input value=\"` + room_num + `\" type='number' name='room_num' class='form-control' required /></td>
+                            <td><input value=\"` + room_num + `\" type='number' name='room_num' class='form-control' pattern='[0-9]*' disabled /></td>
                         </tr>
                 
                         <!-- Room rate field -->
                         <tr>
                             <td>Room rate</td>
-                            <td><input value=\"` + price_per_night + `\" type='number' name='price_per_night' class='form-control' required /></td>
+                            <td><input value=\"€` + price_per_night + `\" type='number' name='price_per_night' class='form-control' pattern='[0-9]*' required /></td>
                         </tr>
 
                         <!-- Room rate field -->
                         <tr>
                             <td>Total price</td>
-                            <td><input value=\"` + total_price + `\" type='number' name='total_price' class='form-control' required /></td>
-                        </tr>
-
-                        <!-- Checkin field -->
-                        <tr>
-                            <td>Check-in</td>
-                            <td><input value=\"` + check_in_date + `\"  type='date' name='check_in_date' class='form-control' required /></td>
-                        </tr>
-
-                        <!-- Checkout field -->
-                        <tr>
-                            <td>Check-out</td>
-                            <td><input value=\"` + check_out_date + `\"  type='date' name='check_out_date' class='form-control' required /></td>
-                        </tr>
+                            <td><input value=\"` + total_price + `\" type='number' name='total_price' class='form-control' pattern='[0-9]*' disabled /></td>
+                        </tr>   
 
                         <tr>
                             <!-- button to submit form -->
