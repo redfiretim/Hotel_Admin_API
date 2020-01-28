@@ -2,7 +2,7 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.page-button3', function(){
         var step_content=`   
-            <div class="row" style="border: 1px solid green">
+            <div class="row step4">
                 <div class="col-sm-2">
                     <label for="numberNights"><span class="calendar">Nights:</span></label></br>
                     <input type="number" name="numberNights" min="1" max="14" value="1">
@@ -15,12 +15,18 @@ $(document).ready(function(){
                     <label for="endDate"><span class="calendar">Departure date:</span></label></br>
                     <input class="date_input" type="date" id="endDate" name="endDate" />
                 </div>
-                <div class="col-sm-2">col-sm-2</div>
-                <div class="col-sm-2">col-sm-2</div>
+                <div class="col-sm-2">
+                    <label for="endDate"><span class="calendar">Number of guests:</span></label></br>
+                    <input type="number" name="numberNights" min="1" max="14" value="2">
+                </div>
+                <div class="col-sm-2">
+                    <label for="endDate"><span class="calendar">Number of rooms:</span></label></br>
+                    <input type="number" name="numberNights" min="1" max="14" value="1">
+                </div>
             </div>
 
-            <div class="row" style="border: 1px solid green">
-                <div class="col-xs-6 col-md-4"><img src="" alt="Room"/></div>
+            <div class="row step4">
+                <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="../reservation_app/assets/images/Comfort_kamer.jpg" alt="Room"/></div>
                 <div class="col-xs-6 col-md-4 room_properties">                        
                     <h4>Comfort room</h4>
                     <p><span class="glyphicon glyphicon-user properties"></span>max guests : 2</p>
@@ -30,23 +36,23 @@ $(document).ready(function(){
                 </div>
                 
                 <div class="col-xs-6 col-md-4">
-                    <p>asdfljsadfl;kjaf;kajf;lsafjk</p>
+                    <p>Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.</p>
                 </div>
             </div>
 
-            <div class="row" style="border: 1px solid green">
+            <div class="row step4">
                 <div class="col-xs-6 col-md-6">
                     <tr>
                         <th>Name:</th>
-                        <th>Annie</th>
+                        <th><p>Annie</p></th>
                     </tr></br>
                     <tr>
                         <th>Email:</th>
-                        <th>Annie@hotmail.com</th>
+                        <th><p>Annie@hotmail.com</p></th>
                     </tr></br>
                     <tr>
                         <th>Phone number:</th>
-                        <th>0548923474238</th>
+                        <th><p>0548923474238</p></th>
                     </tr>
                 </div>
                 <div class="col-xs-6 col-md-6">

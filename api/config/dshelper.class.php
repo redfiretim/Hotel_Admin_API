@@ -12,27 +12,44 @@ class DSHelper
     }
 
     // CREATE METHOD.
-    public function create($table, $data)
+    public function create($table, $var_conditions)
     {
         // Defines a column and prepared value array.
         $cols = array();
         $preps = array();
         // Splits the data parameter into columns and prepared values and pushes them into arrays.
-        foreach ($data as $column => $value) {
+        foreach ($var_conditions as $column => $value) {
             array_push($cols, $column);
-            array_push($preps, ':'.$column);
+            array_push($preps, '?');
         }
         // Defines sql statement: columns and values are extracted from cols and preps arrays.
         $sql = 'INSERT INTO '.$table.' ('.implode(', ', $cols).') VALUES ('.implode(', ', $preps).')';
         $stmt = $this->dsh->prepare($sql);
         // Replace prepared values for real values.
-        foreach ($data as $column => $value) {
-            $stmt->bindValue((':'.$column), $value);
+        $index = 0;
+        // Loops through all prepared statement and set the value
+        foreach ($var_conditions as $column => $value) {
+            ++$index;
+            $stmt->bindValue($index, $value);
         }
         // Execute statement.
         $stmt->execute();
         // Return last ID.
-        return $stmt->lastInsertId();
+        $last_id = $this->dsh->lastInsertId();
+
+        return $last_id;
+    }
+
+    public function filter($tables, $columns, $var_conditions, $const_conditions = '')
+    {
+        $sql = 'SELECT DISTINCT accommodations.id FROM accommodations, reservations WHERE NOT (reservations.check_in_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].' OR reservations.check_out_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].') AND accommodations.id = reservations.accommodation_id';
+        $stmt = $this->dsh->prepare($sql);
+
+        echo $sql.':';
+
+        $stmt->execute();
+
+        return $stmt;
     }
 
     // READ METHOD.
@@ -42,7 +59,7 @@ class DSHelper
         $conditions = '';
         // Changes var_conditions into prepared conditions.
         foreach ($var_conditions as $column => $value) {
-            $conditions .= $column.'=:'.$column;
+            $conditions .= $column.' = ?';
             if (next($var_conditions)) {
                 $conditions .= ' AND ';
             }
@@ -63,12 +80,18 @@ class DSHelper
         // Creates a prepared statement.
         $sql = 'SELECT DISTINCT '.implode(', ', $columns).' FROM '.$tables.' '.$where_clause;
         $stmt = $this->dsh->prepare($sql);
+
+        $index = 0;
         // Loops through all prepared statement and set the value
         foreach ($var_conditions as $column => $value) {
-            $stmt->bindValue((':'.$column), $value);
+            ++$index;
+            $stmt->bindValue($index, $value);
         }
         // Executes statement.
-        return $stmt->execute();
+        // echo $sql;
+        $stmt->execute();
+
+        return $stmt;
     }
 
     // UPDATE METHOD.
@@ -79,11 +102,11 @@ class DSHelper
         $where_clause = '';
         // Redefines key-value pairs into key-prepared value pairs and pushes them into the settings array.
         foreach ($data as $column => $value) {
-            array_push($settings, $column.'=:'.$column);
+            array_push($settings, $column.'= ?');
         }
         // Changes conditions into prepared conditions.
         foreach ($conditions as $column => $value) {
-            $where_clause .= $column.'=:'.$column;
+            $where_clause .= $column.'= ?';
             if (next($conditions)) {
                 $where_clause .= ' AND ';
             }
@@ -92,11 +115,19 @@ class DSHelper
         $sql = 'UPDATE '.$table.' SET '.implode(', ', $settings).' WHERE '.$where_clause;
         $stmt = $this->dsh->prepare($sql);
         // Replaces prepared values for real values.
+
+        $index = 0;
+        // Loops through all prepared statement and set the value
         foreach ($data as $column => $value) {
-            $stmt->bindValue((':'.$column), $value);
+            ++$index;
+            $stmt->bindValue($index, $value);
         }
+
+        $index = 0;
+        // Loops through all prepared statement and set the value
         foreach ($conditions as $column => $value) {
-            $stmt->bindValue((':'.$column), $value);
+            ++$index;
+            $stmt->bindValue($index, $value);
         }
         // Executes statement.
         $stmt->execute();
@@ -111,7 +142,7 @@ class DSHelper
         $where_clause = '';
         // Changes conditions into prepared conditions.
         foreach ($conditions as $column => $value) {
-            $where_clause .= $column.'=:'.$column;
+            $where_clause .= $column.'= ?';
             if (next($conditions)) {
                 $where_clause .= ' AND ';
             }
@@ -120,8 +151,10 @@ class DSHelper
         $sql = 'DELETE FROM '.$table.' WHERE '.$where_clause;
         $stmt = $this->dsh->prepare($sql);
         // Replaces prepared values for real values.
+        $index = 0;
         foreach ($conditions as $column => $value) {
-            $stmt->bindValue((':'.$column), $value);
+            ++$index;
+            $stmt->bindValue($index, $value);
         }
         // Executes statement.
         $stmt->execute();
