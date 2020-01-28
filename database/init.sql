@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 28 jan 2020 om 11:28
+-- Gegenereerd op: 28 jan 2020 om 12:25
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.2.22
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -30,6 +31,7 @@ USE `reservation_system`;
 -- Tabelstructuur voor tabel `accommodations`
 --
 
+DROP TABLE IF EXISTS `accommodations`;
 CREATE TABLE `accommodations` (
   `id` int(11) NOT NULL,
   `establishment_id` int(11) NOT NULL,
@@ -50,6 +52,7 @@ CREATE TABLE `accommodations` (
 -- Tabelstructuur voor tabel `accommodation_types`
 --
 
+DROP TABLE IF EXISTS `accommodation_types`;
 CREATE TABLE `accommodation_types` (
   `id` int(11) NOT NULL,
   `max_pers` int(11) NOT NULL,
@@ -63,6 +66,7 @@ CREATE TABLE `accommodation_types` (
 -- Tabelstructuur voor tabel `amenities`
 --
 
+DROP TABLE IF EXISTS `amenities`;
 CREATE TABLE `amenities` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -74,6 +78,7 @@ CREATE TABLE `amenities` (
 -- Tabelstructuur voor tabel `amenities_per_accommodation_type`
 --
 
+DROP TABLE IF EXISTS `amenities_per_accommodation_type`;
 CREATE TABLE `amenities_per_accommodation_type` (
   `accommodation_type_id` int(11) DEFAULT NULL,
   `amenity_id` int(11) DEFAULT NULL
@@ -85,6 +90,7 @@ CREATE TABLE `amenities_per_accommodation_type` (
 -- Tabelstructuur voor tabel `cities`
 --
 
+DROP TABLE IF EXISTS `cities`;
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -96,6 +102,7 @@ CREATE TABLE `cities` (
 -- Tabelstructuur voor tabel `countries`
 --
 
+DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -107,6 +114,7 @@ CREATE TABLE `countries` (
 -- Tabelstructuur voor tabel `customers`
 --
 
+DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
@@ -121,6 +129,7 @@ CREATE TABLE `customers` (
 -- Tabelstructuur voor tabel `establishments`
 --
 
+DROP TABLE IF EXISTS `establishments`;
 CREATE TABLE `establishments` (
   `id` int(11) NOT NULL,
   `establishment_type_id` int(11) NOT NULL,
@@ -144,6 +153,7 @@ CREATE TABLE `establishments` (
 -- Tabelstructuur voor tabel `establishment_types`
 --
 
+DROP TABLE IF EXISTS `establishment_types`;
 CREATE TABLE `establishment_types` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -155,6 +165,7 @@ CREATE TABLE `establishment_types` (
 -- Tabelstructuur voor tabel `reservations`
 --
 
+DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
   `booking_date` date NOT NULL,
@@ -342,6 +353,7 @@ ALTER TABLE `establishments`
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`),
   ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
