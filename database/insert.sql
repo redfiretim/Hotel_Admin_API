@@ -29,30 +29,9 @@ USE `reservation_system`;
 -- Gegevens worden geëxporteerd voor tabel `accommodations`
 --
 
-INSERT INTO `accommodations` (`id`, `establishment_id`, `accommodation_type_id`, `room_num`, `description`, `price_per_night`, `image_one`, `image_two`, `image_three`, `image_four`, `image_five`) VALUES
-(1, 1, 1, 1, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
-(2, 1, 1, 2, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
-(3, 1, 1, 3, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 2, 4, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
-(5, 1, 2, 5, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
-(6, 1, 2, 6, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
-(7, 1, 3, 7, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
-(8, 1, 3, 8, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
-(9, 1, 3, 9, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL);
-
---
--- Gegevens worden geëxporteerd voor tabel `accommodation_types`
---
-
-INSERT INTO `accommodation_types` (`id`, `max_pers`, `name`, `establishment_type_id`) VALUES
-(1, 2, 'Standard double room', 1),
-(2, 2, 'Deluxe double room', 1),
-(3, 3, 'Standard triple room', 1),
-(4, 4, 'Standard quadruple room', 1);
-
---
--- Gegevens worden geëxporteerd voor tabel `amenities`
---
+INSERT INTO `establishment_types` (`id`, `name`) VALUES
+(2, 'Camping'),
+(1, 'Hotel');
 
 INSERT INTO `amenities` (`id`, `name`) VALUES
 (1, 'ac'),
@@ -60,26 +39,6 @@ INSERT INTO `amenities` (`id`, `name`) VALUES
 (3, 'jacuzzi'),
 (4, 'pets_allowed'),
 (2, 'smoking');
-
---
--- Gegevens worden geëxporteerd voor tabel `amenities_per_accommodation_type`
---
-
-INSERT INTO `amenities_per_accommodation_type` (`accommodation_type_id`, `amenity_id`) VALUES
-(1, 2),
-(1, 5),
-(2, 1),
-(2, 3),
-(2, 5),
-(3, 5),
-(3, 1),
-(3, 4),
-(4, 1),
-(4, 5);
-
---
--- Gegevens worden geëxporteerd voor tabel `cities`
---
 
 INSERT INTO `cities` (`id`, `name`) VALUES
 (4, 'Antwerpen'),
@@ -115,13 +74,36 @@ INSERT INTO `establishments` (`id`, `establishment_type_id`, `name`, `country_id
 -- Gegevens worden geëxporteerd voor tabel `establishment_types`
 --
 
-INSERT INTO `establishment_types` (`id`, `name`) VALUES
-(2, 'Camping'),
-(1, 'Hotel');
+INSERT INTO `accommodation_types` (`id`, `max_pers`, `name`, `establishment_type_id`) VALUES
+(1, 2, 'Standard double room', 1),
+(2, 2, 'Deluxe double room', 1),
+(3, 3, 'Standard triple room', 1),
+(4, 4, 'Standard quadruple room', 1);
 
---
--- Gegevens worden geëxporteerd voor tabel `reservations`
---
+INSERT INTO `accommodations` (`id`, `establishment_id`, `accommodation_type_id`, `room_num`, `description`, `price_per_night`, `image_one`, `image_two`, `image_three`, `image_four`, `image_five`) VALUES
+(1, 1, 1, 1, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
+(2, 1, 1, 2, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
+(3, 1, 1, 3, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
+(4, 1, 2, 4, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
+(5, 1, 2, 5, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
+(6, 1, 2, 6, 'Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.', 180, NULL, NULL, NULL, NULL, NULL),
+(7, 1, 3, 7, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
+(8, 1, 3, 8, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
+(9, 1, 3, 9, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL);
+
+
+INSERT INTO `amenities_per_accommodation_type` (`accommodation_type_id`, `amenity_id`) VALUES
+(1, 2),
+(1, 5),
+(2, 1),
+(2, 3),
+(2, 5),
+(3, 5),
+(3, 1),
+(3, 4),
+(4, 1),
+(4, 5);
+
 
 INSERT INTO `reservations` (`id`, `booking_date`, `customer_id`, `accommodation_id`, `num_of_pers`, `check_in_date`, `check_out_date`, `num_of_nights`, `total_price`) VALUES
 (1, '2020-01-24', 2, 9, 2, '2020-02-13', '2020-02-17', 4, 860),
