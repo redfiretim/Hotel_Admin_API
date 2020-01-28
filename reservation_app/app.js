@@ -1,8 +1,11 @@
 $(document).ready(function(){
+
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    var startDate;
+    var endDate;
+
     // Function for datepicker
     $(function() {
-
-        var fromDate;
 
         // date format
         var dateFormat = "dd/mm/yy",
@@ -75,6 +78,37 @@ $(document).ready(function(){
         }
     });
 
+
+
+    
+
+
+
+// WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
+    //calculate number of night  (WIP)
+    function nights(startDate,endDate, oneDay) {
+        const firstDate = startDate;
+        const secondDate = endDate;
+    
+        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+        return diffDays;
+    }
+
+    // dev test log
+    if((startDate !== null) && (endDate !== null)){
+        console.log(nights(startDate, endDate, oneDay));
+    }
+    else{
+        console.log("Error: Night calculation needs to be exucuted after User Input!")
+    }
+// WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
+
+
+
+
+
+
+
     // app html template
     var app_html=`
         <div class="container">
@@ -86,7 +120,7 @@ $(document).ready(function(){
             
             <!-- page-content needed for displaying and changing the content from steps -->
             <div id="page-content">
-                <form action="#">
+                <form id="check_availability_form" action="#">
                     <div class="row" id="first-row">
                         <div class="col-xs-6 col-md-4">
                             <label for="picker">Arrival date:</label></br>
@@ -141,19 +175,51 @@ function changePageCircle(page_circle){
     document.title=page_circle;
 }
  
-// // function to make form values to json format
-// $.fn.serializeObject = function(){
-//     var o = {};
-//     var a = this.serializeArray();
-//     $.each(a, function() {
-//         if (o[this.name] !== undefined) {
-//             if (!o[this.name].push) {
-//                 o[this.name] = [o[this.name]];
-//             }
-//             o[this.name].push(this.value || '');
-//         } else {
-//             o[this.name] = this.value || '';
-//         }
-//     });
-//     return o;
-// };
+
+
+    // will run if 'create product' form was submitted
+    $(document).on('submit', '#check_availability_form', function(){
+        
+        
+        // get form data
+        var form_data=JSON.stringify($(this).serializeObject());
+
+        console.log(form_data);
+
+        // submit form data to api
+        $.ajax({
+            url: "../api/#.php",
+            type : "POST",
+            action : "check_availability",
+            contentType : 'application/json',
+            data : form_data,
+            success : function(result) {
+                // product was created, go back to products list
+                showProducts();
+            },
+            error: function(xhr, resp, text) {
+                // show error to console
+                console.log(xhr, resp, text);
+            }
+        });
+        return false;
+    });
+
+
+// function to make form values to json format
+$.fn.serializeObject = function(){
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
