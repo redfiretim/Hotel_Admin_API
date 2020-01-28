@@ -1,34 +1,69 @@
 $(document).ready(function(){
     // Function for datepicker
     $(function() {
+
+        var fromDate;
+
         // date format
         var dateFormat = "dd/mm/yy",
+        
 
-        from = $("#picker")
-        //default for picker layout
-        .datepicker({
-            //weeks
-            defaultDate: "+1w",
-            //can change month in picker
+
+        // FIRST DATE PICKER
+        //default settings for picker layout
+        from = $("#from").datepicker({
+            // min date restriction
+            minDate: +1,
+            // max date restriction
+            maxDate: "1Y",
+            // weeks
+            defaultDate: "+1d",
+            // can change month in picker
             changeMonth: true,
             // displayed number of months in picker
-            numberOfMonths: 1
+            numberOfMonths: 1,
+            // show dates before/after displayed month
+            showOtherMonths: true,
+            // select days other than displayed month
+            selectOtherMonths: true,
+            // show week numbers left side of datepicker panel
+            showWeek: true,
+            // fold in animation
+            showAnim: "fold"
         })
-        //when clicked on picker show clicked date
-        .on( "change", function() {
-            to.datepicker( "option", "minDate", getDate( this ) );
-        }),
 
-        //second calender
+
+        // Changes minDate of "to" picker to user-input of "from" picker
+        $('#from').change(function() { 
+            startDate = $(this).datepicker('getDate'); 
+            $("#to").datepicker("option", "minDate", startDate); 
+        }) 
+
+
+
+
+        // SECOND DATE PICKER
         to = $( "#to" ).datepicker({
-            defaultDate: "+1w",
+            maxDate: "1Y",     
             changeMonth: true,
-            numberOfMonths: 1
+            numberOfMonths: 1,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            selectOtherMonths: true,
+            showWeek: true,
+            showAnim: "fold"
         })
-        .on( "change", function() {
-            from.datepicker( "option", "maxDate", getDate( this ) );
-        });
-        // set date in inputfield
+
+        // Changes maxDate of "from" picker to user-input of "to" picker
+        $('#to').change(function() { 
+            endDate = $(this).datepicker('getDate'); 
+            $("#from").datepicker("option", "maxDate", endDate); 
+        }) 
+
+
+
+
+        // SET DATE in inputfield
         function getDate( element ) {
             var date;
             try {
@@ -55,7 +90,7 @@ $(document).ready(function(){
                     <div class="row" id="first-row">
                         <div class="col-xs-6 col-md-4">
                             <label for="picker">Arrival date:</label></br>
-                            <input class="picker" type="text" id="picker" name="picker">
+                            <input class="picker" type="text" id="from" name="from">
                             <span for="picker" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                         <div class="col-xs-6 col-md-4">
