@@ -1,6 +1,6 @@
 <?php
 
-include_once '../index_dev.php';
+include_once '../index.php';
 
 $var_conditions = array('establishment_id' => 1);
 
@@ -24,4 +24,14 @@ if ($num > 0) {
         // $reservation_colums = 'reservations.id, customers.first_name, customers.last_name, accommodations.room_num, reservations.total_price, reservations.check_in_date, reservations.check_out_date';
         array_push($reservations_array['records'], $reservation_array);
     }
+    // set response code - 200 OK
+    http_response_code(200);
+
+    echo json_encode($reservations_array);
+} else {
+    // set response code - 404 Not found
+    http_response_code(404);
+
+    // tell the user no products found
+    echo json_encode(array('message' => 'No reservations found.'));
 }

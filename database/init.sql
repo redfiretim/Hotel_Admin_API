@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 28 jan 2020 om 12:25
+-- Gegenereerd op: 29 jan 2020 om 14:20
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.2.22
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -27,70 +26,21 @@ USE `reservation_system`;
 
 -- --------------------------------------------------------
 
---
--- Tabelstructuur voor tabel `accommodations`
---
-
-DROP TABLE IF EXISTS `accommodations`;
-CREATE TABLE `accommodations` (
-  `id` int(11) NOT NULL,
-  `establishment_id` int(11) NOT NULL,
-  `accommodation_type_id` int(11) NOT NULL,
-  `room_num` int(11) NOT NULL,
-  `description` varchar(300) NOT NULL,
-  `price_per_night` int(11) NOT NULL,
-  `image_one` varchar(100) DEFAULT NULL,
-  `image_two` varchar(100) DEFAULT NULL,
-  `image_three` varchar(100) DEFAULT NULL,
-  `image_four` varchar(100) DEFAULT NULL,
-  `image_five` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `accommodation_types`
---
-
-DROP TABLE IF EXISTS `accommodation_types`;
-CREATE TABLE `accommodation_types` (
-  `id` int(11) NOT NULL,
-  `max_pers` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `establishment_type_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `amenities`
---
-
-DROP TABLE IF EXISTS `amenities`;
-CREATE TABLE `amenities` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `amenities_per_accommodation_type`
---
-
-DROP TABLE IF EXISTS `amenities_per_accommodation_type`;
-CREATE TABLE `amenities_per_accommodation_type` (
-  `accommodation_type_id` int(11) DEFAULT NULL,
-  `amenity_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Tabelstructuur voor tabel `cities`
 --
-
+DROP TABLE IF EXISTS `reservations`;
+DROP TABLE IF EXISTS `amenities_per_accommodation_type`;
+DROP TABLE IF EXISTS `accommodations`;
+DROP TABLE IF EXISTS `accommodation_types`;
+DROP TABLE IF EXISTS `establishments`;
+DROP TABLE IF EXISTS `establishment_types`;
+DROP TABLE IF EXISTS `amenities`;
+DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS `countries`;
 DROP TABLE IF EXISTS `cities`;
+
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
@@ -102,19 +52,15 @@ CREATE TABLE `cities` (
 -- Tabelstructuur voor tabel `countries`
 --
 
-DROP TABLE IF EXISTS `countries`;
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
 -- Tabelstructuur voor tabel `customers`
 --
 
-DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `first_name` varchar(100) NOT NULL,
@@ -126,10 +72,32 @@ CREATE TABLE `customers` (
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `amenities`
+--
+
+CREATE TABLE `amenities` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `establishment_types`
+--
+
+CREATE TABLE `establishment_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+
+--
 -- Tabelstructuur voor tabel `establishments`
 --
 
-DROP TABLE IF EXISTS `establishments`;
 CREATE TABLE `establishments` (
   `id` int(11) NOT NULL,
   `establishment_type_id` int(11) NOT NULL,
@@ -149,15 +117,48 @@ CREATE TABLE `establishments` (
 
 -- --------------------------------------------------------
 
+-- --------------------------------------------------------
 --
--- Tabelstructuur voor tabel `establishment_types`
+-- Tabelstructuur voor tabel `accommodation_types`
 --
 
-DROP TABLE IF EXISTS `establishment_types`;
-CREATE TABLE `establishment_types` (
+CREATE TABLE `accommodation_types` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `max_pers` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `establishment_type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `accommodations`
+--
+
+CREATE TABLE `accommodations` (
+  `id` int(11) NOT NULL,
+  `establishment_id` int(11) NOT NULL,
+  `accommodation_type_id` int(11) NOT NULL,
+  `room_num` int(11) NOT NULL,
+  `description` varchar(300) NOT NULL,
+  `price_per_night` int(11) NOT NULL,
+  `image_one` varchar(100) DEFAULT NULL,
+  `image_two` varchar(100) DEFAULT NULL,
+  `image_three` varchar(100) DEFAULT NULL,
+  `image_four` varchar(100) DEFAULT NULL,
+  `image_five` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `amenities_per_accommodation_type`
+--
+
+CREATE TABLE `amenities_per_accommodation_type` (
+  `accommodation_type_id` int(11) DEFAULT NULL,
+  `amenity_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,7 @@ CREATE TABLE `establishment_types` (
 -- Tabelstructuur voor tabel `reservations`
 --
 
-DROP TABLE IF EXISTS `reservations`;
+
 CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
   `booking_date` date NOT NULL,
@@ -181,37 +182,6 @@ CREATE TABLE `reservations` (
 --
 -- Indexen voor geëxporteerde tabellen
 --
-
---
--- Indexen voor tabel `accommodations`
---
-ALTER TABLE `accommodations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `establishment_id` (`establishment_id`,`room_num`),
-  ADD KEY `accommodations_ibfk_2` (`accommodation_type_id`);
-
---
--- Indexen voor tabel `accommodation_types`
---
-ALTER TABLE `accommodation_types`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`,`establishment_type_id`),
-  ADD KEY `accommodation_types_ibfk_1` (`establishment_type_id`);
-
---
--- Indexen voor tabel `amenities`
---
-ALTER TABLE `amenities`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexen voor tabel `amenities_per_accommodation_type`
---
-ALTER TABLE `amenities_per_accommodation_type`
-  ADD KEY `accommodation_type_id` (`accommodation_type_id`),
-  ADD KEY `amenity_id` (`amenity_id`);
-
 --
 -- Indexen voor tabel `cities`
 --
@@ -232,6 +202,14 @@ ALTER TABLE `countries`
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
+  
+  --
+-- Indexen voor tabel `establishment_types`
+--
+ALTER TABLE `establishment_types`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
 
 --
 -- Indexen voor tabel `establishments`
@@ -241,13 +219,40 @@ ALTER TABLE `establishments`
   ADD KEY `establishments_ibfk_1` (`city_id`),
   ADD KEY `establishments_ibfk_2` (`country_id`),
   ADD KEY `establishments_ibfk_3` (`establishment_type_id`);
+  
+  --
+-- Indexen voor tabel `accommodation_types`
+--
+ALTER TABLE `accommodation_types`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`,`establishment_type_id`),
+  ADD KEY `accommodation_types_ibfk_1` (`establishment_type_id`);
+
 
 --
--- Indexen voor tabel `establishment_types`
+-- Indexen voor tabel `accommodations`
 --
-ALTER TABLE `establishment_types`
+ALTER TABLE `accommodations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `establishment_id` (`establishment_id`,`room_num`),
+  ADD KEY `accommodations_ibfk_2` (`accommodation_type_id`);
+
+
+--
+-- Indexen voor tabel `amenities`
+--
+ALTER TABLE `amenities`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexen voor tabel `amenities_per_accommodation_type`
+--
+ALTER TABLE `amenities_per_accommodation_type`
+  ADD KEY `accommodation_type_id` (`accommodation_type_id`),
+  ADD KEY `amenity_id` (`amenity_id`);
+
+
 
 --
 -- Indexen voor tabel `reservations`
@@ -353,7 +358,6 @@ ALTER TABLE `establishments`
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`accommodation_id`) REFERENCES `accommodations` (`id`),
   ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
