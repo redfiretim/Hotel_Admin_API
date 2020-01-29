@@ -7,10 +7,10 @@ So DONT use the short hand syntax [] for arrays.
 class Config
 {
     // Specifies database properties.
-    private $host = 'localhost';
-    private $db_name = 'reservation_system';
-    private $username = 'root';
-    private $password = '';
+    public static $host = 'localhost';
+    public static $db_name = 'reservation_system';
+    public static $username = 'root';
+    public static $password = '';
 
     // Specifies table properties.
     private $a = 'accommodations';
@@ -42,6 +42,9 @@ class Config
                 return strval($this->a.', '.$this->at.', '.$this->e);
                 break;
             case 'create_customer':
+                return strval($this->c);
+                break;
+            case 'read_customer':
                 return strval($this->c);
                 break;
             case 'update_customer':
@@ -81,6 +84,7 @@ class Config
                 break;
             case 'read_accommodation':
                 return array(
+                    $this->a.'.id',
                     $this->a.'.establishment_id',
                     $this->a.'.accommodation_type_id',
                     $this->a.'.room_num',
@@ -95,6 +99,15 @@ class Config
                 break;
             case 'create_customer':
                 return array(
+                    $this->c.'.first_name',
+                    $this->c.'.last_name',
+                    $this->c.'.email',
+                    $this->c.'.phone_num',
+                );
+                break;
+            case 'read_customer':
+                return array(
+                    $this->c.'.id',
                     $this->c.'.first_name',
                     $this->c.'.last_name',
                     $this->c.'.email',
