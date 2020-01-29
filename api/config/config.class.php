@@ -16,7 +16,7 @@ class Config
     private $a = 'accommodations';
     private $at = 'accommodation_types';
     private $am = 'amenities';
-    private $apa = 'amenities_per_accommodation';
+    private $apa = 'amenities_per_accommodation_type';
     private $ci = 'cities';
     private $co = 'countries';
     private $c = 'customers';
