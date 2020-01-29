@@ -23,21 +23,21 @@ function validateForm() {
     function alertemail(){
         bootbox.alert({
             size: "small",
-            message: "<h4>You made a email</h4>",
+            message: "<h4>mistake email</h4>",
             callback: function(){ /* your callback code */ }
         })
     }
     function alertrate(){
         bootbox.alert({
             size: "small",
-            message: "<h4>You made a email</h4>",
+            message: "<h4>You made a rate</h4>",
             callback: function(){ /* your callback code */ }
         })
     }
     function alertnumber(){
         bootbox.alert({
             size: "small",
-            message: "<h4>You made a email</h4>",
+            message: "<h4>You made a number</h4>",
             callback: function(){ /* your callback code */ }
         })
     }
@@ -46,6 +46,7 @@ function validateForm() {
     if(checkNotEmpty() && checkPattern()){
         return true;
     }else{
+        warnings();
         return false;
     }
 
@@ -100,7 +101,7 @@ function validateForm() {
         var name_reg_ex = /^([A-Za-z]{1,30}[ \-]?[A-Za-z]{1,32}){1,32}$/;
         var number_reg_ex = /^[0-9]*$/;
         var mobile_number_reg_ex = /^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9\-]{10,20}$/;
-        var email_reg_ex = /^([A-Za-z0-9]{1}[A-Za-z0-9\.\_\-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}$/;
+        var email_reg_ex = /^([A-Za-z0-9]{1}[A-Za-z0-9._-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}$/;
         
         if(name_reg_ex.test(document.validate_Adminform.first_name.value) == false){
             alertname();
@@ -126,10 +127,27 @@ function validateForm() {
             alertrate();
             return false;
         }
-
         else{
             return true;
         }
     }
+
+    function warnings() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('validate_Adminform');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    };
 
 }

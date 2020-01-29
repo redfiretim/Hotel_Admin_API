@@ -23,6 +23,14 @@ $(document).ready(function(){
                         <td>` + data.first_name + " " + data.last_name + `</td>
                     </tr>
                     <tr>
+                        <th class='w-15-pct'>Customer phonenumber</th>
+                        <td>` + data.phone_num + `</td>
+                    </tr>
+                    <tr>
+                        <th class='w-15-pct'>Customer email</th>
+                        <td>` + data.email + `</td>
+                    </tr>
+                    <tr>
                         <th class='w-10-pct'>Hotel</th>
                         <td>` + data.establishments_name + `</td>
                     </tr>

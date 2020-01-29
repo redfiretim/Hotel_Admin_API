@@ -13,11 +13,11 @@ $(document).ready(function(){
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address:*</label>
-                    <input type="email" name='email' class="form-control" pattern='^(.+)@(.+)\.(.+){2,}$' required placeholder="Enter email">
+                    <input type="email" name='email' class="form-control" pattern='(.+)@(.+)\.(.+){2,}' required placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone number:*</label>
-                    <input type="number" name='phonenumber' class="form-control" pattern='^[+]?[0-9]{10,}$' required placeholder="Enter phonenumber">
+                    <input type="number" name='phonenumber' class="form-control" pattern='[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}' required placeholder="Enter phonenumber">
                     <small id="Help" class="form-text text-muted">* are required</small>
                 </div>
             </form>

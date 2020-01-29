@@ -10,7 +10,51 @@ $(document).ready(function(){
                     //room_type_id is for rooms and type is for de name of the rooms 
                     room_options_html+=`<option value='` + val.accommodation_types_name + `'>` + val.accommodation_types_name + `</option>`;
                 });
-            room_options_html+=`</select>`;     
+            room_options_html+=`</select>`;
+        
+            // Function for datepicker
+            $(function() {
+                var startDate;
+                var endDate;
+                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+                //var selectedMonthName = months[$("#datepicker").datepicker('getDate').getMonth()];
+                
+                // FIRST DATE PICKER
+                //default settings for picker layout
+                from = $("#from").datepicker({
+                    dateFormat: "dd-mm-yy",
+                    minDate: +1,
+                    maxDate: "1Y",
+                    defaultDate: "+1d",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                });
+        
+                // Changes minDate of "to" picker to user-input of "from" picker
+                $('#from').change(function() { 
+                    months = $(this).datepicker('getDate').getMonth(); 
+                    $("#to").datepicker("option", "minDate", startDate); 
+                }) 
+        
+                // SECOND DATE PICKER
+                to = $( "#to" ).datepicker({
+                    dateFormat: "dd-mm-yy",
+                    maxDate: "1Y",     
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    showOtherMonths: true,
+                    selectOtherMonths: true
+                })
+        
+                // Changes maxDate of "from" picker to user-input of "to" picker
+                $('#to').change(function() { 
+                    endDate = $(this).datepicker('getDate'); 
+                    $("#from").datepicker("option", "maxDate", endDate); 
+                }) 
+            });
 
             var create_product_html=`
                 <!-- 'back to reservations' button to show list of reservations -->
@@ -26,26 +70,30 @@ $(document).ready(function(){
                             <td><input type='text' name='first_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required/></td>
                         </tr>
                         <tr>
-                            https://mdbootstrap.com/docs/jquery/forms/validation/
-
                             <th>Lastname</th>
                             <td><input type='text' name='last_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required/></td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td><input type='text' name='email' class='form-control' pattern='' required/></td>
+                            <td><input type='text' name='email' class='form-control' required/></td>
                         </tr>
                         <tr>
+                        <div class="col-md-6">
                             <th>Phonenumber</th>
-                            <td><input type='number' name='phonenumber' class='form-control' pattern='[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9\-]{10,20}' required/></td>
+                            <td><input type='number' name='phonenumber' class='form-control' pattern='[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}' required/></td>
+                        </div>
                         </tr>
                         <tr>
-                        <th>Check-in</th>
-                            <td><input type='date' name='check_in_date' class='form-control' required /></td>
+                            <th>Check-in</th>
+                            <td>
+                                <input class="picker form-control" type="text" id="from" name="from" required/>
+                            </td>
                         </tr>
                         <tr>
                             <th>Check-out</th>
-                            <td><input type='date' name='check_out_date' class='form-control' required /></td>
+                            <td>
+                                <input class="picker form-control" type="text" id="to" name="to" required>
+                            </td>
                         </tr>
                         <!-- Sort room 'select' field -->
                         <tr>

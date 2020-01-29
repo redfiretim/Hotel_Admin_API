@@ -6,12 +6,12 @@ $(document).ready(function(){
     // Function for datepicker
     $(function() {
         // date format
-        var dateFormat = "dd/mm/yy";
+        var dateFormat = "dd-mm-yy";
     
         // FIRST DATE PICKER
         //default settings for picker layout
         from = $("#from").datepicker({
-            dateFormat: "dd/mm/yy",
+            dateFormat: "dd-mm-yy",
             // min date restriction
             minDate: +1,
             // max date restriction
@@ -29,7 +29,7 @@ $(document).ready(function(){
             // show week numbers left side of datepicker panel
             showWeek: true,
             // fold in animation
-            showAnim: "fold"
+            //showAnim: "fold" // VEROORZAAKT BUG -> ZIE TRELLO KAART MET BUGS
         });
 
         // Changes minDate of "to" picker to user-input of "from" picker
@@ -40,6 +40,7 @@ $(document).ready(function(){
 
         // SECOND DATE PICKER
         to = $( "#to" ).datepicker({
+            dateFormat: "dd-mm-yy",
             maxDate: "1Y",     
             changeMonth: true,
             numberOfMonths: 1,
@@ -47,7 +48,7 @@ $(document).ready(function(){
             selectOtherMonths: true,
             selectOtherMonths: true,
             showWeek: true,
-            showAnim: "fold"
+            //showAnim: "fold" // VEROORZAAKT BUG -> ZIE TRELLO KAART MET BUGS
         })
 
         // Changes maxDate of "from" picker to user-input of "to" picker
@@ -56,17 +57,16 @@ $(document).ready(function(){
             $("#from").datepicker("option", "maxDate", endDate); 
         }) 
 
-        // VEROORZAAKT BUG -> ZIE TRELLO KAART MET BUGS
         // SET DATE in inputfield
-        // function getDate( element ) {
-        //     var date;
-        //     try {
-        //         date = $.datepicker.parseDate( dateFormat, element.value );
-        //     } catch( error ) {
-        //         date = null;
-        //     }
-        //     return date;
-        // }
+        function getDate( element ) {
+            var date;
+            try {
+                date = $.datepicker.parseDate( dateFormat, element.value );
+            } catch( error ) {
+                date = null;
+            }
+            return date;
+        }
     });
 
 
