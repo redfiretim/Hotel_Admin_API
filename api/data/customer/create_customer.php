@@ -3,7 +3,7 @@
 Available_rooms contains all avaiable rooms by room_id where check_in_date en check_out_date is not filled yet.
 */
 
-include_once '../index.php';
+include_once '../../index.php';
 
 $first_name = $data->first_name;
 $last_name = $data->last_name;
