@@ -42,9 +42,10 @@ class DSHelper
 
     public function filter($tables, $columns, $var_conditions, $const_conditions = '')
     {
-        $sql = 'SELECT accommodations.id FROM accommodations 
-        WHERE accommodations.id NOT IN(
-        SELECT reservations.accommodation_id FROM reservations WHERE (reservations.check_in_date BETWEEN "'.$var_conditions[0].'" AND "'.$var_conditions[1].'" OR reservations.check_out_date BETWEEN "'.$var_conditions[0].'" AND "'.$var_conditions[1].'"))';
+        $sql = 'SELECT accommodation_types.name, accommodations.id, accommodations.accommodation_type_id, accommodations.room_num FROM accommodations, accommodation_types
+        WHERE accommodations.accommodation_type_id = accommodation_types.id AND accommodations.id NOT IN(
+        SELECT reservations.accommodation_id FROM reservations WHERE (reservations.check_in_date BETWEEN "'.$var_conditions[0].'" AND "'.$var_conditions[1].'" OR reservations.check_out_date BETWEEN "'.$var_conditions[0].'" AND "'.$var_conditions[1].'"))
+        GROUP BY accommodations.accommodation_type_id';
 
         $stmt = $this->dsh->prepare($sql);
         $stmt->execute();
