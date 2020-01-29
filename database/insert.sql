@@ -7,7 +7,6 @@
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.2.22
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -22,23 +21,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `reservation_system`
 --
-CREATE DATABASE IF NOT EXISTS `reservation_system` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- Create seems unnecessary since the init.sql has to be imported at the beginning. 
 USE `reservation_system`;
 
 --
--- Gegevens worden geëxporteerd voor tabel `accommodations`
+-- Gegevens worden geëxporteerd voor tabel `cities`
 --
 
-INSERT INTO `establishment_types` (`id`, `name`) VALUES
-(2, 'Camping'),
-(1, 'Hotel');
-
-INSERT INTO `amenities` (`id`, `name`) VALUES
-(1, 'ac'),
-(5, 'blow_dryer'),
-(3, 'jacuzzi'),
-(4, 'pets_allowed'),
-(2, 'smoking');
 
 INSERT INTO `cities` (`id`, `name`) VALUES
 (4, 'Antwerpen'),
@@ -64,6 +53,14 @@ INSERT INTO `customers` (`id`, `first_name`, `last_name`, `email`, `phone_num`) 
 (3, 'Frank', 'Ocean', 'frankzee@hotmail.nl', '0713807123');
 
 --
+-- Gegevens worden geëxporteerd voor tabel `establishment_types`
+--
+
+INSERT INTO `establishment_types` (`id`, `name`) VALUES
+(2, 'Camping'),
+(1, 'Hotel');
+
+--
 -- Gegevens worden geëxporteerd voor tabel `establishments`
 --
 
@@ -71,7 +68,7 @@ INSERT INTO `establishments` (`id`, `establishment_type_id`, `name`, `country_id
 (1, 1, 'Hotel Educom', 1, 1, '5641 JA ', '16-10', 'Daalakkersweg', 'Duis quis justo est. Vestibulum id augue in odio tincidunt auctor sed sit amet massa. Curabitur ac sollicitudin arcu. Nam non risus gravida, condimentum arcu nec, gravida diam. Donec vitae magna hendrerit, ultricies metus a, finibus mi. Aliquam eget tempus nulla, aliquam convallis ex. ', NULL, NULL, NULL, NULL, NULL);
 
 --
--- Gegevens worden geëxporteerd voor tabel `establishment_types`
+-- Gegevens worden geëxporteerd voor tabel `accommodation_types`
 --
 
 INSERT INTO `accommodation_types` (`id`, `max_pers`, `name`, `establishment_type_id`) VALUES
@@ -79,6 +76,21 @@ INSERT INTO `accommodation_types` (`id`, `max_pers`, `name`, `establishment_type
 (2, 2, 'Deluxe double room', 1),
 (3, 3, 'Standard triple room', 1),
 (4, 4, 'Standard quadruple room', 1);
+
+--
+-- Gegevens worden geëxporteerd voor tabel `amenities`
+--
+
+INSERT INTO `amenities` (`id`, `name`) VALUES
+(1, 'ac'),
+(5, 'blow_dryer'),
+(3, 'jacuzzi'),
+(4, 'pets_allowed'),
+(2, 'smoking');
+
+--
+-- Gegevens worden geëxporteerd voor tabel `accommodations`
+--
 
 INSERT INTO `accommodations` (`id`, `establishment_id`, `accommodation_type_id`, `room_num`, `description`, `price_per_night`, `image_one`, `image_two`, `image_three`, `image_four`, `image_five`) VALUES
 (1, 1, 1, 1, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 140, NULL, NULL, NULL, NULL, NULL),
@@ -91,6 +103,11 @@ INSERT INTO `accommodations` (`id`, `establishment_id`, `accommodation_type_id`,
 (8, 1, 3, 8, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL),
 (9, 1, 3, 9, 'Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.', 210, NULL, NULL, NULL, NULL, NULL);
 
+
+
+--
+-- Gegevens worden geëxporteerd voor tabel `amenities_per_accommodation_type`
+--
 
 INSERT INTO `amenities_per_accommodation_type` (`accommodation_type_id`, `amenity_id`) VALUES
 (1, 2),
@@ -105,6 +122,10 @@ INSERT INTO `amenities_per_accommodation_type` (`accommodation_type_id`, `amenit
 (4, 5);
 
 
+--
+-- Gegevens worden geëxporteerd voor tabel `reservations`
+--
+
 INSERT INTO `reservations` (`id`, `booking_date`, `customer_id`, `accommodation_id`, `num_of_pers`, `check_in_date`, `check_out_date`, `num_of_nights`, `total_price`) VALUES
 (1, '2020-01-24', 2, 9, 2, '2020-02-13', '2020-02-17', 4, 860),
 (2, '2020-01-23', 3, 2, 1, '2020-02-23', '2020-02-25', 2, 290),
@@ -113,6 +134,10 @@ INSERT INTO `reservations` (`id`, `booking_date`, `customer_id`, `accommodation_
 (5, '2020-01-24', 1, 1, 2, '2020-02-23', '2020-02-24', 1, 140),
 (6, '2020-01-24', 1, 1, 2, '2020-03-16', '2020-03-17', 1, 140);
 SET FOREIGN_KEY_CHECKS=1;
+
+
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
