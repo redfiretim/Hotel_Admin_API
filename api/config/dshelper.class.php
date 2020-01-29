@@ -42,12 +42,14 @@ class DSHelper
 
     public function filter($tables, $columns, $var_conditions, $const_conditions = '')
     {
-        $sql = 'SELECT DISTINCT accommodations.id FROM accommodations, reservations WHERE NOT (reservations.check_in_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].' OR reservations.check_out_date BETWEEN '.$var_conditions[0].' AND '.$var_conditions[1].') AND accommodations.id = reservations.accommodation_id';
+        $sql = 'SELECT accommodations.id FROM accommodations 
+        WHERE accommodations.id NOT IN(
+        SELECT reservations.accommodation_id FROM reservations WHERE (reservations.check_in_date BETWEEN "'.$var_conditions[0].'" AND "'.$var_conditions[1].'" OR reservations.check_out_date BETWEEN "'.$var_conditions[0].'" AND "'.$var_conditions[1].'"))';
+
         $stmt = $this->dsh->prepare($sql);
-
-        echo $sql.':';
-
         $stmt->execute();
+
+        // echo $sql;
 
         return $stmt;
     }
@@ -86,6 +88,7 @@ class DSHelper
         foreach ($var_conditions as $column => $value) {
             ++$index;
             $stmt->bindValue($index, $value);
+            // echo $index.' : '.$value;
         }
         // Executes statement.
         // echo $sql;
@@ -136,14 +139,14 @@ class DSHelper
     }
 
     // DELETE METHOD.
-    public function delete($table, $conditions)
+    public function delete($table, $var_conditions)
     {
         // Defines a where_clause variable.
         $where_clause = '';
         // Changes conditions into prepared conditions.
-        foreach ($conditions as $column => $value) {
+        foreach ($var_conditions as $column => $value) {
             $where_clause .= $column.'= ?';
-            if (next($conditions)) {
+            if (next($var_conditions)) {
                 $where_clause .= ' AND ';
             }
         }
@@ -152,13 +155,13 @@ class DSHelper
         $stmt = $this->dsh->prepare($sql);
         // Replaces prepared values for real values.
         $index = 0;
-        foreach ($conditions as $column => $value) {
+        foreach ($var_conditions as $column => $value) {
             ++$index;
             $stmt->bindValue($index, $value);
         }
-        // Executes statement.
+        // Execute statement.
         $stmt->execute();
-
-        return;
+        // Return last ID.
+        return $stmt;
     }
 }
