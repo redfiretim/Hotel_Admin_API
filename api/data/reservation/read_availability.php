@@ -10,14 +10,16 @@ $check_in_date = $data->check_in_date;
 $check_out_date = $data->check_out_date;
 
 $var_conditions = array($check_in_date, $check_out_date);
-
 $stmt = $dshelper->filter($tables, $columns, $var_conditions, $const_conditions);
 $num = $stmt->rowCount();
-$available_rooms = array();
 
 if ($num > 0) {
+    $available_room = array();
+    $available_rooms['records'] = array();
+
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        array_push($available_rooms, $row['id']);
+        $available_room = $row;
+        array_push($available_rooms['records'], $available_room);
     }
     // set response code - 200 OK
     http_response_code(200);
