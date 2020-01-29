@@ -2,7 +2,7 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.create-reservation-button', function(){
         // load list of categories
-        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index_dev.php?action=read_reservations", function(data){
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_reservations", function(data){
             // build categories option html
             // loop through returned list of data
             var room_options_html=`<select name='room_type_id' class='form-control' required>`;
@@ -23,37 +23,29 @@ $(document).ready(function(){
                     <table class="table table-curved table-striped">
                         <tr>
                             <th>Firstname</th>
-                            <td><input type='text' name='first_name' class='form-control' pattern='[A-Za-z]{1,32}' is-valid/></td>
+                            <td><input type='text' name='first_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required/></td>
                         </tr>
                         <tr>
-                            <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustomUsername2">Username</label>
-                                <input type="text" class="form-control" id="validationCustomUsername2" aria-describedby="inputGroupPrepend2"
-                                required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
-                            </div>
                             https://mdbootstrap.com/docs/jquery/forms/validation/
 
                             <th>Lastname</th>
-                            <td><input type='text' name='last_name' class='form-control' pattern='[A-Za-z]{1,32}' required is-valid/></td>
+                            <td><input type='text' name='last_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required/></td>
                         </tr>
                         <tr>
-                            <th>Hotel</th>
-                            <td><input type='text' name='establishments_name' class='form-control' value='`+data.establishments_name+`' pattern='[A-Za-z]{1,32}' disabled/></td>
+                            <th>Email</th>
+                            <td><input type='text' name='email' class='form-control' pattern='' required/></td>
                         </tr>
                         <tr>
-                            <th>Hotel city</th>
-                            <td><input type='text' name='city_name' class='form-control' value='`+data.city_name+`' pattern='[A-Za-z]{1,32}' disabled/></td>
+                            <th>Phonenumber</th>
+                            <td><input type='number' name='phonenumber' class='form-control' pattern='[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9\-]{10,20}' required/></td>
                         </tr>
                         <tr>
                         <th>Check-in</th>
-                            <td><input type='date' name='check_in_date' class='form-control' pattern='\d{4}-\d{2}-\d{2}' required /></td>
+                            <td><input type='date' name='check_in_date' class='form-control' required /></td>
                         </tr>
                         <tr>
                             <th>Check-out</th>
-                            <td><input type='date' name='check_out_date' class='form-control' pattern='\d{4}-\d{2}-\d{2}' required /></td>
+                            <td><input type='date' name='check_out_date' class='form-control' required /></td>
                         </tr>
                         <!-- Sort room 'select' field -->
                         <tr>
@@ -67,10 +59,6 @@ $(document).ready(function(){
                         <tr>
                             <th>Room rate</th>
                             <td><input type='text' min='60' name='price_per_night' class='form-control' pattern='[0-9]*' value='generated form db based on room type' disabled /></td>
-                        </tr>
-                        <tr>
-                            <th>Total price</th>
-                            <td><input type='text' name='total_price' class='form-control' pattern='[0-9]*' value='generated form db based on room type' disabled /></td>
                         </tr>
                         <!-- button to submit form -->
                         <tr>
@@ -98,7 +86,7 @@ $(document).ready(function(){
 
         // submit form data to api
         $.ajax({
-            url: "http://178.18.138.109/educom/hotel_code/api/index_dev.php?action=read_availability",
+            url: "hhttp://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservations",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

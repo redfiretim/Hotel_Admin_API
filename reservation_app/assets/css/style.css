@@ -5,48 +5,42 @@
     min-width: 100vw; 
 }
 
-
-
-
 /** PAGE HEADER **/
-.page-circle{
-    width: 40px;
-    height: 40px;
-    border-radius: 250px;
-    font-size: 18px;
-    color: #000;
-    line-height: 40px;
-    text-align: center;
-    margin: 0 30px 0 0;
-    background: #F5F5F5;
-    border: 1px solid #1570BF;
-    float: left;
-}
-.container{
-    width: 85vw;
-    background-color: rgb(255, 255, 255);
-    margin: 0 auto;
-    border-radius: 15px 15px 15px 15px;   
-    padding: 20px;
-}
-.page-steps{
-    width: inherit;
-    background-color: #F2C572;
-    margin: 0 auto;
-    border-radius: 15px 15px 0px 0px;   
-    padding: 15px;
-    border-bottom: none;
-    transform: translate(-20px, -20px);
-    float: left;
-}
-h1.page_steps{
-    float: left;
-    margin-top:10px;
-}
+    .page-circle{
+        width: 40px;
+        height: 40px;
+        border-radius: 250px;
+        font-size: 18px;
+        color: #000;
+        line-height: 40px;
+        text-align: center;
+        margin: 0 30px 0 0;
+        background: #F5F5F5;
+        border: 1px solid #1570BF;
+        float: left;
+    }
+    .container{
+        width: 85vw;
+        background-color: rgb(255, 255, 255);
+        margin: 0 auto;
+        border-radius: 15px 15px 15px 15px;   
+        padding: 20px;
+    }
+    .page-steps{
+        width: inherit;
+        background-color: #F2C572;
+        margin: 0 auto;
+        border-radius: 15px 15px 0px 0px;   
+        padding: 15px;
+        border-bottom: none;
+        transform: translate(-20px, -20px);
+        float: left;
+    }
+    h1.page_steps{
+        float: left;
+        margin-top:10px;
+    }
 /** PAGE HEADER **/
-
-
-
 
 /** FONTS  **/
     /* Needed when font is removed form google font database */
@@ -79,9 +73,6 @@ h1.page_steps{
         font-size: 16px;
     }
 /** FONTS **/
-
-
-
 
 /** Navigation OVERRIDES **/
     .navbar-brand>img{
@@ -122,68 +113,71 @@ h1.page_steps{
         border-color: #076EC3;
         float: right;
     }
-
     .btn>u {
         font-size: 12px;
     }
     .btn.btn-light {
-        float: left;
-        
+        float: left;   
+    }
+    .btn.btn-link{
+        float: right;
+        color: black;
+        text-decoration: underline;
     }
 /** BUTTONS **/
 
 
 
+/* STEP 2 */
+    /* IMAGES */
+        #room_tumbnail {
+            width: 90%;
+        }
 
-/* IMAGES */
-    #room_tumbnail {
-        width: 90%;
-    }
-
-/* IMAGES */
-
-
+    /* IMAGES */
 
 
-/* CHOOSE ROOM */
-    .room-container{
-        padding-top: 50px;
-    }
-    .room_block, .room_block:hover {
-        margin-top: 1%;
-        margin-bottom: 1%;
-        padding: 2%;
 
-        background-color: rgb(240, 240, 240);
-        border-radius: 15px 15px;
-    }
-    .room_block{
-        border: 3px solid rgb(222, 222, 222);
-    }
-    .room_block:hover{
-        border: 3px solid rgb(14, 87, 182);
-    }
 
-    /* Hide radio button */
-    .room_block > input{ 
-        visibility: hidden; 
-        position: absolute; 
-    }
+    /* CHOOSE ROOM */
+        .room-container{
+            padding-top: 50px;
+        }
+        .room_block, .room_block:hover {
+            margin-top: 1%;
+            margin-bottom: 1%;
+            padding: 2%;
 
-    /* .room_block > input:checked{
-        /* cursor:pointer;
-        border:2px solid transparent;
-    }
+            background-color: rgb(240, 240, 240);
+            border-radius: 15px 15px;
+        }
+        .room_block{
+            border: 3px solid rgb(222, 222, 222);
+        }
+        .room_block:hover{
+            border: 3px solid rgb(14, 87, 182);
+        }
 
-    span.glyphicon.glyphicon-ok {
-        display: none;
-    }
+        /* Hide radio button */
+        .room_block > input{ 
+            visibility: hidden; 
+            position: absolute; 
+        }
 
-    span.glyphicon.glyphicon-ok:checked{
-        display: block;
-    } */
-/* CHOOSE ROOM */
+        /* .room_block > input:checked{
+            /* cursor:pointer;
+            border:2px solid transparent;
+        }
 
+        span.glyphicon.glyphicon-ok {
+            display: none;
+        }
+
+        span.glyphicon.glyphicon-ok:checked{
+            display: block;
+        } */
+    /* CHOOSE ROOM */
+/* STEP 2 */
     #first-row{
         margin: 15px;
         padding: 20px;

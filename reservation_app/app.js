@@ -1,20 +1,17 @@
 $(document).ready(function(){
-
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
     var startDate;
     var endDate;
 
     // Function for datepicker
     $(function() {
-
         // date format
-        var dateFormat = "dd/mm/yy",
-        
-
-
+        var dateFormat = "dd/mm/yy";
+    
         // FIRST DATE PICKER
         //default settings for picker layout
         from = $("#from").datepicker({
+            dateFormat: "dd/mm/yy",
             // min date restriction
             minDate: +1,
             // max date restriction
@@ -33,17 +30,13 @@ $(document).ready(function(){
             showWeek: true,
             // fold in animation
             showAnim: "fold"
-        })
-
+        });
 
         // Changes minDate of "to" picker to user-input of "from" picker
         $('#from').change(function() { 
             startDate = $(this).datepicker('getDate'); 
             $("#to").datepicker("option", "minDate", startDate); 
         }) 
-
-
-
 
         // SECOND DATE PICKER
         to = $( "#to" ).datepicker({
@@ -63,25 +56,18 @@ $(document).ready(function(){
             $("#from").datepicker("option", "maxDate", endDate); 
         }) 
 
-
-
-
+        // VEROORZAAKT BUG -> ZIE TRELLO KAART MET BUGS
         // SET DATE in inputfield
-        function getDate( element ) {
-            var date;
-            try {
-                date = $.datepicker.parseDate( dateFormat, element.value );
-            } catch( error ) {
-                date = null;
-            }
-            return date;
-        }
+        // function getDate( element ) {
+        //     var date;
+        //     try {
+        //         date = $.datepicker.parseDate( dateFormat, element.value );
+        //     } catch( error ) {
+        //         date = null;
+        //     }
+        //     return date;
+        // }
     });
-
-
-
-    
-
 
 
 // WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
@@ -102,12 +88,6 @@ $(document).ready(function(){
         console.log("Error: Night calculation needs to be exucuted after User Input!")
     }
 // WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
-
-
-
-
-
-
 
     // app html template
     var app_html=`
@@ -150,6 +130,7 @@ $(document).ready(function(){
                             <span for="to" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary page-button">
                         <span class='glyphicon glyphicon-chevron-right pull-right'></span> Check availability
                     </button>
@@ -177,33 +158,31 @@ function changePageCircle(page_circle){
  
 
 
-    // will run if 'create product' form was submitted
-    $(document).on('submit', '#check_availability_form', function(){
-        
-        
-        // get form data
-        var form_data=JSON.stringify($(this).serializeObject());
+// will run if 'create product' form was submitted
+$(document).on('submit', '#check_availability_form', function(){
+    // get form data
+    var form_data=JSON.stringify($(this).serializeObject());
 
-        console.log(form_data);
+    console.log(form_data);
 
-        // submit form data to api
-        $.ajax({
-            url: "../api/#.php",
-            type : "POST",
-            action : "check_availability",
-            contentType : 'application/json',
-            data : form_data,
-            success : function(result) {
-                // product was created, go back to products list
-                showProducts();
-            },
-            error: function(xhr, resp, text) {
-                // show error to console
-                console.log(xhr, resp, text);
-            }
-        });
-        return false;
+    // submit form data to api
+    $.ajax({
+        url: "../api/#.php",
+        type : "POST",
+        action : "check_availability",
+        contentType : 'application/json',
+        data : form_data,
+        success : function(result) {
+            // product was created, go back to products list
+            // showProducts();
+        },
+        error: function(xhr, resp, text) {
+            // show error to console
+            console.log(xhr, resp, text);
+        }
     });
+    return false;
+});
 
 
 // function to make form values to json format

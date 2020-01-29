@@ -24,7 +24,8 @@ $(document).ready(function(){
             
             <button type='submit' class='btn btn-primary page-button3'>
                 <span class='glyphicon glyphicon-chevron-right pull-right'></span> To summary
-            </button>`;
+            </button>
+            <button type="button" class="btn btn-link page-button">< One step back</button>`;
 
             // inject html to 'page-content' of our app
         $("#page-content").html(step_content);

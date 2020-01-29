@@ -63,7 +63,7 @@ $(document).ready(function(){
             <button class='btn btn-primary page-button4'>
                 <span class='glyphicon glyphicon-chevron-right pull-right'></span>Book now
             </button>
-        `;
+            <button type="button" class="btn btn-link page-button2">< One step back</button>`;
 
             // inject html to 'page-content' of our app
         $("#page-content").html(step_content);
