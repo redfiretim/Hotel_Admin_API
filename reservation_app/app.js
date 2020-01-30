@@ -109,7 +109,7 @@ $(document).ready(function(){
                     <div class="row" id="first-row">
                         <div class="col-xs-6 col-md-4">
                             <label for="picker">Arrival date:</label></br>
-                            <input class="picker" type="text" id="from" name="check_in_date">
+                            <input class="picker" type="text" id="from" name="check_in_date" placeholder="yyyy-mm-dd">
                             <span for="picker" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                         <div class="col-xs-6 col-md-4">
@@ -118,7 +118,7 @@ $(document).ready(function(){
                         </div>
                         <div class="col-xs-6 col-md-4">
                             <label for="to">Departure date:</label></br>
-                            <input class="picker" type="text" id="to" name="check_out_date">
+                            <input class="picker" type="text" id="to" name="check_out_date" placeholder="yyyy-mm-dd">
                             <span for="to" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -173,10 +173,25 @@ $(document).on('submit', '#check_availability_form', function(){
     // submit form data to api
     $.ajax({
         url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
-        type : "POST",
-        action : "check_availability",
+        type : "GET",
+        action : "read_accommodation_types",
         contentType : 'application/json',
         data : form_data,
+        // crossDomain: true,
+        // headers: {
+        //     // Set any custom headers here.
+        //     // If you set any non-simple headers, your server must include these
+        //     // headers in the 'Access-Control-Allow-Headers' response header.
+        //   },
+        // xhrFields: {
+        //     // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+        //     // This can be used to set the 'withCredentials' property.
+        //     // Set the value to 'true' if you'd like to pass cookies to the server.
+        //     // If this is enabled, your server must respond with the header
+        //     // 'Access-Control-Allow-Credentials: true'.
+        //     withCredentials: true
+        //   },
+        
         success : function(result) {
             // product was created, go back to products list
             // showProducts();
