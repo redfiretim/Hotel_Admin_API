@@ -24,12 +24,6 @@ class Config
     private $et = 'establishment_types';
     private $r = 'reservations';
 
-    // Database needed:
-    public function getDatabase()
-    {
-        return array($this->host, $this->db_name, $this->username, $this->password);
-    }
-
     // Defines methods to get query content.
     // Tables needed:
     public function getTables($action)
