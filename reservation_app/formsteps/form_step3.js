@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.page-button2', function(){
+        // CALLBACK NEEDED
         var step_content=`   
             <form name='validate_Userform' id='create-reservation-form' action='#' method='post' onsubmit="return validateForm();" border='0'>
                 <div class="form-group">
