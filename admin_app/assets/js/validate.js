@@ -1,52 +1,8 @@
 function validateForm() {
-    function alert(){
-        bootbox.alert({
-            size: "small",
-            message: "<h4>You made a mistake</h4>",
-            callback: function(){ /* your callback code */ }
-        })
-    }
-    function alertphone(){
-        bootbox.alert({
-            size: "small",
-            message: "<h4>You made a phone</h4>",
-            callback: function(){ /* your callback code */ }
-        })
-    }
-    function alertname(){
-        bootbox.alert({
-            size: "small",
-            message: "<h4>You made a name</h4>",
-            callback: function(){ /* your callback code */ }
-        })
-    }
-    function alertemail(){
-        bootbox.alert({
-            size: "small",
-            message: "<h4>mistake email</h4>",
-            callback: function(){ /* your callback code */ }
-        })
-    }
-    function alertrate(){
-        bootbox.alert({
-            size: "small",
-            message: "<h4>You made a rate</h4>",
-            callback: function(){ /* your callback code */ }
-        })
-    }
-    function alertnumber(){
-        bootbox.alert({
-            size: "small",
-            message: "<h4>You made a number</h4>",
-            callback: function(){ /* your callback code */ }
-        })
-    }
-
     // Check on pattern and empty
     if(checkNotEmpty() && checkPattern()){
         return true;
     }else{
-        warnings();
         return false;
     }
 
@@ -55,42 +11,38 @@ function validateForm() {
         /*
         * EMPTY FOR ADD RESERVATION AND EDIT RESERVATION ADMIN SIDE
         */
-        if(document.validate_Adminform.first_name.value == "") {
-            alert();
-            return false;
-        }
-        if(document.validate_Adminform.last_name.value == "") {
-            alert();
+        if((document.validate_Adminform.first_name.value == "") && (document.validate_Adminform.last_name.value == "")) {
+            alertname();
             return false;
         }
         if(document.validate_Adminform.email.value == "") {
-            alert();         
+            alertemail();         
             return false;
         }
-        if(document.validate_Adminform.phonenumber.value == "") {
-            alert();
+        if(document.validate_Adminform.phone_num.value == "") {
+            alertphone();
             return false;
         }
-        if(document.validate_Adminform.check_in_date.value == "") {
-            alert();
+        if(document.validate_Adminform.from.value == "") {
+            alertempty();
             return false;
         }
-        if(document.validate_Adminform.check_out_date.value == "") {
-            alert();
+        if(document.validate_Adminform.to.value == "") {
+            alertempty();
             return false;
         }
         if(document.validate_Adminform.room_num.value == "") {
-            alert();
+            alertnumber();
             return false;
         }
         if(document.validate_Adminform.price_per_night.value == "") {
-            alert();
+            alertrate();
             return false;
         }
-        // if(document.validate_Adminform.room_options_html.value == "") {
-        //     alert("Please provide a room number!");
-        //     return false;
-        // }
+        if(document.validate_Adminform.total_price.value == "") {
+            alerttotal_price();
+            return false;
+        }
         else{
             return true;
         }
@@ -115,7 +67,7 @@ function validateForm() {
             alertemail();
             return false;
         }
-        if(mobile_number_reg_ex.test(document.validate_Adminform.phonenumber.value) == false){
+        if(mobile_number_reg_ex.test(document.validate_Adminform.phone_num.value) == false){
             alertphone();
             return false;
         }
@@ -132,22 +84,55 @@ function validateForm() {
         }
     }
 
-    function warnings() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('validate_Adminform');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    };
+    // ALERTS
+    function alertname(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You have made a mistake with your first of last name</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertempty(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>Something went wrong, you forgot the fill in a field</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertphone(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You have made a mistake with your telephone number</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertemail(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You have made a mistake with your email address</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertrate(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You have made a mistake with the room rate</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertnumber(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You have made a mistake with the room number</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alerttotal_price(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You have made a mistake with the total price</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
 
 }

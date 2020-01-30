@@ -80,7 +80,7 @@ $(document).ready(function(){
 
                 <!-- build 'update product' html form -->
                 <!-- we used the 'required' html5 property to prevent empty fields -->
-                <form id='validate_Adminform' action='#' method='post' border='0' onsubmit='return validateForm();' novalidate>
+                <form name="validate_Adminform" id='update-reservation-form' action='#' method='post' border='0' onsubmit="return validateForm();" novalidate>
                     <table class="table table-curved table-striped">
                         
                         <!-- Booking number field -->
@@ -111,30 +111,27 @@ $(document).ready(function(){
                         <!-- Checkin field -->
                         <tr>
                             <td>Check-in</td>
-                            <td><input class="picker form-control" id="from" value=\"` + check_in_date + `\"  type='text' name='check_in_date' required /></td>
+                            <td><input class="picker form-control" id="from" value=\"` + check_in_date + `\"  type='text' name='from' required /></td>
                         </tr>
 
                         <!-- Checkout field -->
                         <tr>
                             <td>Check-out</td>
-                            <td><input class="picker form-control" id="to" value=\"` + check_out_date + `\"  type='text' name='check_out_date' required /></td>
+                            <td><input class="picker form-control" id="to" value=\"` + check_out_date + `\"  type='text' name='to' required /></td>
                         </tr>  
                         <!-- categories 'select' field -->
-                        <tr>
-                            <td>Room type</td>
-                            <td>` + room_options_html + `</td>
-                        </tr>
+
 
                         <!-- Room number field -->
                         <tr>
                             <td>Room number</td>
-                            <td><input value=\"` + room_num + `\" type='number' name='room_num' class='form-control' pattern='[0-9]*' disabled /></td>
+                            <td><input value=\"` + room_num + `\" type='number' name='room_num' class='form-control' pattern='[0-9]*' /></td>
                         </tr>
                 
                         <!-- Room rate field -->
                         <tr>
                             <td>Room rate</td>
-                            <td><input value=\"€` + price_per_night + `\" type='number' name='price_per_night' class='form-control' pattern='[0-9]*' disabled/></td>
+                            <td><input value=\"` + price_per_night + `\" type='number' name='price_per_night' class='form-control' disabled/></td>
                         </tr>
 
                         <!-- Room rate field -->
@@ -169,7 +166,7 @@ $(document).ready(function(){
     });
      
     // will run if 'create product' form was submitted
-    $(document).on('submit', '#update-product-form', function(){
+    $(document).on('submit', '#update-reservation-form', function(){
         // get form data
         var form_data=JSON.stringify($(this).serializeObject());
         // submit form data to api

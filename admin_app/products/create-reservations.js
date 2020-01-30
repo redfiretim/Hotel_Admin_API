@@ -80,7 +80,7 @@ $(document).ready(function(){
                         <tr>
                         <div class="col-md-6">
                             <th>Phonenumber</th>
-                            <td><input type='number' name='phonenumber' class='form-control' pattern='[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}' required/></td>
+                            <td><input type='number' name='phone_num' class='form-control' pattern='[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}' required/></td>
                         </div>
                         </tr>
                         <tr>
