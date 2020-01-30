@@ -1,6 +1,37 @@
-{"rooms":[
-        {"room_number":1,"room_type":1,"image_name":"diam_neque_vestibulum.tiff","max_guests":1,"amenity1":"Carex sartwellii Dewey var. sartwellii","amenity2":"Alisma triviale Pursh","amenity3":"Daucus carota L. var. sativus Hoffm.","description":"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum."},
-        {"room_number":2,"room_type":1,"image_name":"in.tiff","max_guests":1,"amenity1":"Thelypodium eucosmum B.L. Rob.","amenity2":"Eriogonum prattenianum Durand var. avium Reveal & Shevock","amenity3":"Styrax portoricensis Krug & Urb.","description":"Duis bibendum. Morbi non quam nec dui luctus rutrum."},
-        {"room_number":3,"room_type":1,"image_name":"posuere_metus.png","max_guests":2,"amenity1":"Melaleuca viridiflora Sol. ex Gaertn.","amenity2":"Bidens ferulifolia (Jacq.) DC.","amenity3":"Sphagnum pulchrum (Lindb. ex Braithw.) Warnst.","description":"Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat."}
+{
+    "records": [
+        {
+            "name": "Standard double room",
+            "max_pers": "2",
+            "id": "1",
+            "price_per_night": "140",
+            "description": "Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.",
+            "accommodation_type_id": "1",
+            "room_num": "1",
+            "image_one": "standard_double_room.jpg",
+            "amenities": "smoking ,blow_dryer"
+        },
+        {
+            "name": "Deluxe double room",
+            "max_pers": "2",
+            "id": "4",
+            "price_per_night": "180",
+            "description": "Aenean vitae pretium sapien. Etiam quis augue dictum, fringilla urna a, accumsan turpis. Nam scelerisque eros ipsum, sit amet ultricies massa vestibulum vitae. Nam posuere magna nec pellentesque fermentum. Fusce eu nibh sollicitudin, vulputate urna id, lobortis ex. Cras dictum.",
+            "accommodation_type_id": "2",
+            "room_num": "4",
+            "image_one": "deluxe_double_room.jpg",
+            "amenities": "ac ,blow_dryer"
+        },
+        {
+            "name": "Standard triple room",
+            "max_pers": "3",
+            "id": "7",
+            "price_per_night": "210",
+            "description": "Fusce ornare in massa non rhoncus. Nullam id purus et ex ornare vulputate sit amet sit amet ex. Vivamus sollicitudin mi id velit blandit mattis. Mauris nec urna euismod, bibendum urna et, eleifend magna. Curabitur ultrices convallis finibus. Vestibulum nulla sapien, malesuada pretium feugiat eget.",
+            "accommodation_type_id": "3",
+            "room_num": "7",
+            "image_one": "standard_triple_room.jpg",
+            "amenities": "ac ,blow_dryer"
+        }
     ]
 }
