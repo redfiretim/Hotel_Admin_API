@@ -40,10 +40,14 @@ if (isset($_GET['action'])) {
         case 'read_available_accommodations':
             include_once './data/reservation/read_available_accommodations.php';
             break;
-        //Case when a cusomter has to be inserted in the database, to create a reservation. Returns either a new or already existing ID
+        //Case when a customer has to be inserted in the database, to create a reservation. Returns either a new or already existing ID
         case 'create_customer':
             include_once './data/customer/create_customer.php';
             break;
+        //Case when customer details have to be updated in the database,
+        case 'update_customer':
+            include_once './data/customer/update_customer.php';
+            break;    
         //Case when a reservation has to be inserted in the database, uses read_availability, read_accomodation, create_customer.
         case 'create_reservation':
             include_once './data/reservation/create_reservation.php';
@@ -51,11 +55,12 @@ if (isset($_GET['action'])) {
         //Request to read a single reservation. Needs an ID to get all data.
         case 'read_one_reservation':
             include_once './data/reservation/read_one_reservation.php';
-            // echo json_encode($available_rooms);
             break;
+        //Case when a reservation has to be updated in the database.
         case 'update_reservation':
-            //FIX: write case.
+            include_once './data/reservation/update_reservation.php';
             break;
+        //Case when a reservation has to be deleted from the database.    
         case 'delete_reservation':
             include_once './data/reservation/delete_reservation.php';
             break;
