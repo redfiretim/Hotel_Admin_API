@@ -109,16 +109,16 @@ $(document).ready(function(){
                     <div class="row" id="first-row">
                         <div class="col-xs-6 col-md-4">
                             <label for="picker">Arrival date:</label></br>
-                            <input class="picker" type="text" id="from" name="check_in_date" placeholder="yyyy-mm-dd">
+                            <input class="picker" type="text" id="from" name="check_in_date" placeholder="yyyy-mm-dd" required>
                             <span for="picker" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                         <div class="col-xs-6 col-md-4">
                             <label for="numberNights"><span class="calendar">Nights:</span></label></br>
-                            <input class="picker_night"  type="number" name="numberNights" min="1" max="14" value="1">
+                            <input class="picker_night"  type="number" name="numberNights" min="1" max="14" value="1" readonly>
                         </div>
                         <div class="col-xs-6 col-md-4">
                             <label for="to">Departure date:</label></br>
-                            <input class="picker" type="text" id="to" name="check_out_date" placeholder="yyyy-mm-dd">
+                            <input class="picker" type="text" id="to" name="check_out_date" placeholder="yyyy-mm-dd" required>
                             <span for="to" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -126,12 +126,12 @@ $(document).ready(function(){
                     <div class="row" id="first-row">
                         <div class="col-xs-6 col-md-4">
                             <label for="numberNights"><span class="form_label_span">Number of guests:</span></label></br>
-                            <input class="picker_night" type="number" name="numberGuests" min="1" max="2" value="1">
+                            <input class="picker_night" type="number" name="numberGuests" min="1" max="2" value="1" readonly>
                             <span for="to" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                         </div>
                         <div class="col-xs-6 col-md-4">
                             <label for="numberNights"><span class="form_label_span">Number of rooms:</span></label></br>
-                            <input class="picker_night" type="number" name="numberRooms" min="1" max="1" value="1">
+                            <input class="picker_night" type="number" name="numberRooms" min="1" max="1" value="1" readonly>
                             <span for="to" class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -163,8 +163,19 @@ function changePageCircle(page_circle){
  
 
 
-// will run if 'create product' form was submitted
+// catches submit button, checks input in validatform() and if true goes to Ajax send
 $(document).on('submit', '#check_availability_form', function(){
+    
+    if(validateForm()){
+        sendInput()
+    }
+});
+
+
+
+
+// will run if 'create product' form was submitted
+function sendInput(){
     // get form data
     var form_data=JSON.stringify($(this).serializeObject());
 
@@ -202,7 +213,7 @@ $(document).on('submit', '#check_availability_form', function(){
         }
     });
     return false;
-});
+}
 
 
 // function to make form values to json format

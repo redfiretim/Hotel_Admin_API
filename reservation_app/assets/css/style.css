@@ -135,8 +135,8 @@
     #first-row{
         margin: 15px;
         padding: 20px;
-        background-color: #FCFCFC;
-        border: 1px solid #EFEFEF;
+        background-color: rgb(247, 247, 247);
+        border: 1px solid rgb(230, 230, 230);
         border-radius: 20px;
         float: left;
         width: 95%;

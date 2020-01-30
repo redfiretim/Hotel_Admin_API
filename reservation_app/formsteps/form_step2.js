@@ -1,6 +1,8 @@
 $(document).ready(function(){
     // show html form when 'create product' button was clicked
-    $(document).on('click', '.page-button' , function(){
+//!!
+//      $(document).on('click', '.page-button' , function(){       // NEEDS TO BE REWORKED TO COME FROM OTHER ACTION
+//!!
         showAvailableRoom();
 
         function showAvailableRoom(){
