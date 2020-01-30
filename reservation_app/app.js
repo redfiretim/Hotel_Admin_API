@@ -11,13 +11,13 @@ $(document).ready(function(){
         // FIRST DATE PICKER
         //default settings for picker layout
         from = $("#from").datepicker({
-            dateFormat: "dd-mm-yy",
+            dateFormat: "yy-mm-dd",
             // min date restriction
-            minDate: +1,
+            minDate: +2,
             // max date restriction
             maxDate: "1Y",
             // weeks
-            defaultDate: "+1d",
+            defaultDate: "+2d",
             // can change month in picker
             changeMonth: true,
             // displayed number of months in picker
@@ -27,9 +27,7 @@ $(document).ready(function(){
             // select days other than displayed month
             selectOtherMonths: true,
             // show week numbers left side of datepicker panel
-            showWeek: true,
-            // fold in animation
-            //showAnim: "fold" // VEROORZAAKT BUG -> ZIE TRELLO KAART MET BUGS
+            showWeek: true 
         });
 
         // Changes minDate of "to" picker to user-input of "from" picker
@@ -40,15 +38,14 @@ $(document).ready(function(){
 
         // SECOND DATE PICKER
         to = $( "#to" ).datepicker({
-            dateFormat: "dd-mm-yy",
+            dateFormat: "yy-mm-dd",
             maxDate: "1Y",     
             changeMonth: true,
             numberOfMonths: 1,
             showOtherMonths: true,
             selectOtherMonths: true,
             selectOtherMonths: true,
-            showWeek: true,
-            //showAnim: "fold" // VEROORZAAKT BUG -> ZIE TRELLO KAART MET BUGS
+            showWeek: true
         })
 
         // Changes maxDate of "from" picker to user-input of "to" picker
@@ -57,37 +54,45 @@ $(document).ready(function(){
             $("#from").datepicker("option", "maxDate", endDate); 
         }) 
 
-        // SET DATE in inputfield
-        function getDate( element ) {
-            var date;
-            try {
-                date = $.datepicker.parseDate( dateFormat, element.value );
-            } catch( error ) {
-                date = null;
-            }
-            return date;
-        }
+
+        // CODE NOT USED!!
+        // // SET DATE in inputfield
+        // function getDate( element ) {
+        //     var date;
+        //     try {
+        //         date = $.datepicker.parseDate( dateFormat, element.value );
+        //     } catch( error ) {
+        //         date = null;
+        //     }
+        //     return date;
+        // }
     });
 
 
-// WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
-    //calculate number of night  (WIP)
-    function nights(startDate,endDate, oneDay) {
-        const firstDate = startDate;
-        const secondDate = endDate;
-    
-        const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-        return diffDays;
-    }
 
-    // dev test log
-    if((startDate !== null) && (endDate !== null)){
-        console.log(nights(startDate, endDate, oneDay));
-    }
-    else{
-        console.log("Error: Night calculation needs to be exucuted after User Input!")
-    }
+
 // WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
+    // //calculate number of night  (WIP)
+    // function nights(startDate,endDate, oneDay) {
+    //     const firstDate = startDate;
+    //     const secondDate = endDate;
+    
+    //     const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+    //     return diffDays;
+    // }
+
+    // // dev test log
+    // if((startDate !== null) && (endDate !== null)){
+    //     console.log(nights(startDate, endDate, oneDay));
+    // }
+    // else{
+    //     console.log("Error: Night calculation needs to be exucuted after User Input!")
+    // }
+// WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
+
+
+
+
 
     // app html template
     var app_html=`
@@ -104,7 +109,7 @@ $(document).ready(function(){
                     <div class="row" id="first-row">
                         <div class="col-xs-6 col-md-4">
                             <label for="picker">Arrival date:</label></br>
-                            <input class="picker" type="text" id="from" name="from">
+                            <input class="picker" type="text" id="from" name="check_in_date">
                             <span for="picker" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                         <div class="col-xs-6 col-md-4">
@@ -113,7 +118,7 @@ $(document).ready(function(){
                         </div>
                         <div class="col-xs-6 col-md-4">
                             <label for="to">Departure date:</label></br>
-                            <input class="picker" type="text" id="to" name="to">
+                            <input class="picker" type="text" id="to" name="check_out_date">
                             <span for="to" class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -167,7 +172,7 @@ $(document).on('submit', '#check_availability_form', function(){
 
     // submit form data to api
     $.ajax({
-        url: "../api/#.php",
+        url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
         type : "POST",
         action : "check_availability",
         contentType : 'application/json',
