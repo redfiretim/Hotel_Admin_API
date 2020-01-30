@@ -8,12 +8,12 @@ header('Access-Control-Allow-Credentials: true');
 header('Content-Type: application/json');
 
 // include database and object files
-include_once './config/dsconnect.class.php';
-include_once './config/dshelper.class.php';
-include_once './data/shared/utility.php';
+include_once 'config/dsconnect.class.php';
+include_once 'config/dshelper.class.php';
+include_once 'data/shared/utility.php';
 
 //DEVELOPING ENVIRONMENT
-include_once './config/config.class.php';
+include_once 'config/config.class.php';
 $dsh = DSConnect::getInstance();
 $dshelper = new DSHelper($dsh);
 
@@ -34,35 +34,39 @@ if (isset($_GET['action'])) {
     switch ($requested_action) {
         //Case when all reservations need to be fetch from the database. Return an mutlidimesional array contains all content about each reservation.
         case 'read_reservations':
-            include_once './data/reservation/read_reservations.php';
+            include_once 'data/reservation/read_reservations.php';
             break;
         //Case when the accommodation availability has to be fetched from the database. Returns an array of all available rooms plus data
         case 'read_available_accommodations':
-            include_once './data/reservation/read_available_accommodations.php';
+            include_once 'data/reservation/read_available_accommodations.php';
+            break;
+        //Case when the accommodation availability has to be fetched from the database. Returns an array of all available rooms type plus data
+        case 'read_accommodation_types':
+            include_once 'data/reservation/read_accommodation_types.php';
             break;
         //Case when a customer has to be inserted in the database, to create a reservation. Returns either a new or already existing ID
         case 'create_customer':
-            include_once './data/customer/create_customer.php';
+            include_once 'data/customer/create_customer.php';
             break;
         //Case when customer details have to be updated in the database,
         case 'update_customer':
-            include_once './data/customer/update_customer.php';
-            break;    
+            include_once 'data/customer/update_customer.php';
+            break;
         //Case when a reservation has to be inserted in the database, uses read_availability, read_accomodation, create_customer.
         case 'create_reservation':
-            include_once './data/reservation/create_reservation.php';
+            include_once 'data/reservation/create_reservation.php';
         break;
         //Request to read a single reservation. Needs an ID to get all data.
         case 'read_one_reservation':
-            include_once './data/reservation/read_one_reservation.php';
+            include_once 'data/reservation/read_one_reservation.php';
             break;
         //Case when a reservation has to be updated in the database.
         case 'update_reservation':
-            include_once './data/reservation/update_reservation.php';
+            include_once 'data/reservation/update_reservation.php';
             break;
-        //Case when a reservation has to be deleted from the database.    
+        //Case when a reservation has to be deleted from the database.
         case 'delete_reservation':
-            include_once './data/reservation/delete_reservation.php';
+            include_once 'data/reservation/delete_reservation.php';
             break;
         default:
             // set response code - 404 Not found
