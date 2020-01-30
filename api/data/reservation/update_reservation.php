@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
 		'customers.last_name' => $last_name, 
 		'reservations.check_in_date' => $check_in_date, 
 		'reservations.check_out_date' => $check_out_date, 
-		'reservations.room_num' => $room_num;  
+		'reservations.room_num' => $room_num,
 		'reservations.total_price' => $total_price 
 	); 
 	
