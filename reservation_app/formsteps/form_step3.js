@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(document).on('click', '.page-button2', function(){
         // CALLBACK NEEDED
         var step_content=`   
-            <form name='validate_Userform' id='create-reservation-form' action='#' method='post' onsubmit="return validateForm();" border='0'>
+            <form name='validate_Userform' id='create-reservation-form' action='#' method='post' border='0'>
                 <div class="form-group">
                     <label for="firstname">First name:*</label>
                     <input type="text" name='first_name' class="form-control"  pattern="[A-Za-z]{1,32}" required placeholder="Enter first name">
@@ -31,6 +31,11 @@ $(document).ready(function(){
             // inject html to 'page-content' of our app
         $("#page-content").html(step_content);
         
+        $(document).on('click', '.page-button3' , function(){
+            return validateForm();
+        });
+
+
         changePageCircle("3");
         changePageTitle("Fill in contact details");
     });
@@ -46,14 +51,13 @@ $(document).ready(function(){
             data : form_data,
             success : function(result) {
                 // Reservation was created, go back to products list
-                showProducts();
+                //showProducts();
             },
             error: function(xhr, resp, text) {
                 // show error to console
                 console.log(xhr, resp, text);
             }
         });
-        
         return false;
     });
 });

@@ -8,7 +8,7 @@ $(document).ready(function(){
             var room_options_html=`<select name='room_type_id' class='form-control' required>`;
                 $.each(data.records, function(key, val){
                     //room_type_id is for rooms and type is for de name of the rooms 
-                    room_options_html+=`<option value='` + val.accommodation_types_name + `'>` + val.accommodation_types_name + `</option>`;
+                    room_options_html+=`<option value='` + val.accommodation_id + `'>` + val.accommodation_types_name + `</option>`;
                 });
             room_options_html+=`</select>`;
         
@@ -16,8 +16,6 @@ $(document).ready(function(){
             $(function() {
                 var startDate;
                 var endDate;
-                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
                 //var selectedMonthName = months[$("#datepicker").datepicker('getDate').getMonth()];
                 
                 // FIRST DATE PICKER
@@ -86,15 +84,19 @@ $(document).ready(function(){
                         </div>
                         </tr>
                         <tr>
+                        <th>Number of persons</th>
+                            <td><input type='text' name='num_of_pers' class='form-control' required/></td>
+                        </tr>
+                        <tr>
                             <th>Check-in</th>
                             <td>
-                                <input class="picker form-control" type="text" id="from" name="from" required/>
+                                <input class="picker form-control" type="text" id="from" name="check_in_date" required/>
                             </td>
                         </tr>
                         <tr>
                             <th>Check-out</th>
                             <td>
-                                <input class="picker form-control" type="text" id="to" name="to" required>
+                                <input class="picker form-control" type="text" id="to" name="check_out_date" required>
                             </td>
                         </tr>
                         <!-- Sort room 'select' field -->

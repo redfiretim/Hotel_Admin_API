@@ -20,11 +20,12 @@ $(document).ready(function(){
         function readRoomsTemplate(data){
             var step_content = `<div class="room-container">`;
                 $.each(data.rooms, function(index, data) {
-
-                $(document).on('click', '.room_block', function(){
-                        $('.room_block.active').removeClass("btn-primary:active"); 
-                        $(this).addClass("btn-primary:active"); 
-                });
+                
+                // NEEDED FOR ADD CLASS TO SHOW BORDER AROUND SELECTED ROOM
+                // $(document).on('click', '.room_block', function(){
+                //     $('.room_block.active').removeClass("btn-primary:active"); 
+                //     $(this).addClass("btn-primary:active"); 
+                // });
 
                     step_content += `
                     <div class="room_block" onclick="">
@@ -45,8 +46,6 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>`;  
-
-  
                 });
                 step_content += ` <button type='submit' class='btn btn-primary page-button2'>
                                         <span class='glyphicon glyphicon-chevron-right pull-right'></span>Choose room

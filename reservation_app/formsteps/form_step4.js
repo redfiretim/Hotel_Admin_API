@@ -1,6 +1,6 @@
-$(document).ready(function(){
-    // show html form when 'create product' button was clicked
-    $(document).on('click', '.page-button3', function(){
+//$(document).ready(function(){
+    //show html form when 'create product' button was clicked
+    function form_step4(){
         var step_content=`   
             <div class="row step4">
                 <div class="col-sm-2">
@@ -26,7 +26,7 @@ $(document).ready(function(){
             </div>
 
             <div class="row step4">
-                <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="../reservation_app/assets/images/Comfort_kamer.jpg" alt="Room"/></div>
+                <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="" alt="Room"/></div>
                 <div class="col-xs-6 col-md-4 room_properties">                        
                     <h4>Comfort room</h4>
                     <p><span class="glyphicon glyphicon-user properties"></span>max guests : 2</p>
@@ -70,5 +70,4 @@ $(document).ready(function(){
         
         changePageCircle("4");
         changePageTitle("Summary");
-    });
-});
+    }

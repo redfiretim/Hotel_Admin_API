@@ -9,6 +9,8 @@ function validateForm() {
 
     // Check on pattern and empty
     if(checkNotEmpty() && checkPattern()){
+        // If is not empty and checked than go to form_step4
+        form_step4();
         return true;
     }else{
         return false;
@@ -67,22 +69,23 @@ function validateForm() {
         var number_reg_ex = /^[0-9]*$/;
         var mobile_number_reg_ex =  /^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/;
 
-        if(number_reg_ex.test(document.validate_Userform.numberNights.value) == false){
+        // if(number_reg_ex.test(document.validate_Userform.numberNights.value) == false){
+        //     alert();
+        //     return false;
+        // }
+        // if(number_reg_ex.test(document.validate_Userform.numberGuests.value) == false){
+        //     alert();
+        //     return false;
+        // }
+        // if(number_reg_ex.test(document.validate_Userform.numberRooms.value) == false){
+        //     alert();
+        //     return false;
+        // }
+        if(name_reg_ex.test(document.validate_Userform.first_name.value) == false){
             alert();
             return false;
         }
-        if(date_reg_ex.test(document.validate_Userform.first_name.value) == false){
-            alert();
-            return false;
-        }
-        if(number_reg_ex.test(document.validate_Userform.numberGuests.value) == false){
-            alert();
-            return false;
-        }
-        if(number_reg_ex.test(document.validate_Userform.numberRooms.value) == false){
-            alert();
-            return false;
-        }
+
         if(name_reg_ex.test(document.validate_Userform.last_name.value) == false){
             alert();
             return false;
