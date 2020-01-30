@@ -22,14 +22,16 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/',$phone_num
         "last_name" => $last_name, 
         "email" => $email, 
         "phone_num" => $phone_num);
-    $conditions = array("customers.id" => $customer_id);
+    $conditions = array("id" => $customer_id);
     // execute query.
     $stmt = $dshelper->update($table, $data, $conditions);
     // count result rows.
     $num = $stmt->rowCount();
+    // num > 0 means there is a result.
     if ($num > 0) {
         // response received, updated
         http_response_code(200);
+        // tell the user that update was succesful.
         echo json_encode(array('message' => 'Customer updated.'));
     } else {
         // bad request
