@@ -36,9 +36,9 @@ if (isset($_GET['action'])) {
         case 'read_reservations':
             include_once './data/reservation/read_reservations.php';
             break;
-        //Case when the accommodation availability has to be fetched from the database. Returns an array of all available rooms
-        case 'read_availability':
-            include_once './data/reservation/read_availability.php';
+        //Case when the accommodation availability has to be fetched from the database. Returns an array of all available rooms plus data
+        case 'read_available_accommodations':
+            include_once './data/reservation/read_available_accommodations.php';
             break;
         //Case when a cusomter has to be inserted in the database, to create a reservation. Returns either a new or already existing ID
         case 'create_customer':
