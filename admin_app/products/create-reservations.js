@@ -23,30 +23,32 @@ $(document).ready(function(){
                 // FIRST DATE PICKER
                 //default settings for picker layout
                 from = $("#from").datepicker({
-                    dateFormat: "dd-mm-yy",
-                    minDate: +1,
+                    dateFormat: "yy-mm-dd",
+                    minDate: +2,
                     maxDate: "1Y",
-                    defaultDate: "+1d",
+                    defaultDate: "+2d",
                     changeMonth: true,
                     numberOfMonths: 1,
                     showOtherMonths: true,
                     selectOtherMonths: true,
+                    showWeek: true
                 });
         
                 // Changes minDate of "to" picker to user-input of "from" picker
                 $('#from').change(function() { 
-                    months = $(this).datepicker('getDate').getMonth(); 
+                    startDate = $(this).datepicker('getDate'); 
                     $("#to").datepicker("option", "minDate", startDate); 
                 }) 
         
                 // SECOND DATE PICKER
                 to = $( "#to" ).datepicker({
-                    dateFormat: "dd-mm-yy",
+                    dateFormat: "yy-mm-dd",
                     maxDate: "1Y",     
                     changeMonth: true,
                     numberOfMonths: 1,
                     showOtherMonths: true,
-                    selectOtherMonths: true
+                    selectOtherMonths: true,
+                    showWeek: true
                 })
         
                 // Changes maxDate of "from" picker to user-input of "to" picker
