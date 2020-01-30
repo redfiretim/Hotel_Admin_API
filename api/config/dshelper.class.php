@@ -127,7 +127,6 @@ class DSHelper
             $stmt->bindValue($index, $value);
         }
 
-        $index = 0;
         // Loops through all prepared statement and set the value
         foreach ($conditions as $column => $value) {
             ++$index;
@@ -136,7 +135,7 @@ class DSHelper
         // Executes statement.
         $stmt->execute();
 
-        return;
+        return $stmt;
     }
 
     // DELETE METHOD.
