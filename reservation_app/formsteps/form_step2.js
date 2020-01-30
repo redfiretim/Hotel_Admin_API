@@ -21,8 +21,13 @@ $(document).ready(function(){
             var step_content = `<div class="room-container">`;
                 $.each(data.rooms, function(index, data) {
 
+                $(document).on('click', '.room_block', function(){
+                        $('.room_block.active').removeClass("btn-primary:active"); 
+                        $(this).addClass("btn-primary:active"); 
+                });
+
                     step_content += `
-                    <div class="room_block" onclick="choose();">
+                    <div class="room_block" onclick="">
                         <input type="radio" name="radioname" value="` + data.room_number + `" />
                         <div class="row">
                             <div class="col-xs-6 col-md-4">
@@ -39,20 +44,18 @@ $(document).ready(function(){
                                 <p>`+ data.description +`</p>
                             </div>
                         </div>
-                    </div>`;    
+                    </div>`;  
+
+  
                 });
                 step_content += ` <button type='submit' class='btn btn-primary page-button2'>
                                         <span class='glyphicon glyphicon-chevron-right pull-right'></span>Choose room
                                 </button>
                                 <a type="button" class="btn btn-link" href="../reservation_app/index.html">< One step back</a>`;
-            step_content += `</div>`;
-
-
+                step_content += `</div>`;
 
             // inject html to 'page-content' of our app
             $("#page-content").html(step_content);
-
-
 
             changePageCircle("2");
             changePageTitle("Choose room");
