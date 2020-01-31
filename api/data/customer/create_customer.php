@@ -28,7 +28,9 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/', $phone_nu
         }
         http_response_code(200);
 
-        echo json_encode($customer_id);
+        if ($requested_action == basename(__FILE__, '.php')) {
+            echo json_encode(array('message' => 'Customer: '.$customer_id.' has been selected from the database'));
+        }
     } else {  //Insert a new customer in the database
         $customer_data = array('first_name' => "$first_name", 'last_name' => $last_name, 'email' => $email, 'phone_num' => $phone_num);
         $customer_id = $dshelper->create($customer_table, $customer_data);
@@ -37,7 +39,7 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/', $phone_nu
         http_response_code(201);
 
         if ($requested_action == basename(__FILE__, '.php')) {
-            echo json_encode($customer_id);
+            echo json_encode(array('message' => 'Customer: '.$customer_id.' has been created'));
         }
     }
 } else {
