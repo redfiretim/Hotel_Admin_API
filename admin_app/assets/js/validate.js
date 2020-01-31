@@ -39,10 +39,10 @@ function validateForm() {
             alertrate();
             return false;
         }
-        if(document.validate_Adminform.total_price.value == "") {
-            alerttotal_price();
-            return false;
-        }
+        // if(document.validate_Adminform.total_price.value == "") {
+        //     alerttotal_price();
+        //     return false;
+        // }
         else{
             return true;
         }
@@ -71,14 +71,14 @@ function validateForm() {
             alertphone();
             return false;
         }
-        if(number_reg_ex.test(document.validate_Adminform.room_num.value) == false){
-            alertnumber();
-            return false;
-        }
-        if(number_reg_ex.test(document.validate_Adminform.price_per_night.value) == false){
-            alertrate();
-            return false;
-        }
+        // if(number_reg_ex.test(document.validate_Adminform.room_num.value) == false){
+        //     alertnumber();
+        //     return false;
+        // }
+        // if(number_reg_ex.test(document.validate_Adminform.price_per_night.value) == false){
+        //     alertrate();
+        //     return false;
+        // }
         else{
             return true;
         }

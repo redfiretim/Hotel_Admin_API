@@ -66,6 +66,10 @@ $(document).ready(function(){
                 <form name='validate_Adminform' id='create-reservation-form' action='#' method='post' onsubmit="return validateForm();" border='0'>
                     <table class="table table-curved table-striped">
                         <tr>
+                            <th>booking num</th>
+                            <td><input type='text' name='accommodation_id' class='form-control' required/></td>
+                        </tr>
+                        <tr>
                             <th>Firstname</th>
                             <td><input type='text' name='first_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required/></td>
                         </tr>
@@ -132,13 +136,14 @@ $(document).ready(function(){
     });
 
     // will run if create Reservation form was submitted
-    $(document).on('submit', '#create-product-form', function(){
+    $(document).on('submit', '#create-reservation-form', function(){
         // get form data
         var form_data=JSON.stringify($(this).serializeObject());
+        console.log(form_data);
 
         // submit form data to api
         $.ajax({
-            url: "hhttp://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservations",
+            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
             type : "POST",
             contentType : 'application/json',
             data : form_data,
