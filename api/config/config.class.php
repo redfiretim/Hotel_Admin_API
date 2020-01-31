@@ -4,8 +4,7 @@ As of PHP 5.4 you can also use the short array syntax, which replaces array() wi
 So DONT use the short hand syntax [] for arrays.
 */
 
-class Config
-{
+class Config {
     // Specifies database properties.
     public static $host = 'localhost';
     public static $db_name = 'reservation_system';
@@ -26,8 +25,7 @@ class Config
 
     // Defines methods to get query content.
     // Tables needed:
-    public function getTables($action)
-    {
+    public function getTables($action) {
         switch ($action) {
             case 'check_availability':
                 return strval($this->r.', '.$this->a);
@@ -36,18 +34,13 @@ class Config
                 return strval($this->a.', '.$this->at.', '.$this->e);
                 break;
             case 'create_customer':
-                return strval($this->c);
-                break;
             case 'read_customer':
-                return strval($this->c);
-                break;
             case 'update_customer':
-                return strval($this->c);
-                break;
             case 'delete_customer':
                 return strval($this->c);
                 break;
             case 'create_reservation':
+            case 'delete_reservation':
                 return strval($this->r);
                 break;
             case 'read_reservations':
@@ -55,9 +48,6 @@ class Config
                 break;
             case 'update_reservation':
                 return strval($this->r.', '.$this->c.', '.$this->a.', '.$this->at);
-                break;
-            case 'delete_reservation':
-                return strval($this->r);
                 break;
             case 'read_one_reservation':
                 return strval($this->a.', '.$this->at.', '.$this->am.', '.$this->apa.', '.$this->ci.', '.$this->co.', '.$this->c.', '.$this->e.', '.$this->et.', '.$this->r);
@@ -68,8 +58,7 @@ class Config
     }
 
     // Columns needed:
-    public function getColumns($action)
-    {
+    public function getColumns($action) {
         switch ($action) {
             case 'check_availability':
                 return array(
@@ -92,21 +81,20 @@ class Config
                 );
                 break;
             case 'create_customer':
-                return array(
+            case 'read_customer':    
+                $array = array(
                     $this->c.'.first_name',
                     $this->c.'.last_name',
                     $this->c.'.email',
                     $this->c.'.phone_num',
                 );
-                break;
-            case 'read_customer':
-                return array(
-                    $this->c.'.id',
-                    $this->c.'.first_name',
-                    $this->c.'.last_name',
-                    $this->c.'.email',
-                    $this->c.'.phone_num',
-                );
+                if ($action === 'read_customer') {
+                    array_push(
+                        $array, 
+                        $this->c.'.id'
+                    );
+                }
+                return $array;
                 break;
             case 'create_reservation':
                 return array(
@@ -121,39 +109,35 @@ class Config
                 );
                 break;
             case 'read_reservations':
-                return array(
-                    $this->r.'.id as booking_num',
-                    $this->c.'.first_name',
-                    $this->c.'.last_name',
-                    $this->a.'.room_num',
-                    $this->r.'.total_price',
-                    $this->r.'.check_in_date',
-                    $this->r.'.check_out_date',
-                );
-                break;
             case 'read_one_reservation':
-                return array(
+                $array = array(
                     $this->r.'.id as booking_num',
-                    $this->r.'.booking_date',
-                    $this->r.'.num_of_pers',
-                    $this->r.'.check_in_date',
-                    $this->r.'.check_out_date',
-                    $this->r.'.num_of_nights',
-                    $this->r.'.total_price',
                     $this->c.'.first_name',
                     $this->c.'.last_name',
-                    $this->c.'.email',
-                    $this->c.'.phone_num',
-                    $this->e.'.name as establishments_name',
-                    $this->e.'.zipcode',
-                    $this->e.'.street_name',
-                    $this->e.'.street_num',
-                    $this->co.'.name as country_name',
-                    $this->ci.'.name as city_name',
-                    $this->at.'.name as accommodation_types_name',
-                    $this->a.'.price_per_night',
                     $this->a.'.room_num',
+                    $this->r.'.total_price',
+                    $this->r.'.check_in_date',
+                    $this->r.'.check_out_date',
                 );
+                if ($action === 'read_one_reservation') {
+                    array_push(
+                        $array,
+                        $this->r.'.booking_date',
+                        $this->r.'.num_of_pers',
+                        $this->r.'.num_of_nights',
+                        $this->c.'.email',
+                        $this->c.'.phone_num',
+                        $this->e.'.name as establishments_name',
+                        $this->e.'.zipcode',
+                        $this->e.'.street_name',
+                        $this->e.'.street_num',
+                        $this->co.'.name as country_name',
+                        $this->ci.'.name as city_name',
+                        $this->at.'.name as accommodation_types_name',
+                        $this->a.'.price_per_night'
+                    );
+                }
+                return $array;
                 break;
             default:
                 return 'no valid action';
@@ -176,22 +160,22 @@ class Config
                 );
                 break;
             case 'read_reservations':
-                return array(
-                    $this->r.'.customer_id = '.$this->c.'.id',
-                    $this->r.'.accommodation_id = '.$this->a.'.id',
-                    $this->a.'.establishment_id = '.$this->e.'.id',
-                );
-                break;
             case 'read_one_reservation':
-                return array(
+                $array = array(
                     $this->r.'.customer_id = '.$this->c.'.id',
                     $this->r.'.accommodation_id = '.$this->a.'.id',
                     $this->a.'.establishment_id = '.$this->e.'.id',
-                    $this->a.'.accommodation_type_id = '.$this->at.'.id',
-                    $this->at.'.establishment_type_id = '.$this->et.'.id',
-                    $this->e.'.country_id = '.$this->co.'.id',
-                    $this->e.'.city_id = '.$this->ci.'.id',
                 );
+                if ($action === 'read_one_reservation') {
+                    array_push(
+                        $array,
+                        $this->a.'.accommodation_type_id = '.$this->at.'.id',
+                        $this->at.'.establishment_type_id = '.$this->et.'.id',
+                        $this->e.'.country_id = '.$this->co.'.id',
+                        $this->e.'.city_id = '.$this->ci.'.id'
+                    );
+                }
+                return $array;    
                 break;
             default:
                 return 'no valid action';
