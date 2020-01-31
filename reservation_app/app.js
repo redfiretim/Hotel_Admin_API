@@ -53,19 +53,6 @@ $(document).ready(function(){
             endDate = $(this).datepicker('getDate'); 
             $("#from").datepicker("option", "maxDate", endDate); 
         }) 
-
-
-        // CODE NOT USED!!
-        // // SET DATE in inputfield
-        // function getDate( element ) {
-        //     var date;
-        //     try {
-        //         date = $.datepicker.parseDate( dateFormat, element.value );
-        //     } catch( error ) {
-        //         date = null;
-        //     }
-        //     return date;
-        // }
     });
 
 
@@ -94,14 +81,14 @@ $(document).ready(function(){
 
 
 
-        // app html template
-        var app_html=`
-        <div class="container">
-        <!-- page-steps needed for displaying and changing the heading -->
-        <div class="page-steps">
-            <div class="page-circle"><p>1</p></div>
-            <h1 class="page_title">Choose dates</h1>
-        </div>
+    // app html template
+    var app_html=`
+    <div class="container">
+    <!-- page-steps needed for displaying and changing the heading -->
+    <div class="page-steps">
+        <div class="page-circle"><p>1</p></div>
+        <h1 class="page_title">Choose dates</h1>
+    </div>
         
         <!-- page-content needed for displaying and changing the content from steps -->
         <div id="page-content">
@@ -140,6 +127,7 @@ $(document).ready(function(){
             </form>
         </div>
     </div>`;
+
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
 });
@@ -162,18 +150,18 @@ function changePageCircle(page_circle){
 
 
 // catches submit button, checks input in validatform() and if true goes to Ajax send
-$(document).on('submit', '#check_availability_form', function(){
+// $(document).on('submit', '#check_availability_form', function(){
     
-    if(validateForm()){
-        sendInput()
-    }
-});
+//     if(validateForm()){
+//         sendInput()
+//     }
+// });
 
 
 
-
+$(document).on('submit', '#check_availability_form', function(){
 // will run if 'create product' form was submitted
-function sendInput(){
+// function sendInput(){
     // get form data
     var form_data=JSON.stringify($(this).serializeObject());
 
@@ -185,33 +173,19 @@ function sendInput(){
         type : "GET",
         action : "read_accommodation_types",
         contentType : 'application/json',
-        data : form_data,
-        // crossDomain: true,
-        // headers: {
-        //     // Set any custom headers here.
-        //     // If you set any non-simple headers, your server must include these
-        //     // headers in the 'Access-Control-Allow-Headers' response header.
-        //   },
-        // xhrFields: {
-        //     // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
-        //     // This can be used to set the 'withCredentials' property.
-        //     // Set the value to 'true' if you'd like to pass cookies to the server.
-        //     // If this is enabled, your server must respond with the header
-        //     // 'Access-Control-Allow-Credentials: true'.
-        //     withCredentials: true
-        //   },
-        
+        data : form_data,     
         success : function(result) {
-            // product was created, go back to products list
-            // showProducts();
+            // go to function to show results
+            console.log(result);
+            showAvailableRoom(result);
         },
         error: function(xhr, resp, text) {
             // show error to console
-            console.log(xhr, resp, text);
+            // console.log(xhr, resp, text);
         }
     });
     return false;
-}
+})
 
 
 // function to make form values to json format
@@ -230,4 +204,6 @@ $.fn.serializeObject = function(){
     });
     return o;
 };
+
+
 
