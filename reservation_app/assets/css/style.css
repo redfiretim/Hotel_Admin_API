@@ -110,10 +110,10 @@
             border-color: #076EC3;
             float: right;
         }
-        .room_block.btn-primary:active{
+        /* .room_block.btn-primary:active{
             background-color: #F2C572;
             height: 226px;
-        }
+        } */
         .btn>u {
             font-size: 12px;
         }
@@ -190,7 +190,7 @@
     .room_block{
         float: left;
     }
-    .room_block, .room_block:hover {
+    .room_block, .room_block:hover{
         margin-top: 1%;
         margin-bottom: 1%;
         padding: 2%;
@@ -209,19 +209,6 @@
         visibility: hidden; 
         position: absolute; 
     }
-
-    /* .room_block > input:checked{
-        /* cursor:pointer;
-        border:2px solid transparent;
-    }
-
-    span.glyphicon.glyphicon-ok {
-        display: none;
-    }
-
-    span.glyphicon.glyphicon-ok:checked{
-        display: block;
-    } */
     /* CHOOSE ROOM */
 /* STEP 2 */
 

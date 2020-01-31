@@ -21,14 +21,36 @@
     function readRoomsTemplate(data){
         var step_content = `<div class="room-container">`;
             $.each(data, function(index, data) {
-
                 console.log(data);
+
+                var bedType;
             
+            // REBUILD RADIO BUTTON SYSTEM VIA THIS LINK: https://markheath.net/post/customize-radio-button-css
+
             // NEEDED FOR ADD CLASS TO SHOW BORDER AROUND SELECTED ROOM
             // $(document).on('click', '.room_block', function(){
             //     $('.room_block.active').removeClass("btn-primary:active"); 
             //     $(this).addClass("btn-primary:active"); 
             // });
+
+                if((data.name) == "Standard triple room")
+                {
+                    bedType = "Separate beds";
+                }
+                if((data.name) == "Standard double room")
+                {
+                    bedType = "Queen size bed";
+                }
+                if((data.name) == "Deluxe double room")
+                {
+                    bedType = "King size bed";
+                }
+                // else{
+                //     bedType = "Unknown";
+                // }
+
+                console.log(bedType);
+
 
                 step_content += `
                 <div class="room_block" onclick="">
@@ -38,11 +60,10 @@
                             <img id="room_tumbnail" src="../reservation_app/assets/images/`+ data.image_one +`" alt="Room"/>
                         </div>
                         <div class="col-xs-6 col-md-4 room_properties">                        
-                            <h4> Room ` + data.room_number + ` <span class="glyphicon glyphicon-ok"></span></h4>
-                            <p><span class="glyphicon glyphicon-user properties"></span>` + data.max_guests + `</p>
-                            <p><span class="glyphicon glyphicon-bed properties"></span>` + data.amenity1 + `</p>
-                            <p><span class="glyphicon glyphicon-equalizer"></span>` + data.amenity2 + `</p>
-                            <p><span class="glyphicon glyphicon-fullscreen"></span>` + data.amenity3 + `</p>
+                            <h4>` + data.name + ` <span class="glyphicon glyphicon-ok"></span></h4>
+                            <p><span class="glyphicon glyphicon-user properties"></span> ` + data.max_pers + `</p>
+                            <p><span class="glyphicon glyphicon-bed properties"></span> ` + bedType + `</p>
+                            <p><span class="glyphicon glyphicon-plus"></span> ` + data.amenities + `</p>
                         </div>
                         <div class="col-xs-6 col-md-4">
                             <p>`+ data.description +`</p>
