@@ -10,10 +10,10 @@ $phone_num = $data->phone_num;
 
 // Validates data with regular expressions.
 if (
-preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/',$first_name) && 
-preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/',$last_name) && 
-preg_match('/^([A-Za-z0-9]{1}[A-Za-z0-9\.\_\-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}$/',$email) &&
-preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/',$phone_num)) {
+preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/', $first_name) &&
+preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/', $last_name) &&
+preg_match('/^([A-Za-z0-9]{1}[A-Za-z0-9\.\_\-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}$/', $email) &&
+preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/', $phone_num)) {
     // Defines query content.
     $customer_columns = $config->getColumns('read_customer');
     $customer_table = $config->getTables('create_customer');
@@ -36,7 +36,9 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/',$phone_num
         // set response code - 201 CREATED
         http_response_code(201);
 
-        echo json_encode($customer_id);
+        if ($requested_action == basename(__FILE__, '.php')) {
+            echo json_encode($customer_id);
+        }
     }
 } else {
     // bad request

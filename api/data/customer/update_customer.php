@@ -11,18 +11,18 @@ $phone_num = $data->phone_num;
 
 // Validates customer details with regular expressions.
 if (
-preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/',$first_name) && 
-preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/',$last_name) && 
-preg_match('/^([A-Za-z0-9]{1}[A-Za-z0-9\.\_\-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}$/',$email) &&
-preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/',$phone_num)) {
+preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/', $first_name) &&
+preg_match('/^([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}$/', $last_name) &&
+preg_match('/^([A-Za-z0-9]{1}[A-Za-z0-9\.\_\-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}$/', $email) &&
+preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/', $phone_num)) {
     // defines query parameters.
     $table = $config->getTables('update_customer');
     $data = array(
-        "first_name" => $first_name, 
-        "last_name" => $last_name, 
-        "email" => $email, 
-        "phone_num" => $phone_num);
-    $conditions = array("id" => $customer_id);
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'email' => $email,
+        'phone_num' => $phone_num, );
+    $conditions = array('id' => $customer_id);
     // execute query.
     $stmt = $dshelper->update($table, $data, $conditions);
     // count result rows.
@@ -32,11 +32,14 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/',$phone_num
         // response received, updated
         http_response_code(200);
         // tell the user that update was succesful.
-        echo json_encode(array('message' => 'Customer updated.'));
+        if ($requested_action == basename(__FILE__, '.php')) {
+            echo json_encode(array('message' => 'Customer updated.'));
+        }
     } else {
         // bad request
         http_response_code(400);
         // tell the user that update failed.
+
         echo json_encode(array('message' => 'Update failed'));
     }
 } else {
