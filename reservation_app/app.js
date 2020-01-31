@@ -92,7 +92,7 @@ $(document).ready(function(){
         
         <!-- page-content needed for displaying and changing the content from steps -->
         <div id="page-content">
-            <form id="check_availability_form" action="#">
+            <form name='validate_Userform' id="check_availability_form" action="#">
                 <div class="row" id="first-row">
                     <div class="has-feedback col-xs-6 col-md-4">
                         <label class="control-label" for="picker">Arrival date:</label>
@@ -128,10 +128,10 @@ $(document).ready(function(){
         </div>
     </div>`;
 
-    $(document).on('click', '.page-button' , function(){
-        return validateFormStep1();
-        //return saveForm();
-    });
+    // $(document).on('click', '.page-button' , function(){
+    //     return validateFormStep1();
+    //     //return saveForm();
+    // });
 
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
@@ -156,6 +156,7 @@ $(document).on('submit', '#check_availability_form', function(){
 // will run if 'create product' form was submitted
 // function sendInput(){
     // get form data
+    //validateFormStep1();
     var form_data=JSON.stringify($(this).serializeObject());
 
     console.log(form_data);
@@ -178,7 +179,7 @@ $(document).on('submit', '#check_availability_form', function(){
         }
     });
     return false;
-})
+});
 
 
 // function to make form values to json format
@@ -197,6 +198,3 @@ $.fn.serializeObject = function(){
     });
     return o;
 };
-
-
-

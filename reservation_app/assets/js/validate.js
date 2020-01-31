@@ -10,7 +10,7 @@ function validateFormStep1() {
     // Check on pattern and empty
     if(checkNotEmptyStep1() && checkPatternStep1()){
         // If is not empty and checked than go to form_step4
-        form_step2();
+        showAvailableRoom();
         return true;
     }else{
         return false;
@@ -47,7 +47,7 @@ function validateFormStep1() {
             alert();
             return false;
         }
-        if(date_reg_ex.test(document.validate_Userform.check_ou_date.value) == false){
+        if(date_reg_ex.test(document.validate_Userform.check_out_date.value) == false){
             alert();
             return false;
         }
@@ -70,19 +70,23 @@ function validateFormStep1() {
         /*
         * EMPTY FOR ADD RESERVATION AND EDIT RESERVATION ADMIN SIDE
         */
-        if(document.validate_Userform.first_name.value == "") {
+        if(document.validate_Userform.check_in_date.value == "") {
             alert();
             return false;
         }
-        if(document.validate_Userform.last_name.value == "") {
+        if(document.validate_Userform.check_out_date.value == "") {
             alert();
             return false;
         }
-        if(document.validate_Userform.email.value == "") {
+        if(document.validate_Userform.numberNights.value == "") {
             alert();         
             return false;
         }
-        if(document.validate_Userform.phonenumber.value == "") {
+        if(document.validate_Userform.numberGuests.value == "") {
+            alert();
+            return false;
+        }
+        if(document.validate_Userform.numberRooms.value == "") {
             alert();
             return false;
         }
