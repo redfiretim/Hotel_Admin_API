@@ -24,19 +24,21 @@ class Customer {
          );
         // Validate JSON object values by using regular expressions.
         foreach($data as $property => $value) {
-            if (preg_match($pattern_arr[$property], $value)) {
-                // Push keys and values in arrays if validation was succesful.
-                array_push($keys_arr, $property);
-                array_push($values_arr, $value);
-                //
-                if ($property === 'id') {
-                    $this->condition = array('id' => $value);
+            if (isset($pattern_arr[$property])) {
+                if (preg_match($pattern_arr[$property], $value)) {
+                    // Push keys and values in arrays if validation was succesful.
+                    array_push($keys_arr, $property);
+                    array_push($values_arr, $value);
+                    //
+                    if ($property === 'id') {
+                        $this->condition = array('id' => $value);
+                    }
+                } else {
+                    // Bad request.
+                    http_response_code(400);
+                    // Tells the user that something went wrong.
+                    echo json_encode(array('message' => 'Looks like something went wrong'));
                 }
-            } else {
-                // Bad request.
-                http_response_code(400);
-                // Tells the user that something went wrong.
-                echo json_encode(array('message' => 'Looks like something went wrong'));
             }
         }
         // Defines an array consisting of key => value pairs.
