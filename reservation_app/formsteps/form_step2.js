@@ -1,7 +1,7 @@
 // $(document).ready(function(){
     // show html form when 'create product' button was clicked
 
-
+function form_step2(){
     function showAvailableRoom(result){
         var json_data = result["records"];
         console.log(json_data);
@@ -62,4 +62,4 @@
         changePageCircle("2");
         changePageTitle("Choose room");
     };
-// });
+};

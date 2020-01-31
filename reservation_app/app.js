@@ -128,6 +128,11 @@ $(document).ready(function(){
         </div>
     </div>`;
 
+    $(document).on('click', '.page-button' , function(){
+        return validateFormStep1();
+        //return saveForm();
+    });
+
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
 });
@@ -147,18 +152,6 @@ function changePageCircle(page_circle){
     document.title=page_circle;
 }
  
-
-
-// catches submit button, checks input in validatform() and if true goes to Ajax send
-// $(document).on('submit', '#check_availability_form', function(){
-    
-//     if(validateForm()){
-//         sendInput()
-//     }
-// });
-
-
-
 $(document).on('submit', '#check_availability_form', function(){
 // will run if 'create product' form was submitted
 // function sendInput(){
