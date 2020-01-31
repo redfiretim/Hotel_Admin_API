@@ -37,7 +37,7 @@ class DSHelper
         // Return last ID.
         $last_id = $this->dsh->lastInsertId();
 
-        return $last_id;
+        return (int)$last_id;
     }
 
     public function filter($tables, $columns, $var_conditions, $const_conditions = '')

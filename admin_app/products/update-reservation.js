@@ -171,9 +171,8 @@ $(document).ready(function(){
         var form_data=JSON.stringify($(this).serializeObject());
         // submit form data to api
         $.ajax({
-            url: "../api/#.php",
+            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=update_reservation",
             type : "POST",
-            action : "update_reservation",
             contentType : 'application/json',
             data : form_data,
             success : function(result) {

@@ -2,13 +2,13 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.create-reservation-button', function(){
         // load list of categories
-        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_reservations", function(data){
+        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){
             // build categories option html
             // loop through returned list of data
-            var room_options_html=`<select name='room_type_id' class='form-control' required>`;
+            var room_options_html=`<select name='accommodation_id' class='form-control' required>`;
                 $.each(data.records, function(key, val){
                     //room_type_id is for rooms and type is for de name of the rooms 
-                    room_options_html+=`<option value='` + val.accommodation_id + `'>` + val.accommodation_types_name + `</option>`;
+                    room_options_html+=`<option value='` + val.id + `'>` + val.name + ' ' + val.room_num + `</option>`;
                 });
             room_options_html+=`</select>`;
         
@@ -66,10 +66,6 @@ $(document).ready(function(){
                 <form name='validate_Adminform' id='create-reservation-form' action='#' method='post' onsubmit="return validateForm();" border='0'>
                     <table class="table table-curved table-striped">
                         <tr>
-                            <th>booking num</th>
-                            <td><input type='text' name='accommodation_id' class='form-control' required/></td>
-                        </tr>
-                        <tr>
                             <th>Firstname</th>
                             <td><input type='text' name='first_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required/></td>
                         </tr>
@@ -108,6 +104,7 @@ $(document).ready(function(){
                             <th>Room type</th>
                             <td>`+room_options_html+`</td>
                         </tr>
+                        <!-- 
                         <tr>
                             <th>Room number</th>
                             <td><input type='text' name='room_num' class='form-control' pattern='[0-9]*' value='generated form db based on room type' disabled/></td>
@@ -115,8 +112,8 @@ $(document).ready(function(){
                         <tr>
                             <th>Room rate</th>
                             <td><input type='text' min='60' name='price_per_night' class='form-control' pattern='[0-9]*' value='generated form db based on room type' disabled /></td>
-                        </tr>
-                        <!-- button to submit form -->
+                        </tr>-->
+                        <!--button to submit form -->
                         <tr>
                             <td colspan="2">
                                 <button type='submit' class='btn btn-primary'>
@@ -143,11 +140,10 @@ $(document).ready(function(){
 
         // submit form data to api
         $.ajax({
-            url: "http://178.18.138.109/educom/hotel_code/api/index.php",
+            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
             type : "POST",
             contentType : 'application/json',
             data : form_data,
-            // action : "create_reservation",
             success : function(result) {
                 console.log(result);
                 // Reservation was created, go back to products list

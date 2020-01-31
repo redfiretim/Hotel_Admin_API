@@ -32,10 +32,9 @@ $(document).ready(function(){
         $("#page-content").html(step_content);
         
         $(document).on('click', '.page-button3' , function(){
-            return validateForm();
-            return saveForm();
+            return validateFormStep3();
+            //return saveForm();
         });
-
 
         changePageCircle("3");
         changePageTitle("Fill in contact details");
