@@ -143,12 +143,13 @@ $(document).ready(function(){
 
         // submit form data to api
         $.ajax({
-            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
+            url: "http://178.18.138.109/educom/hotel_code/api/index.php",
             type : "POST",
             contentType : 'application/json',
             data : form_data,
-            action : "create_reservation",
+            // action : "create_reservation",
             success : function(result) {
+                console.log(result);
                 // Reservation was created, go back to products list
                 showProducts();
             },

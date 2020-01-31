@@ -21,26 +21,26 @@ function validateForm() {
         /*
         * EMPTY FOR ADD RESERVATION AND EDIT RESERVATION ADMIN SIDE
         */
-        if(document.validate_Userform.from_picker == ""){
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.numberNights == ""){
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.to_picker == ""){
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.numberGuests == ""){
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.numberRooms == ""){
-            alert();
-            return false;
-        }
+        // if(document.validate_Userform.from_picker == ""){
+        //     alert();
+        //     return false;
+        // }
+        // if(document.validate_Userform.numberNights == ""){
+        //     alert();
+        //     return false;
+        // }
+        // if(document.validate_Userform.to_picker == ""){
+        //     alert();
+        //     return false;
+        // }
+        // if(document.validate_Userform.numberGuests == ""){
+        //     alert();
+        //     return false;
+        // }
+        // if(document.validate_Userform.numberRooms == ""){
+        //     alert();
+        //     return false;
+        // }
         if(document.validate_Userform.first_name.value == "") {
             alert();
             return false;
