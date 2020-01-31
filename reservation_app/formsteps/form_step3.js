@@ -33,6 +33,7 @@ $(document).ready(function(){
         
         $(document).on('click', '.page-button3' , function(){
             return validateForm();
+            return saveForm();
         });
 
 
