@@ -12,6 +12,9 @@ include_once 'config/dsconnect.class.php';
 include_once 'config/dshelper.class.php';
 include_once 'data/shared/utility.php';
 
+// include customer class
+include_once 'data/customer/customer.class.php';
+
 //DEVELOPING ENVIRONMENT
 include_once 'config/config.class.php';
 $dsh = DSConnect::getInstance();
@@ -30,6 +33,9 @@ if (isset($_GET['action'])) {
 
     //Get data from the front-end, contains a assosstive array
     $data = json_decode(file_get_contents('php://input'));
+    // Create Customer object.
+    $customer = new Customer($data, $dshelper);
+
     //Switch case to run the requested case (based on $requested_action)
     switch ($requested_action) {
         //Case when all reservations need to be fetch from the database. Return an mutlidimesional array contains all content about each reservation.
@@ -46,11 +52,11 @@ if (isset($_GET['action'])) {
             break;
         //Case when a customer has to be inserted in the database, to create a reservation. Returns either a new or already existing ID
         case 'create_customer':
-            include_once 'data/customer/create_customer.php';
+            $customer->createCustomer();
             break;
         //Case when customer details have to be updated in the database,
         case 'update_customer':
-            include_once 'data/customer/update_customer.php';
+            $customer->updateCustomer();
             break;
         //Case when a reservation has to be inserted in the database, uses read_availability, read_accomodation, create_customer.
         case 'create_reservation':
@@ -62,8 +68,7 @@ if (isset($_GET['action'])) {
             break;
         //Case when a reservation has to be updated in the database.
         case 'update_reservation':
-            include_once 'data/reservation/update_reservation.php';
-            break;
+        break;
         //Case when a reservation has to be deleted from the database.
         case 'delete_reservation':
             include_once 'data/reservation/delete_reservation.php';
