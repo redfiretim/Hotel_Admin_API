@@ -101,7 +101,7 @@ $(document).ready(function(){
                     </div>
                     <div class="col-xs-6 col-md-4 quantity">
                         <label class="control-label" for="picker">Nights:</label></br>
-                        <input class="picker_night"  type="number" name="numberNights" min="1" max="14" value="1">
+                        <input class="picker_night"  type="number" name="numberNights" min="1" max="14" value="1" readonly>
                     </div>
                     <div class="has-feedback col-xs-6 col-md-4">
                         <label class="control-label" for="to">Departure date:</label></br>
