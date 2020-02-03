@@ -16,6 +16,8 @@ $(document).ready(function(){
             var total_price = data.total_price;
             var check_in_date = data.check_in_date;
             var check_out_date = data.check_out_date;
+            var customer_id = data.customer_id;
+
 
             // load list of rooms
             $.getJSON("../admin_app/MOCK_DATA.json", function(data){  
@@ -107,6 +109,7 @@ $(document).ready(function(){
                         <tr>
                             <td>Email</td>
                             <td><input value=\"` + email + `\" type='text' name='email' class='form-control' pattern='([A-Za-z0-9]{1}[A-Za-z0-9._-]{0,63}@[A-Za-z0-9]{1,80}[\.]{1}[A-Za-z]{2,20}){0,150}' required /></td>
+                            <input type="hidden" value="` + customer_id + `">
                         </tr>
                         <!-- Checkin field -->
                         <tr>

@@ -5,7 +5,7 @@ $(document).ready(function(){
         $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){
             // build categories option html
             // loop through returned list of data
-            room_options_html = `<select id='accommodation_select' name='accomodation_id' class='form_control' required>`; 
+            room_options_html = `<select id='accommodation_select' name='accommodation_id' class='form_control' required>`; 
 			room_options_html += `<option value="free">Select dates to show rooms</option>`; 
 			room_options_html+= `</select>`; 
 		        

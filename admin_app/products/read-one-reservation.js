@@ -7,6 +7,8 @@ $(document).ready(function(){
 
         $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation&id=" + id, function(data){
             // start html
+
+   
             var read_one_product_html=`
                 <!-- when clicked, it will show the product's list -->
                 <div id='read-product' class='btn btn-primary pull-right m-b-15px read-products-button button-margin'>

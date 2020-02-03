@@ -31,14 +31,14 @@ function validateForm() {
             alertempty();
             return false;
         }
-        if(document.validate_Adminform.room_num.value == "") {
-            alertnumber();
-            return false;
-        }
-        if(document.validate_Adminform.price_per_night.value == "") {
-            alertrate();
-            return false;
-        }
+        // if(document.validate_Adminform.room_num.value == "") {
+        //     alertnumber();
+        //     return false;
+        // }
+        // if(document.validate_Adminform.price_per_night.value == "") {
+        //     alertrate();
+        //     return false;
+        // }
         // if(document.validate_Adminform.total_price.value == "") {
         //     alerttotal_price();
         //     return false;
