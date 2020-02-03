@@ -3,8 +3,8 @@ function setValuesInHtml(){
     // get elements by id and push the sorage item in the div
     // For step 1
     document.getElementById("numberNights").innerHTML = sessionStorage.getItem("numberNights");
-    document.getElementById("startDate").innerHTML = sessionStorage.getItem("startDate");
-    document.getElementById("endDate").innerHTML = sessionStorage.getItem("endDate");
+    document.getElementById("check_in_date").innerHTML = sessionStorage.getItem("check_in_date");
+    document.getElementById("check_out_date").innerHTML = sessionStorage.getItem("check_out_date");
     document.getElementById("numberGuests").innerHTML = sessionStorage.getItem("numberGuests");
     document.getElementById("numberRooms").innerHTML = sessionStorage.getItem("numberRooms");
     // For step 2
@@ -22,7 +22,8 @@ function setValuesInHtml(){
 }
 
 function form_step4(){
-    var step_content=`   
+    var step_content=`  
+    <form name="step4_form" id="step4_form"> 
         <div class="row step4">
             <div class="col-sm-2">
                 <b>Nights:</b></br>
@@ -30,11 +31,11 @@ function form_step4(){
             </div>
             <div class="col-sm-3">
                 <b>Arrival date:</b></br>
-                <div id="startDate"> </div>
+                <div id="check_in_date"> </div>
             </div>
             <div class="col-sm-3">
                 <b>Departure date:</b></br>
-                <div id="endDate"> </div>
+                <div id="check_out_date"> </div>
             </div>
             <div class="col-sm-2">
                 <b>Number of guests:</b></br>
@@ -83,37 +84,36 @@ function form_step4(){
             </div>
         </div>
 
-        <button class='btn btn-primary page-button4'>
+        <button type="submit" class='btn btn-primary page-button4'>
             <span class='glyphicon glyphicon-chevron-right pull-right'></span>Book now
         </button>
-        <button type="button" class="btn btn-link page-button2">< One step back</button>`;
+        <button type="button" class="btn btn-link page-button2">< One step back</button>
+    </form>`;
 
     // inject html to 'page-content' of our app
     $("#page-content").html(step_content);
     
     changePageCircle("4");
     changePageTitle("Summary");
-
-
-
-    // $(document).on('submit', '#create-product-form', function(){
-    //     // get form data
-    //     var form_data=JSON.stringify($(this).serializeObject());
-    //     // submit form data to api
-    //     $.ajax({
-    //         url: "../api/#.php",
-    //         type : "POST",
-    //         contentType : 'application/json',
-    //         data : form_data,
-    //         success : function(result) {
-    //             // Reservation was created, go back to products list
-    //             //showProducts();
-    //         },
-    //         error: function(xhr, resp, text) {
-    //             // show error to console
-    //             console.log(xhr, resp, text);
-    //         }
-    //     });
-    //     return false;
-    // });
 }
+
+$(document).on("submit", "#step4_form", function(){
+    // get form data
+    var form_data=JSON.stringify($(this).serializeObject());
+    // submit form data to api
+    $.ajax({
+        url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
+        type : "POST",
+        contentType : 'application/json',
+        data : form_data,
+        success : function(result) {
+            // Reservation was created, go back to products list
+            form_step5();
+        },
+        error: function(xhr, resp, text) {
+            // show error to console
+            console.log(xhr, resp, text);
+        }
+    });
+    return false;
+});

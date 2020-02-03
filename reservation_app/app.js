@@ -84,11 +84,11 @@ $(document).ready(function(){
     // app html template
     var app_html=`
     <div class="container">
-    <!-- page-steps needed for displaying and changing the heading -->
-    <div class="page-steps">
-        <div class="page-circle"><p>1</p></div>
-        <h1 class="page_title">Choose dates</h1>
-    </div>
+        <!-- page-steps needed for displaying and changing the heading -->
+        <div class="page-steps">
+            <div class="page-circle"><p>1</p></div>
+            <h1 class="page_title">Choose dates</h1>
+        </div>
         
         <!-- page-content needed for displaying and changing the content from steps -->
         <div id="page-content">
@@ -101,7 +101,7 @@ $(document).ready(function(){
                     </div>
                     <div class="col-xs-6 col-md-4 quantity">
                         <label class="control-label" for="picker">Nights:</label></br>
-                        <input class="picker_night"  type="number" name="numberNights" min="1" max="14" value="1" readonly>
+                        <input class="picker_night" type="number" name="numberNights" min="1" max="14" value="1" readonly>
                     </div>
                     <div class="has-feedback col-xs-6 col-md-4">
                         <label class="control-label" for="to">Departure date:</label></br>
@@ -128,11 +128,6 @@ $(document).ready(function(){
         </div>
     </div>`;
 
-    // $(document).on('click', '.page-button' , function(){
-    //     return validateFormStep1();
-    //     //return saveForm();
-    // });
-
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
 });
@@ -153,14 +148,8 @@ function changePageCircle(page_circle){
 }
  
 $(document).on('submit', '#check_availability_form', function(){
-// will run if 'create product' form was submitted
-// function sendInput(){
     // get form data
-    //validateFormStep1();
     var form_data=JSON.stringify($(this).serializeObject());
-
-    console.log(form_data);
-
     // submit form data to api
     $.ajax({
         url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
@@ -171,13 +160,16 @@ $(document).on('submit', '#check_availability_form', function(){
         success : function(result) {
             // go to function to show results
             console.log(result);
-            showAvailableRoom(result);
+            if(saveFormStep2() == true){
+                showAvailableRoom(result);
+            }
         },
         error: function(xhr, resp, text) {
             // show error to console
             // console.log(xhr, resp, text);
         }
     });
+
     return false;
 });
 

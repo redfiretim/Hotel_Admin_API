@@ -1,8 +1,7 @@
+// get the availible rooms
 function showAvailableRoom(result){
     var json_data = result["records"];
-    console.log(json_data);
     readRoomsTemplate(json_data, "");
-    console.log("in show available room functie")
 }
 
 // function to show list of products
@@ -74,8 +73,6 @@ function readRoomsTemplate(data){
     changePageCircle("2");
     changePageTitle("Choose room");
 };
-
-
 
 $(document).on('submit', '#room_type_form', function(){
     // Put form user input into Local Storage
