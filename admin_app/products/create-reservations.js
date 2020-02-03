@@ -5,17 +5,15 @@ $(document).ready(function(){
         $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){
             // build categories option html
             // loop through returned list of data
-            var room_options_html=`<select name='accommodation_id' class='form-control' required>`;
-                $.each(data.records, function(key, val){
-                    //room_type_id is for rooms and type is for de name of the rooms 
-                    room_options_html+=`<option value='` + val.id + `'>` + val.name + ' ' + val.room_num + `</option>`;
-                });
-            room_options_html+=`</select>`;
-        
+            room_options_html = `<select id='accommodation_select' name='accomodation_id' class='form_control' required>`; 
+			room_options_html += `<option value="free">Select dates to show rooms</option>`; 
+			room_options_html+= `</select>`; 
+		        
             // Function for datepicker
             $(function() {
                 var startDate;
                 var endDate;
+				var startBoolean = false; 
                 //var selectedMonthName = months[$("#datepicker").datepicker('getDate').getMonth()];
                 
                 // FIRST DATE PICKER
@@ -34,6 +32,7 @@ $(document).ready(function(){
         
                 // Changes minDate of "to" picker to user-input of "from" picker
                 $('#from').change(function() { 
+					startBoolean = true;
                     startDate = $(this).datepicker('getDate'); 
                     $("#to").datepicker("option", "minDate", startDate); 
                 }) 
@@ -51,8 +50,43 @@ $(document).ready(function(){
         
                 // Changes maxDate of "from" picker to user-input of "to" picker
                 $('#to').change(function() { 
-                    endDate = $(this).datepicker('getDate'); 
-                    $("#from").datepicker("option", "maxDate", endDate); 
+				
+					endDate = $(this).datepicker('getDate'); 
+					startDate = $("#from").datepicker('getDate'); 
+                    $("#to").datepicker("option", "minDate", startDate); 
+					$("#from").datepicker("option", "maxDate", endDate); 
+					
+					if(startBoolean) {	
+						// get form data
+						var form_data=JSON.stringify($('#create-reservation-form').serializeObject());
+						console.log(form_data);
+
+						// submit form data to api
+						$.ajax({
+							url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations",
+							type : "POST",
+							contentType : 'application/json',
+							data : form_data,
+							success : function(result) {
+								console.log(result);
+								
+								$('#accommodation_select').empty(); 
+								$.each(result.records, function(key, val){
+									
+									$('#accommodation_select').append('<option value="'+val.id+'">'+val.name+' ' + val.room_num + '</option>'); 
+					
+								}); 
+								// Reservation was created, go back to products list
+
+							},
+							error: function(xhr, resp, text) {
+								// show error to console
+								console.log(xhr, resp, text);
+							}
+						});
+						
+						return false;
+					}
                 }) 
             });
 
@@ -131,7 +165,9 @@ $(document).ready(function(){
                 changePageTitle("New reservation");
         });
     });
-
+	
+	
+	
     // will run if create Reservation form was submitted
     $(document).on('submit', '#create-reservation-form', function(){
         // get form data
