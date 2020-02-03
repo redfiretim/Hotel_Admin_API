@@ -175,19 +175,19 @@ function validateFormStep3() {
         var mobile_number_reg_ex =  /^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/;
 
         if(name_reg_ex.test(document.validate_Userform.first_name.value) == false){
-            alert();
+            alertfirstname();
             return false;
         }
         if(name_reg_ex.test(document.validate_Userform.last_name.value) == false){
-            alert();
+            alertlastname();
             return false;
         }
         if(email_reg_ex.test(document.validate_Userform.email.value) == false){
-            alert();
+            alertemail();
             return false;
         }
         if(mobile_number_reg_ex.test(document.validate_Userform.phonenumber.value) == false){
-            alert();
+            alertphone();
             return false;
         }
         else{
