@@ -8,6 +8,15 @@ function saveForm() {
     setValuesInHtml();
     return true;
 }
+function saveFormStep2() {
+    //nothing to work with, get out of here
+    if(typeof window.sessionStorage === "undefined"){
+        return;
+    }
+    setValues("input");
+    return true;
+}
+
 
 function loadForm() {
     //nothing to work with, get out of here

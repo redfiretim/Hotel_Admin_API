@@ -86,7 +86,7 @@ function readRoomsTemplate(data){
 $(document).on('submit', '#room_type_form', function(){
     
     // Put form user input into Local Storage
-    if(saveForm() == true){
+    if(saveFormStep2() == true){
         showUserDetailsForm();
     }
 
