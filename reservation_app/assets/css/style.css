@@ -68,9 +68,15 @@
             margin-top: 2px;
             margin-bottom: -5px;
         }
-        p{
+        p, b, .summeryStyling{
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
+        }
+        .summeryStyling{
+            margin-top: -24px;
+            margin-left: 25px;
+            width: 300px;
+            padding: 10px;
         }
     /** FONTS **/
 

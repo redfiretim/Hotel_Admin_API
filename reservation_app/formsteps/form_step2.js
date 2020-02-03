@@ -1,10 +1,7 @@
-
-// function form_step2(){
+// get the availible rooms
 function showAvailableRoom(result){
     var json_data = result["records"];
-    console.log(json_data);
     readRoomsTemplate(json_data, "");
-    console.log("in show available room functie")
 }
 
 // function to show list of products
@@ -21,34 +18,30 @@ function readRoomsTemplate(data){
     var step_content = `<div class="room-container"><form name="room_type_form" id="room_type_form">`;
         // loop through data to generate content radio blocks
         $.each(data, function(index, data) {
-            console.log(data);
-
             var bedType;
-        
-
-            if((data.name) == "Standard triple room")
-            {
+    
+            if((data.name) == "Standard triple room"){
                 bedType = "Separate beds";
             }
-            if((data.name) == "Standard double room")
-            {
+            if((data.name) == "Standard double room"){
                 bedType = "Queen size bed";
             }
-            if((data.name) == "Deluxe double room")
-            {
+            if((data.name) == "Deluxe double room"){
                 bedType = "King size bed";
             }
             // else{
             //     bedType = "Unknown";
             // }
 
-            console.log(bedType);
-
-
             step_content += `
                 <label class="room_block" onclick="">
-                    <input type="radio" name="radioname" value="` + data.name + `" />
-                    
+                    <input type="radio" name="room_name" value="` + data.name + `" />
+                    <input type="hidden" name="room_tumbnail" value="` + data.image_one + `" />
+                    <input type="hidden" name="room_max_pers" value="` + data.max_pers + `" />
+                    <input type="hidden" name="room_bedType" value="` + bedType + `" />
+                    <input type="hidden" name="room_amenities" value="` + data.amenities + `" />
+                    <input type="hidden" name="room_description" value="` + data.description + `" />
+
                     <div class="row">
                         <div class="col-xs-6 col-md-4">
                             <img id="room_tumbnail" src="../reservation_app/assets/images/`+ data.image_one +`" alt="Room"/>
@@ -81,15 +74,9 @@ function readRoomsTemplate(data){
     changePageTitle("Choose room");
 };
 
-
-
 $(document).on('submit', '#room_type_form', function(){
-    
     // Put form user input into Local Storage
     if(saveFormStep2() == true){
         showUserDetailsForm();
     }
-
-
 });
-

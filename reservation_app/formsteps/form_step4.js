@@ -1,116 +1,119 @@
 function setValuesInHtml(){
-    // var inputs=document.getElementsByTagName(tag);
-    // for(var i=0;i<inputs.length;i++){
-    //     inputs[i].value = window.sessionStorage.getItem(inputs[i].name);
-    // } 
     form_step4();
-
-    // var x = document.getElementsByName("fname")[0].tagName;
-    // document.getElementById("demo").innerHTML = x;
-
+    // get elements by id and push the sorage item in the div
+    // For step 1
+    document.getElementById("numberNights").innerHTML = sessionStorage.getItem("numberNights");
+    document.getElementById("check_in_date").innerHTML = sessionStorage.getItem("check_in_date");
+    document.getElementById("check_out_date").innerHTML = sessionStorage.getItem("check_out_date");
+    document.getElementById("numberGuests").innerHTML = sessionStorage.getItem("numberGuests");
+    document.getElementById("numberRooms").innerHTML = sessionStorage.getItem("numberRooms");
+    // For step 2
+    document.getElementById("room_name").innerHTML = sessionStorage.getItem("room_name");
+    document.getElementById("room_max_pers").innerHTML = sessionStorage.getItem("room_max_pers");
+    document.getElementById("room_bedType").innerHTML = sessionStorage.getItem("room_bedType");
+    document.getElementById("room_amenities").innerHTML = sessionStorage.getItem("room_amenities");
+    document.getElementById("room_description").innerHTML = sessionStorage.getItem("room_description");
+    document.getElementById("room_tumbnail").innerHTML = sessionStorage.getItem("room_tumbnail");
+    // For step 3
     document.getElementById("first_name").innerHTML = sessionStorage.getItem("first_name");
     document.getElementById("last_name").innerHTML = sessionStorage.getItem("last_name");
-
-    // var inputs = document.getElementsByTagName("first_name");
-    // document.getElementById("demo").innerHTML = inputs;
-    console.log(inputs);
+    document.getElementById("email").innerHTML = sessionStorage.getItem("email");
+    document.getElementById("phonenumber").innerHTML = sessionStorage.getItem("phonenumber");
 }
 
 function form_step4(){
-    var step_content=`   
+    var step_content=`  
+    <form name="step4_form" id="step4_form"> 
         <div class="row step4">
             <div class="col-sm-2">
-                <label for="numberNights"><span class="calendar">Nights:</span></label></br>
-                <!-- <input type="number" name="numberNights" min="1" max="14" value="1"> -->
+                <b>Nights:</b></br>
+                <div id="numberNights"> </div>
             </div>
             <div class="col-sm-3">
-                <label for="startDate"><span class="calendar">Arrival date:</span></label></br>
-                <!--<input class="date_input" type="date" id="startDate" name="startDate" value="" /> -->
+                <b>Arrival date:</b></br>
+                <div id="check_in_date"> </div>
             </div>
             <div class="col-sm-3">
-                <label for="endDate"><span class="calendar">Departure date:</span></label></br>
-                <!--<input class="date_input" type="date" id="endDate" name="endDate" /> -->
+                <b>Departure date:</b></br>
+                <div id="check_out_date"> </div>
             </div>
             <div class="col-sm-2">
-                <label for="endDate"><span class="calendar">Number of guests:</span></label></br>
-                <!--<input type="number" name="numberNights" min="1" max="14" value="2"> -->
+                <b>Number of guests:</b></br>
+                <div id="numberGuests"> </div>
             </div>
             <div class="col-sm-2">
-                <label for="endDate"><span class="calendar">Number of rooms:</span></label></br>
-                <!--<input type="number" name="numberNights" min="1" max="14" value="1"> -->
+                <b>Number of rooms:</b></br>
+                <div id="numberRooms"> </div>
             </div>
         </div>
 
         <div class="row step4">
-            <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="" alt="Room"/></div>
-            <div class="col-xs-6 col-md-4 room_properties">                        
-                <h4>Comfort room</h4>
-                <p><span class="glyphicon glyphicon-user properties"></span> </p>
-                <p><span class="glyphicon glyphicon-bed properties"></span> </p>
-                <p><span class="glyphicon glyphicon-equalizer"></span> </p>
-                <p><span class="glyphicon glyphicon-fullscreen"></span> </p>
+            <div class="col-xs-6 col-md-4"><img id="room_tumbnail" src="../reservation_app/assets/images/" alt="Room"/></div>
+            <div class="col-xs-6 col-md-4">                        
+                <h4 id="room_name"></h4>
+                <span class="glyphicon glyphicon-user"><div id="room_max_pers" class="summeryStyling"></div></span>
+                <span class="glyphicon glyphicon-bed"><div id="room_bedType" class="summeryStyling"></div></span>
+                <span class="glyphicon glyphicon-plus"><div id="room_amenities" class="summeryStyling"></div></span>
             </div>
             
             <div class="col-xs-6 col-md-4">
-                <p></p>
+                <p id="room_description"></p>
             </div>
         </div>
 
         <div class="row step4">
-            <div id="demo">
-
-            </div>
-
             <div class="col-xs-6 col-md-6">
                 <tr>
-                    <th>Name:</th>
-                    <th><p id="first_name"></p></th>
+                    <th><b>Name:</b></th>
+                    <th>
+                        <p id="first_name"></p>
+                        <p id="last_name"></p>
+                    </th>
                 </tr></br>
                 <tr>
-                    <th>Email:</th>
-                    <th><p id="last_name"></p></th>
+                    <th><b>Email:</b></th>
+                    <th><p id="email"></p></th>
                 </tr></br>
                 <tr>
-                    <th>Phone number:</th>
-                    <th><p></p></th>
+                    <th><b>Phone number:</b></th>
+                    <th><p id="phonenumber"></p></th>
                 </tr>
             </div>
             <div class="col-xs-6 col-md-6">
-                <p>Total: 
+                <th><b>Total:</b></th>
             </div>
         </div>
 
-        <button class='btn btn-primary page-button4'>
+        <button type="submit" class='btn btn-primary page-button4'>
             <span class='glyphicon glyphicon-chevron-right pull-right'></span>Book now
         </button>
-        <button type="button" class="btn btn-link page-button2">< One step back</button>`;
+        <button type="button" class="btn btn-link page-button2">< One step back</button>
+    </form>`;
 
-        // inject html to 'page-content' of our app
+    // inject html to 'page-content' of our app
     $("#page-content").html(step_content);
     
     changePageCircle("4");
     changePageTitle("Summary");
-
-
-
-    // $(document).on('submit', '#create-product-form', function(){
-    //     // get form data
-    //     var form_data=JSON.stringify($(this).serializeObject());
-    //     // submit form data to api
-    //     $.ajax({
-    //         url: "../api/#.php",
-    //         type : "POST",
-    //         contentType : 'application/json',
-    //         data : form_data,
-    //         success : function(result) {
-    //             // Reservation was created, go back to products list
-    //             //showProducts();
-    //         },
-    //         error: function(xhr, resp, text) {
-    //             // show error to console
-    //             console.log(xhr, resp, text);
-    //         }
-    //     });
-    //     return false;
-    // });
 }
+
+$(document).on("submit", "#step4_form", function(){
+    // get form data
+    var form_data=JSON.stringify($(this).serializeObject());
+    // submit form data to api
+    $.ajax({
+        url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
+        type : "POST",
+        contentType : 'application/json',
+        data : form_data,
+        success : function(result) {
+            // Reservation was created, go back to products list
+            form_step5();
+        },
+        error: function(xhr, resp, text) {
+            // show error to console
+            console.log(xhr, resp, text);
+        }
+    });
+    return false;
+});
