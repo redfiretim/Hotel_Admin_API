@@ -5,6 +5,12 @@ $(document).ready(function(){
         var id = $(this).attr('data-id');
         // read one record based on given product id
         $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation&id=" + id, function(data){
+			
+			var room_options_html = `<select id='accommodation_select' name='accommodation_id' class='form_control' required>`; 
+			room_options_html += `<option value="free">Select dates to show rooms</option>`; 
+			room_options_html+= `</select>`; 
+			
+			
             // values will be used to fill out our form
             var booking_num = data.booking_num;
             var first_name = data.first_name;
@@ -21,23 +27,15 @@ $(document).ready(function(){
 
             // load list of rooms
             $.getJSON("../admin_app/MOCK_DATA.json", function(data){  
-                // build 'room option' html
-                // loop through returned list of data
-                var room_options_html=`<select name='room_type_id' class='form-control'>`;
-                $.each(data.records, function(key, val){
-                    // pre-select option is room id is the same
-                    if(val.id==room_type_id){ 
-                        room_options_html+=`<option value='` + val.room_type_id + `' selected>` + val.type + `</option>`; 
-                    }else{ 
-                        room_options_html+=`<option value='` + val.room_type_id + `'>` + val.type + `</option>`; 
-                    }
-                });
-                room_options_html+=`</select>`;
+
+              
+           
 
                 // Function for datepicker
                 $(function() {
                     var startDate;
                     var endDate;
+					var startBoolean = false; 
                     // FIRST DATE PICKER
                     //default settings for picker layout
                     from = $("#from").datepicker({
@@ -53,6 +51,7 @@ $(document).ready(function(){
 
                     // Changes minDate of "to" picker to user-input of "from" picker
                     $('#from').change(function() { 
+						startBoolean = true; 
                         startDate = $(this).datepicker('getDate'); 
                         $("#to").datepicker("option", "minDate", startDate); 
                     }) 
@@ -70,7 +69,41 @@ $(document).ready(function(){
                     // Changes maxDate of "from" picker to user-input of "to" picker
                     $('#to').change(function() { 
                         endDate = $(this).datepicker('getDate'); 
-                        $("#from").datepicker("option", "maxDate", endDate); 
+                        $("#from").datepicker("option", "maxDate", endDate);
+						$("#to").datepicker("option", "minDate", startDate); 
+						
+						if(startBoolean) {	
+							// get form data
+							var form_data=JSON.stringify($('#create-reservation-form').serializeObject());
+							console.log(form_data);
+
+							// submit form data to api
+							$.ajax({
+								url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations",
+								type : "POST",
+								contentType : 'application/json',
+								data : form_data,
+								success : function(result) {
+									console.log(result);
+									
+									$('#accommodation_select').empty(); 
+									$.each(result.records, function(key, val){
+										
+										$('#accommodation_select').append('<option value="'+val.id+'">'+val.name+' ' + val.room_num + '</option>'); 
+						
+									}); 
+									// Reservation was created, go back to products list
+
+								},
+								error: function(xhr, resp, text) {
+									// show error to console
+									console.log(xhr, resp, text);
+								}
+							});
+						
+							return false;
+						}
+						
                     }) 
                 });
 
@@ -95,6 +128,7 @@ $(document).ready(function(){
                         <tr>
                             <td>First name</td>
                             <td><input value=\"` + first_name + `\" type='text' name='first_name' class='form-control' pattern='([A-Za-z]{1,32}[ \-]?[A-Za-z]{1,32}){1,32}' required /></td>
+							<input type='hidden' name='customer_id' value=\"` + customer_id + `" /> 
                         </tr>
                         <!-- Customer name field -->
                         <tr>
@@ -114,21 +148,21 @@ $(document).ready(function(){
                         <!-- Checkin field -->
                         <tr>
                             <td>Check-in</td>
-                            <td><input class="picker form-control" id="from" value=\"` + check_in_date + `\"  type='text' name='from' required /></td>
+                            <td><input class="picker form-control" id="from" value=\"` + check_in_date + `\"  type='text' name='check_in_date' required /></td>
                         </tr>
 
                         <!-- Checkout field -->
                         <tr>
                             <td>Check-out</td>
-                            <td><input class="picker form-control" id="to" value=\"` + check_out_date + `\"  type='text' name='to' required /></td>
+                            <td><input class="picker form-control" id="to" value=\"` + check_out_date + `\"  type='text' name='check_out_date' required /></td>
                         </tr>  
                         <!-- categories 'select' field -->
 
 
-                        <!-- Room number field -->
+                    <!-- Sort room 'select' field -->
                         <tr>
-                            <td>Room number</td>
-                            <td><input value=\"` + room_num + `\" type='number' name='room_num' class='form-control' pattern='[0-9]*' /></td>
+                            <th>Room type</th>
+                            <td>`+room_options_html+`</td>
                         </tr>
                 
                         <!-- Room rate field -->
@@ -153,7 +187,7 @@ $(document).ready(function(){
                         </tr>
                         <tr>
                         <!-- hidden 'reservation id' to identify which record to delete -->
-                        <td class="display-none"><input value=\"` + booking_num + `\" name='reservation_id' type='hidden' /></td>
+                        <td class="display-none"><input value=\"` + booking_num + `\" name='booking_num' type='hidden' /></td>
                         </tr>
                 
                     </table>
@@ -172,6 +206,8 @@ $(document).ready(function(){
     $(document).on('submit', '#update-reservation-form', function(){
         // get form data
         var form_data=JSON.stringify($(this).serializeObject());
+		
+		console.log(form_data); 
         // submit form data to api
         $.ajax({
             url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=update_reservation",
@@ -179,8 +215,9 @@ $(document).ready(function(){
             contentType : 'application/json',
             data : form_data,
             success : function(result) {
+				console.log("asdlkfjaklj"); 
                 // product was created, go back to products list
-                showProducts();
+                 showProductsFirstPage();
             },
             error: function(xhr, resp, text) {
                 // show error to console
