@@ -1,13 +1,12 @@
 <?php
 
 // Catch JSON data
-if (isset($data->customer_id)) {
-    $customer_id = $data->customer_id;
-}
+$customer_id = $data->customer_id;
 $first_name = $data->first_name;
 $last_name = $data->last_name;
 $email = $data->email;
 $phone_num = $data->phone_num;
+$customer_update = false;
 
 // Validates customer details with regular expressions.
 if (
@@ -29,6 +28,7 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/', $phone_nu
     $num = $stmt->rowCount();
     // num > 0 means there is a result.
     if ($num > 0) {
+        $customer_update = true;
         // response received, updated
         http_response_code(200);
         // tell the user that update was succesful.
@@ -37,14 +37,14 @@ preg_match('/^[\+]{1}[1-9]{1}[0-9\-]{9,18}$|^[0-9]{1}[0-9\-]{9,20}$/', $phone_nu
         }
     } else {
         // bad request
-        http_response_code(400);
+        http_response_code(200);
         // tell the user that update failed.
 
-        echo json_encode(array('message' => 'Update failed'));
+        // echo json_encode(array('message' => 'Update failed'));
     }
 } else {
     // bad request
-    http_response_code(400);
+    http_response_code(200);
     // tell the user that something went wrong
-    echo json_encode(array('message' => 'Looks like something went wrong'));
+    // echo json_encode(array('message' => 'Looks like something went wrong'));
 }
