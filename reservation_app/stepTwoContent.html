@@ -61,18 +61,23 @@
                     
                 <div id="page-content">
                     <form action="#" method="POST">
-                        <div class="form-group">
-                            <div id="room-content">
-                                
+                        <label class="room_block" onclick="">
+                            <input type="radio" name="radioname" value="` + data.name + `" />
+                            <div class="row">
+                                <div class="col-xs-6 col-md-4">
+                                    <img id="room_tumbnail" src="../reservation_app/assets/images/`+ data.image_one +`" alt="Room"/>
+                                </div>
+                                <div class="col-xs-6 col-md-4 room_properties">                        
+                                    <h4>` + data.name + ` <span class="glyphicon glyphicon-ok"></span></h4>
+                                    <p><span class="glyphicon glyphicon-user properties"></span> ` + data.max_pers + `</p>
+                                    <p><span class="glyphicon glyphicon-bed properties"></span> ` + bedType + `</p>
+                                    <p><span class="glyphicon glyphicon-plus"></span> ` + data.amenities + `</p>
+                                </div>
+                                <div class="col-xs-6 col-md-4">
+                                    <p>`+ data.description +`</p>
+                                </div>
                             </div>
-                        </div>
-    
-                        <div class="form-group">
-
-                        </div>
-
-                        <!-- <button type="button" class="btn btn-light"><u>Step back</u></button> -->
-                        <button type="submit" class="btn btn-primary">Check availability</button>
+                        </label>
                     </form>
                 </div>
             </div>
