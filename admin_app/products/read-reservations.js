@@ -32,5 +32,6 @@ function showProducts(json_url){
         readProductsTemplate(data, "");
         // chage page title
         changePageTitle("Reservations");
+
     });
 }
