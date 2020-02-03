@@ -41,6 +41,7 @@ function readRoomsTemplate(data){
                     <input type="hidden" name="room_bedType" value="` + bedType + `" />
                     <input type="hidden" name="room_amenities" value="` + data.amenities + `" />
                     <input type="hidden" name="room_description" value="` + data.description + `" />
+                    <input type="hidden" name="accommodation_id" value="` + data.id + `" />
 
                     <div class="row">
                         <div class="col-xs-6 col-md-4">
