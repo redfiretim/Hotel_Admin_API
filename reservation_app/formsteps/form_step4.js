@@ -44,7 +44,7 @@
                 <div class="col-xs-6 col-md-6">
                     <tr>
                         <th>Name:</th>
-                        <th><p>Annie</p></th>
+                        <th><p></p></th>
                     </tr></br>
                     <tr>
                         <th>Email:</th>
@@ -70,4 +70,27 @@
         
         changePageCircle("4");
         changePageTitle("Summary");
+
+
+
+        $(document).on('submit', '#create-product-form', function(){
+            // get form data
+            var form_data=JSON.stringify($(this).serializeObject());
+            // submit form data to api
+            $.ajax({
+                url: "../api/#.php",
+                type : "POST",
+                contentType : 'application/json',
+                data : form_data,
+                success : function(result) {
+                    // Reservation was created, go back to products list
+                    //showProducts();
+                },
+                error: function(xhr, resp, text) {
+                    // show error to console
+                    console.log(xhr, resp, text);
+                }
+            });
+            return false;
+        });
     }

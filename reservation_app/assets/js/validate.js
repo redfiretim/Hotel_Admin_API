@@ -97,17 +97,39 @@ function validateFormStep1() {
 };
 
 function validateFormStep3() {
-    function alert(){
+    function alertfirstname(){
         bootbox.alert({
             size: "small",
-            message: "<h4>You made a mistake</h4>",
+            message: "<h4>You made a mistake with your firstname</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertlastname(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You made a mistake with your lastname</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertemail(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You made a mistake with your email</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertphone(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You made a mistake with your phonenumber</h4>",
             callback: function(){ /* your callback code */ }
         })
     }
 
+
     if(checkNotEmpty() && checkPattern()){
         // If is not empty and checked than go to form_step4
-        form_step4();
+        saveForm();
         return true;
     }else{
         return false;
@@ -119,19 +141,19 @@ function validateFormStep3() {
         * EMPTY FOR ADD RESERVATION AND EDIT RESERVATION ADMIN SIDE
         */
         if(document.validate_Userform.first_name.value == "") {
-            alert();
+            alertfirstname();
             return false;
         }
         if(document.validate_Userform.last_name.value == "") {
-            alert();
+            alertlastname();
             return false;
         }
         if(document.validate_Userform.email.value == "") {
-            alert();         
+            alertemail();         
             return false;
         }
         if(document.validate_Userform.phonenumber.value == "") {
-            alert();
+            alertphone();
             return false;
         }
         else{

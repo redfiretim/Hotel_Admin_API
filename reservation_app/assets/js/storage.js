@@ -1,16 +1,19 @@
 function saveForm() {
     //nothing to work with, get out of here
-    if(typeof window.sessionStorage ==="undefined"){
+    if(typeof window.sessionStorage === "undefined"){
         return;
     }
     saveValues("input");
+
     saveValues("select");
+
+    form_step4();
     return true;
 }
 
 function loadForm() {
     //nothing to work with, get out of here
-    if(typeof window.sessionStorage ==="undefined"){return;}
+    if(typeof window.sessionStorage === "undefined"){return;}
     setValues("input");
     setValues("select");
 }
