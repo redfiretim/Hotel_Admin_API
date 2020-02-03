@@ -17,7 +17,7 @@ function validateFormStep1() {
     }
 
     function checkNotEmptyStep1(){
-        if(document.validate_Userform.from_picker == ""){
+        if(document.validate_Userform.check_in_date == ""){
             alert();
             return false;
         }
@@ -25,7 +25,7 @@ function validateFormStep1() {
             alert();
             return false;
         }
-        if(document.validate_Userform.to_picker == ""){
+        if(document.validate_Userform.check_out_date == ""){
             alert();
             return false;
         }
@@ -64,36 +64,6 @@ function validateFormStep1() {
             return false;
         }
     };
-
-    // Check on empty boolean
-    function checkNotEmptyStep1(){
-        /*
-        * EMPTY FOR ADD RESERVATION AND EDIT RESERVATION ADMIN SIDE
-        */
-        if(document.validate_Userform.check_in_date.value == "") {
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.check_out_date.value == "") {
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.numberNights.value == "") {
-            alert();         
-            return false;
-        }
-        if(document.validate_Userform.numberGuests.value == "") {
-            alert();
-            return false;
-        }
-        if(document.validate_Userform.numberRooms.value == "") {
-            alert();
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
 };
 
 function validateFormStep3() {

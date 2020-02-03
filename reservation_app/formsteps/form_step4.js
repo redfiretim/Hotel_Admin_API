@@ -14,6 +14,7 @@ function setValuesInHtml(){
     document.getElementById("room_amenities").innerHTML = sessionStorage.getItem("room_amenities");
     document.getElementById("room_description").innerHTML = sessionStorage.getItem("room_description");
     document.getElementById("room_tumbnail").innerHTML = sessionStorage.getItem("room_tumbnail");
+    // document.getElementById("accommodation_id").innerHTML = sessionStorage.getItem("accommodation_id");
     // For step 3
     document.getElementById("first_name").innerHTML = sessionStorage.getItem("first_name");
     document.getElementById("last_name").innerHTML = sessionStorage.getItem("last_name");
@@ -84,7 +85,7 @@ function form_step4(){
             </div>
         </div>
 
-        <button type="submit" class='btn btn-primary page-button4'>
+        <button class='btn btn-primary page-button4'>
             <span class='glyphicon glyphicon-chevron-right pull-right'></span>Book now
         </button>
         <button type="button" class="btn btn-link page-button2">< One step back</button>
@@ -97,9 +98,25 @@ function form_step4(){
     changePageTitle("Summary");
 }
 
-$(document).on("submit", "#step4_form", function(){
+$(document).on("click", ".page-button4", function(){
+    // For step 1
+    var num_of_nights =  sessionStorage.getItem("numberNights");
+    var check_in_date = sessionStorage.getItem("check_in_date");
+    var check_out_date = sessionStorage.getItem("check_out_date");
+    var num_of_pers = sessionStorage.getItem("numberGuests");
+    // For step 2
+    var accommodation_id = sessionStorage.getItem("accommodation_id");
+    // For step 3
+    var first_name = sessionStorage.getItem("first_name");
+    var last_name = sessionStorage.getItem("last_name");
+    var email = sessionStorage.getItem("email");
+    var phone_num = sessionStorage.getItem("phonenumber"); 
+
+    var arrayForm = {"num_of_nights":num_of_nights, "check_in_date":check_in_date, "check_out_date":check_out_date, "num_of_pers":num_of_pers, "accommodation_id":accommodation_id, "first_name":first_name, "last_name":last_name, "email":email, "phone_num":phone_num};
+
     // get form data
-    var form_data=JSON.stringify($(this).serializeObject());
+    var form_data = JSON.stringify(arrayForm);
+    console.log(form_data);
     // submit form data to api
     $.ajax({
         url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",

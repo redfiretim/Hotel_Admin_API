@@ -77,10 +77,6 @@ $(document).ready(function(){
     // }
 // WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
 
-
-
-
-
     // app html template
     var app_html=`
     <div class="container">
@@ -154,7 +150,6 @@ $(document).on('submit', '#check_availability_form', function(){
     $.ajax({
         url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
         type : "GET",
-        action : "read_accommodation_types",
         contentType : 'application/json',
         data : form_data,     
         success : function(result) {
@@ -169,7 +164,6 @@ $(document).on('submit', '#check_availability_form', function(){
             // console.log(xhr, resp, text);
         }
     });
-
     return false;
 });
 
