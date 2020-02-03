@@ -1,5 +1,4 @@
 function saveForm() {
-    
     //nothing to work with, get out of here
     if(typeof window.sessionStorage === "undefined"){
         return;
@@ -8,6 +7,7 @@ function saveForm() {
     setValuesInHtml();
     return true;
 }
+
 function saveFormStep2() {
     //nothing to work with, get out of here
     if(typeof window.sessionStorage === "undefined"){

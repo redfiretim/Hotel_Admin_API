@@ -9,7 +9,7 @@ $(document).ready(function(){
             </div>
         `;
 
-            // inject html to 'page-content' of our app
+        // inject html to 'page-content' of our app
         $("#page-content").html(step_content);
         
         changePageCircle("5");

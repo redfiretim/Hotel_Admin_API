@@ -1,6 +1,4 @@
 function showUserDetailsForm(){
-  
-    console.log("hoi nogmaals");
     // CALLBACK NEEDED
     var step_content=`   
         <form name='validate_Userform' id='create-reservation-form' action='#' method='post' border='0'>
@@ -28,19 +26,13 @@ function showUserDetailsForm(){
         </button>
         <button type="button" class="btn btn-link page-button">< One step back</button>`;
 
-        // inject html to 'page-content' of our app
+    // inject html to 'page-content' of our app
     $("#page-content").html(step_content);
     
     $(document).on('click', '.page-button3' , function(){
         return validateFormStep3();
-        //return saveForm();
     });
 
     changePageCircle("3");
     changePageTitle("Fill in contact details");
-
-
-// $(document).on('submit', '#create-product-form', function(){
-
-// });
 };
