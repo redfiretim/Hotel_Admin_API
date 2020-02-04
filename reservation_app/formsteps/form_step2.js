@@ -30,9 +30,6 @@ function readRoomsTemplate(data){
                 if((data.name) == "Deluxe double room"){
                     bedType = "King size bed";
                 }
-                // else{
-                //     bedType = "Unknown";
-                // }
 
                 step_content += `
                     <label class="room_block">
