@@ -184,7 +184,7 @@ $(document).ready(function(){
                 console.log(xhr, resp, text);
             }
         });
-        
+        showProductsFirstPage();
         return false;
     });
 });
