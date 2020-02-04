@@ -121,7 +121,9 @@ $(document).on("click", ".page-button4", function(){
 
     // get form data
     var form_data = JSON.stringify(arrayForm);
-    console.log(form_data);
+
+    console.log(form_data + "Array that gets send to backend. step4");
+    
     // submit form data to api
     $.ajax({
         url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
