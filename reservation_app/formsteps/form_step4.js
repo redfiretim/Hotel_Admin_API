@@ -98,6 +98,12 @@ function form_step4(){
     changePageTitle("Summary");
 }
 
+// For back button
+$(document).on('click', '.page-button2' , function(){
+    showUserDetailsForm();
+});
+
+//submit form
 $(document).on("click", ".page-button4", function(){
     // For step 1
     var num_of_nights =  sessionStorage.getItem("numberNights");

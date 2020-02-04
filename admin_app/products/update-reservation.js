@@ -10,7 +10,6 @@ $(document).ready(function(){
 			room_options_html += `<option value="free">Select dates to show rooms</option>`; 
 			room_options_html+= `</select>`; 
 			
-			
             // values will be used to fill out our form
             var booking_num = data.booking_num;
             var first_name = data.first_name;
@@ -24,13 +23,8 @@ $(document).ready(function(){
             var check_out_date = data.check_out_date;
             var customer_id = data.customer_id;
 
-
             // load list of rooms
-            $.getJSON("../admin_app/MOCK_DATA.json", function(data){  
-
-              
-           
-
+            // $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){  
                 // Function for datepicker
                 $(function() {
                     var startDate;
@@ -85,26 +79,20 @@ $(document).ready(function(){
 								data : form_data,
 								success : function(result) {
 									console.log(result);
-									
 									$('#accommodation_select').empty(); 
 									$.each(result.records, function(key, val){
-										
 										$('#accommodation_select').append('<option value="'+val.id+'">'+val.name+' ' + val.room_num + '</option>'); 
-						
 									}); 
 									// Reservation was created, go back to products list
-
 								},
 								error: function(xhr, resp, text) {
 									// show error to console
 									console.log(xhr, resp, text);
 								}
 							});
-						
 							return false;
 						}
-						
-                    }) 
+                    });
                 });
 
                 // store 'update reservation' html to this variable
@@ -117,7 +105,6 @@ $(document).ready(function(){
                 <!-- we used the 'required' html5 property to prevent empty fields -->
                 <form name="validate_Adminform" id='update-reservation-form' action='#' method='post' border='0' onsubmit="return validateForm();" novalidate>
                     <table class="table table-curved table-striped">
-                        
                         <!-- Booking number field -->
                         <tr>
                             <td>Booking number</td>
@@ -159,7 +146,7 @@ $(document).ready(function(){
                         <!-- categories 'select' field -->
 
 
-                    <!-- Sort room 'select' field -->
+                        <!-- Sort room 'select' field -->
                         <tr>
                             <th>Room type</th>
                             <td>`+room_options_html+`</td>
@@ -189,16 +176,14 @@ $(document).ready(function(){
                         <!-- hidden 'reservation id' to identify which record to delete -->
                         <td class="display-none"><input value=\"` + booking_num + `\" name='booking_num' type='hidden' /></td>
                         </tr>
-                
                     </table>
                 </form>`;
 
-                    // inject to 'page-content' of our app
+                // inject to 'page-content' of our app
                 $("#page-content").html(update_product_html);
-                
                 // chage page title
                 changePageTitle("Reservation Edit");
-            });
+            // });
         });
     });
      
@@ -217,7 +202,7 @@ $(document).ready(function(){
             success : function(result) {
 				console.log("asdlkfjaklj"); 
                 // product was created, go back to products list
-                 showProductsFirstPage();
+                showProductsFirstPage();
             },
             error: function(xhr, resp, text) {
                 // show error to console

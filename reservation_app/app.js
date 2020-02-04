@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    //const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
     var startDate;
     var endDate;
 
@@ -92,16 +92,16 @@ $(document).ready(function(){
                 <div class="row" id="first-row">
                     <div class="has-feedback col-xs-6 col-md-4">
                         <label class="control-label" for="picker">Arrival date:</label>
-                        <input class="picker form-control" type="text" id="from" name="check_in_date"/>
+                        <input class="picker form-control" type="text" id="from" name="check_in_date" required/>
                         <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
                     </div>
                     <div class="col-xs-6 col-md-4 quantity">
                         <label class="control-label" for="picker">Nights:</label></br>
-                        <input class="picker_night" type="number" name="numberNights" min="1" max="14" value="1" readonly>
+                        <input class="picker_night" type="number" name="numberNights" min="1" max="14" value="1" required>
                     </div>
                     <div class="has-feedback col-xs-6 col-md-4">
                         <label class="control-label" for="to">Departure date:</label></br>
-                        <input class="picker form-control" type="text" id="to" name="check_out_date">
+                        <input class="picker form-control" type="text" id="to" name="check_out_date" required>
                         <i class="form-control-feedback glyphicon glyphicon-calendar"></i>
                     </div>
                 </div>
@@ -109,11 +109,11 @@ $(document).ready(function(){
                 <div class="row" id="first-row">
                     <div class="col-xs-6 col-md-4 number-wrapper">
                         <label class="control-label" for="picker">Number of guests:</label></br>
-                        <input class="picker_night form-control" type="number" name="numberGuests" min="1" max="2" value="1">
+                        <input class="picker_night form-control" type="number" name="numberGuests" min="1" max="2" value="1" required>
                     </div>
                     <div class="col-xs-6 col-md-4 number-wrapper">
                         <label class="control-label" for="picker">Number of rooms:</label></br>
-                        <input class="picker_night form-control" type="number" name="numberRooms" min="1" max="1" value="1">
+                        <input class="picker_night form-control" type="number" name="numberRooms" min="1" max="1" value="1" >
                     </div>
                 </div>
 
@@ -123,9 +123,37 @@ $(document).ready(function(){
             </form>
         </div>
     </div>`;
-
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
+});
+
+
+
+$(document).on('submit', '#check_availability_form', function(){
+    // Put form user input into Local Storage
+    // validateFormStep1();
+    if(validateFormStep1() == true){
+        var form_data=JSON.stringify($(this).serializeObject());
+        // submit form data to api
+        $.ajax({
+            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
+            type : "GET",
+            contentType : 'application/json',
+            data : form_data,     
+            success : function(result) {
+                // go to function to show results
+                console.log(result);
+                if(saveFormStep2() == true){
+                    showAvailableRoom(result);
+                }
+            },
+            error: function(xhr, resp, text) {
+                // show error to console
+                console.log(xhr, resp, text);
+            }
+        });
+        return false;
+    }
 });
 
 // change page title
@@ -142,31 +170,6 @@ function changePageCircle(page_circle){
     // change title tag
     document.title=page_circle;
 }
- 
-$(document).on('submit', '#check_availability_form', function(){
-    // get form data
-    var form_data=JSON.stringify($(this).serializeObject());
-    // submit form data to api
-    $.ajax({
-        url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
-        type : "GET",
-        contentType : 'application/json',
-        data : form_data,     
-        success : function(result) {
-            // go to function to show results
-            console.log(result);
-            if(saveFormStep2() == true){
-                showAvailableRoom(result);
-            }
-        },
-        error: function(xhr, resp, text) {
-            // show error to console
-            // console.log(xhr, resp, text);
-        }
-    });
-    return false;
-});
-
 
 // function to make form values to json format
 $.fn.serializeObject = function(){
