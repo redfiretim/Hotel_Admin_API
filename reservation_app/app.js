@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    //const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
     var startDate;
     var endDate;
 
@@ -123,9 +123,37 @@ $(document).ready(function(){
             </form>
         </div>
     </div>`;
-
     // inject to 'app' in index.html
     $("#reservation").html(app_html);
+});
+
+
+
+$(document).on('submit', '#check_availability_form', function(){
+    // Put form user input into Local Storage
+    // validateFormStep1();
+    if(validateFormStep1() && saveFormStep2() == true){
+        var form_data=JSON.stringify($(this).serializeObject());
+        // submit form data to api
+        $.ajax({
+            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
+            type : "GET",
+            contentType : 'application/json',
+            data : form_data,     
+            success : function(result) {
+                // go to function to show results
+                console.log(result);
+                if(saveFormStep2() == true){
+                    showAvailableRoom(result);
+                }
+            },
+            error: function(xhr, resp, text) {
+                // show error to console
+                console.log(xhr, resp, text);
+            }
+        });
+        return false;
+    }
 });
 
 // change page title
@@ -142,31 +170,6 @@ function changePageCircle(page_circle){
     // change title tag
     document.title=page_circle;
 }
- 
-$(document).on('submit', '#check_availability_form', function(){
-    // get form data
-    var form_data=JSON.stringify($(this).serializeObject());
-    // submit form data to api
-    $.ajax({
-        url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
-        type : "GET",
-        contentType : 'application/json',
-        data : form_data,     
-        success : function(result) {
-            // go to function to show results
-            console.log(result);
-            if(saveFormStep2() == true){
-                showAvailableRoom(result);
-            }
-        },
-        error: function(xhr, resp, text) {
-            // show error to console
-            // console.log(xhr, resp, text);
-        }
-    });
-    return false;
-});
-
 
 // function to make form values to json format
 $.fn.serializeObject = function(){

@@ -5,9 +5,9 @@ $(document).ready(function(){
         $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){
             // build categories option html
             // loop through returned list of data
-            room_options_html = `<select id='accommodation_select' name='accommodation_id' class='form_control' required>`; 
-			room_options_html += `<option value="free">Select dates to show rooms</option>`; 
-			room_options_html+= `</select>`; 
+            room_options_html = `<select id='accommodation_select' name='accommodation_id' class='form_control' required>
+                                    <option value="free">Select dates to show rooms</option>
+                                </select>`; 
 		        
             // Function for datepicker
             $(function() {
@@ -50,7 +50,6 @@ $(document).ready(function(){
         
                 // Changes maxDate of "from" picker to user-input of "to" picker
                 $('#to').change(function() { 
-				
 					endDate = $(this).datepicker('getDate'); 
 					startDate = $("#from").datepicker('getDate'); 
                     $("#to").datepicker("option", "minDate", startDate); 
@@ -69,22 +68,17 @@ $(document).ready(function(){
 							data : form_data,
 							success : function(result) {
 								console.log(result);
-								
 								$('#accommodation_select').empty(); 
 								$.each(result.records, function(key, val){
-									
 									$('#accommodation_select').append('<option value="'+val.id+'">'+val.name+' ' + val.room_num + '</option>'); 
-					
 								}); 
 								// Reservation was created, go back to products list
-
 							},
 							error: function(xhr, resp, text) {
 								// show error to console
 								console.log(xhr, resp, text);
 							}
 						});
-						
 						return false;
 					}
                 }) 

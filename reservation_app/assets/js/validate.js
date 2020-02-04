@@ -1,67 +1,80 @@
 function validateFormStep1() {
-    function alert(){
+    function alertempty(){
         bootbox.alert({
             size: "small",
-            message: "<h4>You made a mistake</h4>",
+            message: "<h4>You made a empty</h4>",
+            callback: function(){ /* your callback code */ }
+        })
+    }
+    function alertpattern(){
+        bootbox.alert({
+            size: "small",
+            message: "<h4>You made a pattern</h4>",
             callback: function(){ /* your callback code */ }
         })
     }
 
-    // Check on pattern and empty
     if(checkNotEmptyStep1() && checkPatternStep1()){
+        console.log("testing checkNotEmptyStep1 ifstatement");
         // If is not empty and checked than go to form_step4
-        showAvailableRoom();
+        saveFormStep2();
         return true;
     }else{
         return false;
     }
 
     function checkNotEmptyStep1(){
-        if(document.validate_Userform.check_in_date == ""){
-            alert();
+        console.log("testing checkNotEmptyStep1 ");
+        if(document.validate_Userform.check_in_date.value == ""){
+            alertempty();
             return false;
         }
-        if(document.validate_Userform.numberNights == ""){
-            alert();
+        if(document.validate_Userform.numberNights.value == ""){
+            alertempty();
             return false;
         }
-        if(document.validate_Userform.check_out_date == ""){
-            alert();
+        if(document.validate_Userform.check_out_date.value == ""){
+            alertempty();
             return false;
         }
-        if(document.validate_Userform.numberGuests == ""){
-            alert();
+        if(document.validate_Userform.numberGuests.value == ""){
+            alertempty();
             return false;
         }
-        if(document.validate_Userform.numberRooms == ""){
-            alert();
+        if(document.validate_Userform.numberRooms.value == ""){
+            alertempty();
             return false;
+        }else{
+            return true;
         }
     }
 
     function checkPatternStep1(){
+        console.log("testing checkPatternStep1");
         var number_reg_ex = /^[0-9]*$/;
         var date_reg_ex =  /^([0-9]{4}[\-]{1}[0-9]{2}[\-]{1}[0-9]{2})$/;
 
         if(date_reg_ex.test(document.validate_Userform.check_in_date.value) == false){
-            alert();
+            alertpattern();
             return false;
         }
         if(date_reg_ex.test(document.validate_Userform.check_out_date.value) == false){
-            alert();
+            alertpattern();
             return false;
         }
         if(number_reg_ex.test(document.validate_Userform.numberNights.value) == false){
-            alert();
+            alertpattern();
             return false;
         }
         if(number_reg_ex.test(document.validate_Userform.numberGuests.value) == false){
-            alert();
+            alertpattern();
             return false;
         }
         if(number_reg_ex.test(document.validate_Userform.numberRooms.value) == false){
-            alert();
+            alertpattern();
             return false;
+        }else{
+            return true;
         }
     };
 };

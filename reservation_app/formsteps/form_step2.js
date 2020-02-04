@@ -69,7 +69,6 @@ step_content += ` <button type='submit' class='btn btn-primary page-button2'>
         </form>
     </div>`;
 
-
     // inject html to 'page-content' of our app
     $("#page-content").html(step_content);
 
