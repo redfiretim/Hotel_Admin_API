@@ -32,8 +32,9 @@ function readRoomsTemplate(data){
                 }
 
                 step_content += `
+                <div>
+                    <input type="radio" name="room_name" value="` + data.name + `" />                 
                     <label class="room_block">
-                        <input type="radio" name="room_name" value="` + data.name + `" />
                         <input type="hidden" name="room_tumbnail" value="` + data.image_one + `" />
                         <input type="hidden" name="room_max_pers" value="` + data.max_pers + `" />
                         <input type="hidden" name="room_bedType" value="` + bedType + `" />
@@ -55,7 +56,8 @@ function readRoomsTemplate(data){
                                 <p>`+ data.description +`</p>
                             </div>
                         </div>
-                    </label>`;  
+                    </label>
+                </div>`;  
             });
 
             // submit button + back button

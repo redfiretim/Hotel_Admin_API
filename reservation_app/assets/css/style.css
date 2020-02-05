@@ -193,31 +193,32 @@
     /* IMAGES */
 
     /* CHOOSE ROOM */
-    .room_block{
-        float: left;
-    }
-    .room_block, .room_block:hover{
-        margin-top: 1%;
-        margin-bottom: 1%;
-        padding: 2%;
-        background-color: rgb(240, 240, 240);
-        border-radius: 15px 15px;
-    }
-    .room_block{
-        cursor:pointer;
-        border: 3px solid rgb(222, 222, 222);
-    }
-    .room_block:hover, .room_block:checked{
-        border: 3px solid rgb(14, 87, 182);
-    }
-    /* Hide radio button */
-    /* .room_block > input{ 
-        opacity: 0%; 
-        position: absolute; 
-        width: 0;
-    } */
-
-
+        input[type=radio]:checked + label{
+            border: 3px solid rgb(14, 87, 182);
+        }
+        .room_block{
+            float: left;
+        }
+        .room_block, .room_block:hover{
+            margin-top: 1%;
+            margin-bottom: 1%;
+            padding: 2%;
+            background-color: rgb(240, 240, 240);
+            border-radius: 15px 15px;
+        }
+        .room_block{
+            cursor:pointer;
+            border: 3px solid rgb(222, 222, 222);
+        }
+        .room_block:hover, .room_block:checked{
+            border: 3px solid rgb(14, 87, 182);
+        }
+        /* Hide radio button */
+        /* .room_block > input{ 
+            opacity: 0%; 
+            position: absolute; 
+            width: 0;
+        } */
     /* CHOOSE ROOM */
 /* STEP 2 */
 
