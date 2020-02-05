@@ -21,20 +21,22 @@ function readRoomsTemplate(data){
             $.each(data, function(index, data) {
                 var bedType;
         
-                if((data.name) == "Standard triple room"){
-                    bedType = "Separate beds";
-                }
+
                 if((data.name) == "Standard double room"){
                     bedType = "Queen size bed";
+                }
+                if((data.name) == "Standard triple room"){
+                    bedType = "Separate beds";
                 }
                 if((data.name) == "Deluxe double room"){
                     bedType = "King size bed";
                 }
-
+                
                 step_content += `
                 <div>
-                    <input type="radio" name="room_name" value="` + data.name + `" />                 
+                    <input type="radio" name="room_name" value="` + data.id + `" />                 
                     <label class="room_block">
+                        <input type="hidden" name="room_name" value="` + data.name + `" />
                         <input type="hidden" name="room_tumbnail" value="` + data.image_one + `" />
                         <input type="hidden" name="room_max_pers" value="` + data.max_pers + `" />
                         <input type="hidden" name="room_bedType" value="` + bedType + `" />
@@ -79,6 +81,6 @@ step_content += ` <button type='submit' class='btn btn-primary page-button2'>
 $(document).on('submit', '#room_type_form', function(){
     // Put form user input into Local Storage
     if(saveFormStep2() == true){
-        showUserDetailsForm();
+        return showUserDetailsForm();
     }
 });

@@ -14,7 +14,6 @@ function setValuesInHtml(){
     document.getElementById("room_amenities").innerHTML = sessionStorage.getItem("room_amenities");
     document.getElementById("room_description").innerHTML = sessionStorage.getItem("room_description");
     document.getElementById("room_tumbnail").innerHTML = sessionStorage.getItem("room_tumbnail");
-    // document.getElementById("accommodation_id").innerHTML = sessionStorage.getItem("accommodation_id");
     // For step 3
     document.getElementById("first_name").innerHTML = sessionStorage.getItem("first_name");
     document.getElementById("last_name").innerHTML = sessionStorage.getItem("last_name");
@@ -98,7 +97,7 @@ function form_step4(){
     changePageTitle("Summary");
 }
 
-// For back button
+//For back button
 // $(document).on('click', '.page-button2' , function(){
 //     showUserDetailsForm();
 // });

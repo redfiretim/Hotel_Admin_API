@@ -15,8 +15,7 @@ function validateFormStep1() {
     }
 
     if(checkNotEmptyStep1() && checkPatternStep1()){
-        console.log("testing checkNotEmptyStep1 ifstatement");
-        // If is not empty and checked than go to form_step4
+        // If is not empty and checked than go to form_step2
         saveFormStep2();
         return true;
     }else{
@@ -24,7 +23,6 @@ function validateFormStep1() {
     }
 
     function checkNotEmptyStep1(){
-        console.log("testing checkNotEmptyStep1 ");
         if(document.validate_Userform.check_in_date.value == ""){
             alertempty();
             return false;
@@ -50,7 +48,6 @@ function validateFormStep1() {
     }
 
     function checkPatternStep1(){
-        console.log("testing checkPatternStep1");
         var number_reg_ex = /^[0-9]*$/;
         var date_reg_ex =  /^([0-9]{4}[\-]{1}[0-9]{2}[\-]{1}[0-9]{2})$/;
 

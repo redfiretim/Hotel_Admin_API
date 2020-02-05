@@ -1,13 +1,9 @@
 $(document).ready(function(){
-    //const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
     var startDate;
     var endDate;
 
     // Function for datepicker
     $(function() {
-        // date format
-        var dateFormat = "dd-mm-yy";
-    
         // FIRST DATE PICKER
         //default settings for picker layout
         from = $("#from").datepicker({
@@ -54,28 +50,6 @@ $(document).ready(function(){
             $("#from").datepicker("option", "maxDate", endDate); 
         }) 
     });
-
-
-
-
-// WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
-    // //calculate number of night  (WIP)
-    // function nights(startDate,endDate, oneDay) {
-    //     const firstDate = startDate;
-    //     const secondDate = endDate;
-    
-    //     const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-    //     return diffDays;
-    // }
-
-    // // dev test log
-    // if((startDate !== null) && (endDate !== null)){
-    //     console.log(nights(startDate, endDate, oneDay));
-    // }
-    // else{
-    //     console.log("Error: Night calculation needs to be exucuted after User Input!")
-    // }
-// WIP  CALCULATING NIGHTS  <--  NOT WORKING YET - NaN output in console (Not a Number)
 
     // app html template
     var app_html=`
@@ -127,8 +101,6 @@ $(document).ready(function(){
     $("#reservation").html(app_html);
 });
 
-
-
 $(document).on('submit', '#check_availability_form', function(){
     // Put form user input into Local Storage
     // validateFormStep1();
@@ -142,7 +114,6 @@ $(document).on('submit', '#check_availability_form', function(){
             data : form_data,     
             success : function(result) {
                 // go to function to show results
-                console.log(result);
                 if(saveFormStep2() == true){
                     showAvailableRoom(result);
                 }
