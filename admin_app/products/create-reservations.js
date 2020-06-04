@@ -2,7 +2,7 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.create-reservation-button', function(){
         // load list of categories
-        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){
+        $.getJSON("../api/index.php?action=read_available_accommodations", function(data){
             // build categories option html
             // loop through returned list of data
             room_options_html = `<select id='accommodation_select' name='accommodation_id' class='form_control' required>
@@ -62,7 +62,7 @@ $(document).ready(function(){
 
 						// submit form data to api
 						$.ajax({
-							url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations",
+							url: "../api/index.php?action=read_available_accommodations",
 							type : "POST",
 							contentType : 'application/json',
 							data : form_data,
@@ -170,7 +170,7 @@ $(document).ready(function(){
 
         // submit form data to api
         $.ajax({
-            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=create_reservation",
+            url: "../api/index.php?action=create_reservation",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

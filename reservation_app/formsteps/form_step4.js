@@ -1,3 +1,4 @@
+// Fill page with user submitted data
 function setValuesInHtml(){
     form_step4();
     // get elements by id and push the sorage item in the div

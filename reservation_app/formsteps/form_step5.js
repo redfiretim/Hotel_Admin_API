@@ -14,3 +14,5 @@ function form_step5(){
     changePageCircle("5");
     changePageTitle("Confirmation");
 };
+
+//FIXME  Needs error handling when data submit to api gives errors.

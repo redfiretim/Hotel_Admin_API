@@ -31,12 +31,15 @@ function loadForm() {
     getValues("input");
 }
 
+// Store data in Local Storage
 function setValues(tag){
     var inputs = document.getElementsByTagName(tag);
     for(var i = 0; i < inputs.length; i++){
         window.sessionStorage.setItem(inputs[i].name, inputs[i].value);
     }
 }
+
+// Get data from Local Storage
 function getValues(tag){
     var inputs = document.getElementsByTagName(tag);
     for(var i = 0; i < inputs.length; i++){

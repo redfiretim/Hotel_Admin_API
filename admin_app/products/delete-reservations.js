@@ -20,7 +20,7 @@ $(document).ready(function(){
 		        if(result==true){
 				    // send delete request to api / remote server
 				    $.ajax({
-                        url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=delete_reservation&id="+ reservation_id,
+                        url: "../api/index.php?action=delete_reservation&id="+ reservation_id,
 				        type : "POST",
 						dataType : 'json',
 						action : "delete_reservation",

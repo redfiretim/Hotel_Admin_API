@@ -1,5 +1,5 @@
 function showUserDetailsForm(){
-    // CALLBACK NEEDED
+//FIXME CALLBACK NEEDED
     var step_content=`   
         <form name='validate_Userform' id='create-reservation-form' action='#' method='post' border='0'>
             <div class="form-group">
@@ -29,6 +29,7 @@ function showUserDetailsForm(){
     // inject html to 'page-content' of our app
     $("#page-content").html(step_content);
     
+    // Validate input
     $(document).on('click', '.page-button3' , function(){
         return validateFormStep3();
     });

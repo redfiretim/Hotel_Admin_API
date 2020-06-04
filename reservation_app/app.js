@@ -108,7 +108,7 @@ $(document).on('submit', '#check_availability_form', function(){
         var form_data=JSON.stringify($(this).serializeObject());
         // submit form data to api
         $.ajax({
-            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_accommodation_types",
+            url: "../api/index.php?action=read_accommodation_types",
             type : "GET",
             contentType : 'application/json',
             data : form_data,     

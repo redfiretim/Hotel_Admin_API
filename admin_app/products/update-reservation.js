@@ -4,7 +4,7 @@ $(document).ready(function(){
         // get product id
         var id = $(this).attr('data-id');
         // read one record based on given product id
-        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation&id=" + id, function(data){
+        $.getJSON("../api/index.php?action=read_one_reservation&id=" + id, function(data){
 			
 			var room_options_html = `<select id='accommodation_select' name='accommodation_id' class='form_control' required>`; 
 			room_options_html += `<option value="free">Select dates to show rooms</option>`; 
@@ -24,7 +24,7 @@ $(document).ready(function(){
             var customer_id = data.customer_id;
 
             // load list of rooms
-            // $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations", function(data){  
+            // $.getJSON("../api/index.php?action=read_available_accommodations", function(data){  
                 // Function for datepicker
                 $(function() {
                     var startDate;
@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 							// submit form data to api
 							$.ajax({
-								url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=read_available_accommodations",
+								url: "../api/index.php?action=read_available_accommodations",
 								type : "POST",
 								contentType : 'application/json',
 								data : form_data,
@@ -195,7 +195,7 @@ $(document).ready(function(){
 		console.log(form_data); 
         // submit form data to api
         $.ajax({
-            url: "http://178.18.138.109/educom/hotel_code/api/index.php?action=update_reservation",
+            url: "../api/index.php?action=update_reservation",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

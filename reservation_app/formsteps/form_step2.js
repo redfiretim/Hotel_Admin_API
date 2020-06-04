@@ -22,6 +22,7 @@ function readRoomsTemplate(data){
                 var bedType;
         
 
+                // Quick fix to generate Bed details from room type
                 if((data.name) == "Standard double room"){
                     bedType = "Queen size bed";
                 }

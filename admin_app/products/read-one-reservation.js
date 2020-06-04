@@ -5,7 +5,7 @@ $(document).ready(function(){
         var id = $(this).attr('data-id');
         // read product record based on given ID
 
-        $.getJSON("http://178.18.138.109/educom/hotel_code/api/index.php?action=read_one_reservation&id=" + id, function(data){
+        $.getJSON("../api/index.php?action=read_one_reservation&id=" + id, function(data){
             // start html
 
    

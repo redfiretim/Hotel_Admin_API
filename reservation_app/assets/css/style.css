@@ -116,10 +116,6 @@
             border-color: #076EC3;
             float: right;
         }
-        /* .room_block.btn-primary:active{
-            background-color: #F2C572;
-            height: 226px;
-        } */
         .btn>u {
             font-size: 12px;
         }
@@ -132,6 +128,8 @@
             text-decoration: underline;
         }
     /** BUTTONS **/
+
+
 /** GENERAL STYLING **/   
 
 
@@ -179,9 +177,8 @@
     .form-control{
         display: inline-block;
     }
-
-
 /** STEP 1  **/
+
 
 
 /* STEP 2 */
@@ -223,6 +220,8 @@
 /* STEP 2 */
 
 
+
+
 /* STEP 4 */
     .step4{
         border: 1px solid #1570BF;
@@ -233,6 +232,8 @@
         width: 94%;
     }
 /* STEP 4 */
+
+
 
 
 /* STEP 5 */
